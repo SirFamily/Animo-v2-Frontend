@@ -14,7 +14,7 @@ function Navbar() {
     {
       text: (
         <>
-          <div className={navcss.container_nav_reg_log}>
+          <div className={navcss.container_nav_gap}>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </div>
@@ -26,12 +26,12 @@ function Navbar() {
   const userNav = [
     {
       text: (
-        <>
+        <div className={navcss.container_nav_gap}>
         <div>{user?.email}</div>
   
               <button onClick={hdlLogout} >Logout</button>
     
-        </>
+        </div>
       ),
     },
   ];

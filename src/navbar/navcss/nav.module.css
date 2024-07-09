@@ -8,7 +8,7 @@
     justify-content: space-between;
 }
 
-.container_nav_reg_log{
+.container_nav_gap{
     display: flex;
     gap: 20px;
 }
