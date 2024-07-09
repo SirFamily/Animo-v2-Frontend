@@ -71,7 +71,7 @@ function Register() {
       console.log(rs);
       if (rs.status === 201) {
         alert("Successful");
-        navigate("/login");
+        // navigate("/login");
       }
     } catch (error) {
       console.error("Registration failed", error.response.data);
@@ -196,7 +196,7 @@ function Register() {
         </div>
         <div>
           <label>Profile Picture:</label>
-          <input type="file" name="img" onChange={handleFileChange} />
+          <input type="file" name="img" accept="image/png,image/jpeg" onChange={handleFileChange} />
         </div>
         <button type="submit">Register</button>
       </form>
