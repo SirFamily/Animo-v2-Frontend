@@ -1,0 +1,14 @@
+.container {
+    background-color: aqua;
+    padding: 16px 19%;
+}
+
+.container_nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_nav_reg_log{
+    display: flex;
+    gap: 20px;
+}
