@@ -4,8 +4,8 @@ import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 
 function Pets_add({ onClose }) {
-    const { user } = useAuth();
-    const uid = user.id;
+  const { user } = useAuth();
+  const uid = user.id;
   const [input, setInput] = useState({
     petName: "",
     animalType: "",
@@ -59,7 +59,6 @@ function Pets_add({ onClose }) {
       }
     } catch (error) {
       console.error("Error adding pet:", error);
-      // Handle error (e.g., show an error message)
     }
   };
 
