@@ -7,8 +7,17 @@ import Home from "../pages/Home"
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
+import List_host from "../pages/list_hist/List_host";
+
 import Dashboard from "../pages/dashboard/Dashboard"
 import Pets from "../pages/dashboard/pets/Pets"
+import Host from "../pages/dashboard/host/Host";
+import Request from "../pages/dashboard/list_request/Request"
+import History from "../pages/dashboard/list_history/History"
+import Profile from "../pages/dashboard/profile/Profile"
+
+
+
 const guestRouter = createBrowserRouter([
   {
     path: "/",
@@ -40,9 +49,13 @@ const userRouter = createBrowserRouter([
         </>
       ),
       children: [
-        { index: true, element: <Dashboard /> },
+        { index: true, element: <List_host /> },
+        { path: 'dashboard/', element: <Dashboard />,},
         { path: 'dashboard/pets', element: <Pets />,},
-    
+        { path: 'dashboard/host', element: <Host />,},
+        { path: 'dashboard/request', element: <Request />,},
+        { path: 'dashboard/history', element: <History />,},
+        { path: 'dashboard/profile', element: <Profile />,},
       ]
     },
   ]);

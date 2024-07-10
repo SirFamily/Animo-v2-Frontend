@@ -28,7 +28,7 @@ function Navbar() {
       text: (
         <div className={navcss.container_nav_gap}>
           <div>
-            <Link to="dashboard/pets">123</Link>
+            <Link to="dashboard/">dashboard</Link>
           </div>
         <div>{user?.email}</div>
   

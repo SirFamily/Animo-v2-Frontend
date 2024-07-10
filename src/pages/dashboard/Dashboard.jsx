@@ -1,31 +1,27 @@
-import React from 'react';
-import useAuth from "../../hooks/useAuth";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return <div>Failed to load user data</div>;
-  }
-
   return (
     <div>
-      <h1>Dashboard</h1>
-      <p>Welcome, {user.firstName} {user.lastName}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-      <p>Birthday: {new Date(user.birthday).toLocaleDateString()}</p>
-      <p>Address: {user.address}</p>
-      <p>Sub District: {user.subDistrict}</p>
-      <p>District: {user.district}</p>
-      <p>Province: {user.province}</p>
-      <p>Postal Code: {user.postalCode}</p>
-      <p>Bio: {user.bio}</p>
-      {user.img && <img src={user.img} alt="Profile" />}
+      <div>
+        menu
+        <div>
+          <Link to="/dashboard/pets">pet</Link>
+        </div>
+        <div>
+          <Link to="/dashboard/host">host</Link>
+        </div>
+        <div>
+          <Link to="/dashboard/request">request</Link>
+        </div>
+        <div>
+          <Link to="/dashboard/history">history</Link>
+        </div>
+        <div>
+          <Link to="/dashboard/profile">profile</Link>
+        </div>
+      </div>
     </div>
   );
 }
