@@ -1,5 +1,6 @@
 import React from 'react'
 import useAuth from "../../../hooks/useAuth";
+import Menu from "../../../menu/Menu"
 
 function profile() {
     const { user, loading } = useAuth();
@@ -14,6 +15,7 @@ function profile() {
   
   return (
     <div>
+      <Menu/>
       <div>
       <h1>Dashboard</h1>
       <p>Welcome, {user.firstName} {user.lastName}</p>

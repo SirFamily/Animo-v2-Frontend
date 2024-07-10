@@ -7,7 +7,7 @@ import Home from "../pages/Home"
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-import List_host from "../pages/list_hist/List_host";
+import List_host from "../pages/list_host/List_host";
 
 import Dashboard from "../pages/dashboard/Dashboard"
 import Pets from "../pages/dashboard/pets/Pets"
