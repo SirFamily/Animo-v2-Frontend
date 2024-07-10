@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Menu from "../../../menu/Menu";
 import Petsadd from "./Pets_add";
+import Petslist from "./Pets_list"
+
 function Pets() {
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -11,11 +13,13 @@ function Pets() {
   return (
     <div>
       <Menu />
-      pet
-      <div onClick={togglePopup}>
+      <h1>pet</h1>
+      <button onClick={togglePopup}>
        เพิ่มสัตว์เลี้ยง
-      </div>
+      </button>
       {isPopupOpen && <Petsadd onClose={togglePopup} />}
+
+      <Petslist />
     </div>
   );
 }
