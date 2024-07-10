@@ -27,6 +27,9 @@ function Navbar() {
     {
       text: (
         <div className={navcss.container_nav_gap}>
+          <div>
+            <Link to="dashboard/pets">123</Link>
+          </div>
         <div>{user?.email}</div>
   
               <button onClick={hdlLogout} >Logout</button>
