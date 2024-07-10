@@ -18,6 +18,7 @@ function profile() {
       <Menu/>
       <div>
       <h1>Dashboard</h1>
+      <p>Id , {user.id}</p>
       <p>Welcome, {user.firstName} {user.lastName}</p>
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>

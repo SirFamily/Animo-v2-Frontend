@@ -7,19 +7,22 @@ function Menu() {
       <div>
         menu
         <div>
-          <Link to="/dashboard/pets">pet</Link>
+          <Link to="/dashboard/">Dashborad</Link>
         </div>
         <div>
-          <Link to="/dashboard/host">host</Link>
+          <Link to="/dashboard/pets">Pet</Link>
         </div>
         <div>
-          <Link to="/dashboard/request">request</Link>
+          <Link to="/dashboard/host">Host</Link>
         </div>
         <div>
-          <Link to="/dashboard/history">history</Link>
+          <Link to="/dashboard/request">Request</Link>
         </div>
         <div>
-          <Link to="/dashboard/profile">profile</Link>
+          <Link to="/dashboard/history">History</Link>
+        </div>
+        <div>
+          <Link to="/dashboard/profile">Profile</Link>
         </div>
       </div>
     </div>
