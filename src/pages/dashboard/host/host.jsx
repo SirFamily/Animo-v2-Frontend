@@ -5,7 +5,8 @@ function host() {
   return (
     <div>
       <Menu/>
-      host
+      <h1>host</h1>
+      
     </div>
   )
 }

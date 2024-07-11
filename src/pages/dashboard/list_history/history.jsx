@@ -5,7 +5,7 @@ function history() {
   return (
     <div>
       <Menu/>
-      history
+      <h1>history</h1>   
     </div>
   )
 }
