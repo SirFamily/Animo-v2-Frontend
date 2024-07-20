@@ -3,7 +3,7 @@ import Modelpopup from "../../../component/Modelpopup";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 
-function Pets_add({ onClose }) {
+function Pets_add({ onClose, setPetData }) {
   const { user } = useAuth();
   const uid = user.id;
   const [input, setInput] = useState({
@@ -52,13 +52,25 @@ function Pets_add({ onClose }) {
           },
         }
       );
-      console.log(response);
       if (response.status === 201) {
         alert("ลงทะเบียนสำเร็จ");
+        setPetData((prev) => [...prev, response.data.data]); // Update pet list
+        setInput({ // Reset form
+          petName: "",
+          animalType: "",
+          breed: "",
+          weight: "",
+          height: "",
+          gender: "",
+          birthday: "",
+          url: null,
+          petHistory: "",
+        });
         onClose();
       }
     } catch (error) {
       console.error("Error adding pet:", error);
+      alert("เกิดข้อผิดพลาดในการลงทะเบียนสัตว์เลี้ยง");
     }
   };
 
