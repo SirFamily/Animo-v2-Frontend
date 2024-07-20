@@ -29,7 +29,7 @@ function profile() {
       <p>Province: {user.province}</p>
       <p>Postal Code: {user.postalCode}</p>
       <p>Bio: {user.bio}</p>
-      {user.img && <img src={user.img} alt="Profile" />}
+      {user.url && <img src={user.url} alt="Profile" />}
     </div>
     </div>
   )

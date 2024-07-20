@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Menu from "../../../menu/Menu";
 import Petsadd from "./Pets_add";
-import Petslist from "./Pets_list"
+import Petslist from "./Pets_list";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 
@@ -12,6 +12,8 @@ function Pets() {
   const uid = user.id;
 
   useEffect(() => {
+    let isMounted = true; // Add a flag to track if the component is mounted
+
     const getData = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -21,14 +23,22 @@ function Pets() {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        setPetData(response.data.data);  // Update to access the data properly
-        console.log(response.data);
+        if (isMounted) {
+          setPetData(response.data.data); // Update to access the data properly
+          console.log(response.data);
+        }
       } catch (error) {
-        console.error("Error fetching pet data:", error);
+        if (isMounted) {
+          console.error("Error fetching pet data:", error);
+        }
       }
     };
 
     getData();
+
+    return () => {
+      isMounted = false; // Cleanup function to set the flag to false when the component unmounts
+    };
   }, [uid]);
 
   const togglePopup = () => {
@@ -39,11 +49,8 @@ function Pets() {
     <div>
       <Menu />
       <h1>pet</h1>
-      <button onClick={togglePopup}>
-       เพิ่มสัตว์เลี้ยง
-      </button>
+      <button onClick={togglePopup}>เพิ่มสัตว์เลี้ยง</button>
       {isPopupOpen && <Petsadd onClose={togglePopup} setPetData={setPetData} />}
-
       <Petslist petData={petData} />
     </div>
   );
