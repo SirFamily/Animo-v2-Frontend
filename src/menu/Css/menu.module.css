@@ -1,0 +1,18 @@
+.container {  
+    width: 52px;
+    height: 700px;
+    background-color: azure;
+    border-radius: 15px;
+}
+
+.container_list_menu{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.icon{
+    width: 32px;
+}
