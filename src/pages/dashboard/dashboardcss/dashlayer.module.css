@@ -1,0 +1,45 @@
+.container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* ส่วนของpet */
+
+.container_g_layer{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.container_layer_top{
+    display: flex;
+    flex-direction: row;
+    width: 871px;
+    height: 40px;
+    gap: 30;
+}
+.container_in_top{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+border-radius: 15px;
+}
+
+.container_in_top_tow{
+    width: 20%;
+    background-color: rgb(255, 255, 255);
+margin-left: 30px;
+border-radius: 15px;
+
+}
+
+
+.container_layer_buttom{
+    width: 871px;
+    height: 771px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+/* สิ้นสุด */

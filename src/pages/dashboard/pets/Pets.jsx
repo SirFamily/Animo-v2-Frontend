@@ -4,7 +4,7 @@ import Petsadd from "./Pets_add";
 import Petslist from "./Pets_list";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
-
+import csslayer from "../dashboardcss/dashlayer.module.css"
 function Pets() {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [petData, setPetData] = useState([]);
@@ -46,12 +46,19 @@ function Pets() {
   };
 
   return (
-    <div>
+    <div className={csslayer.container}>
       <Menu />
-      <h1>pet</h1>
-      <button onClick={togglePopup}>เพิ่มสัตว์เลี้ยง</button>
+      <div className={csslayer.container_g_layer}>
+        <div className={csslayer.container_layer_top}>
+        <div className={csslayer.container_in_top}>ค้นหา</div>
+        <div className={csslayer.container_in_top_tow}  onClick={togglePopup}>เพิ่มสัตว์เลี้ยง</div>
+        </div>
+        <div className={csslayer.container_layer_buttom}>
       {isPopupOpen && <Petsadd onClose={togglePopup} setPetData={setPetData} />}
       <Petslist petData={petData} />
+        </div>
+      </div>
+      
     </div>
   );
 }

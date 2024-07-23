@@ -7,7 +7,7 @@ function Menu() {
     <div className={css.container}>
       <div className={css.container_list_menu}>
         <div>
-          <Link to="/dashboard/"><img className={css.icon} src="https://cdn-icons.flaticon.com/svg/16105/16105467.svg?token=exp=1721656146~hmac=c1eb825390b8bb79752283d7c3635c99" alt="" /></Link>
+          <Link to="/dashboard/"><img className={css.icon} src="https://cdn-icons.flaticon.com/svg/16105/16105467.svg?token=exp=1721714834~hmac=ec059f895017546a1254b503682aaf26" alt="" /></Link>
         </div>
         <div>
           <Link to="/dashboard/pets"><img className={css.icon} src="https://www.flaticon.com/svg/vstatic/svg/14656/14656016.svg?token=exp=1721656274~hmac=bd782e86faff39714ec2490bb083c674" alt="" /></Link>

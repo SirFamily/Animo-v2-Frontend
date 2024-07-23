@@ -1,0 +1,56 @@
+/* PetsList.module.css */
+.tableContainer {
+  margin: 20px;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #ffffff;
+  font-weight: bold;
+}
+
+.table img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.actionLinks a {
+  margin-right: 10px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actionLinks a:hover {
+  text-decoration: underline;
+}
+
+.readLink {
+  color: black;
+  font-weight: bold;
+}
+
+.editLink {
+  color: orange;
+}
+
+.deleteLink {
+  color: red;
+}
