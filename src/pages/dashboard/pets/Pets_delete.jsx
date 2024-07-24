@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Modelpopup from '../../../component/Modelpopup';
+import styles from './Css/petdelete.module.css';
 
 function Pets_delete({ pet, onClose, onDelete }) {
   const [error, setError] = useState(null);
@@ -23,11 +24,15 @@ function Pets_delete({ pet, onClose, onDelete }) {
 
   return (
     <Modelpopup>
-      <h2>Confirm Delete</h2>
-      <p>Are you sure you want to delete {pet.petName}?</p>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button onClick={handleDelete}>Yes, Delete</button>
-      <button onClick={onClose}>Cancel</button>
+      <div className={styles.popup}>
+        <h2 className={styles.header}>คำเตือน</h2>
+        <p className={styles.message}>คุณต้องการลบน้อง{pet.petName}ใช่ไม</p>
+        {error && <p className={styles.error}>{error}</p>}
+        <div className={styles.buttonGroup}>
+          <button className={`${styles.button} ${styles.deleteButton}`} onClick={handleDelete}>ลบ</button>
+          <button className={`${styles.button} ${styles.cancelButton}`} onClick={onClose}>ปิด</button>
+        </div>
+      </div>
     </Modelpopup>
   );
 }

@@ -1,0 +1,50 @@
+/* Pets_delete.module.css */
+.popup {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .message {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 16px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .deleteButton {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .cancelButton {
+    background-color: #bdc3c7;
+    color: #fff;
+  }
+  

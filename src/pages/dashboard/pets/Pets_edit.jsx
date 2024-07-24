@@ -86,7 +86,7 @@ function Pets_edit({ onClose, pet }) {
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        <button className={styles.closeButton} onClick={onClose}>x</button>
+        
         <h2>Edit Pet Information</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
@@ -175,7 +175,8 @@ function Pets_edit({ onClose, pet }) {
             <label>Image:</label>
             <input type="file" onChange={handleFileChange} />
           </div>
-          <button className={styles.submitButton} type="submit">Save Changes</button>
+          <button className={styles.submitButton} type="submit">บันทึก</button>
+          <button className={styles.closeButton} onClick={onClose}>ปิด</button>
         </form>
       </div>
     </Modelpopup>
