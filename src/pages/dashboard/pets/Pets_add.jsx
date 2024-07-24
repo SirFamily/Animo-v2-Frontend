@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modelpopup from "../../../component/Modelpopup";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
+import styles from "./Css/petsadd.module.css";
 
 function Pets_add({ onClose, setPetData }) {
   const { user } = useAuth();
@@ -76,94 +77,99 @@ function Pets_add({ onClose, setPetData }) {
 
   return (
     <Modelpopup>
-      <h2>เพิ่มสัตว์เลี้ยง</h2>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <div>
-          Pet Name:
-          <input
-            type="text"
-            name="petName"
-            value={input.petName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          Animal Type:
-          <input
-            type="text"
-            name="animalType"
-            value={input.animalType}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          Breed:
-          <input
-            type="text"
-            name="breed"
-            value={input.breed}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Weight:
-          <input
-            type="number"
-            step="0.01"
-            name="weight"
-            value={input.weight}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Height:
-          <input
-            type="number"
-            step="0.01"
-            name="height"
-            value={input.height}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Gender:
-          <input
-            type="text"
-            name="gender"
-            value={input.gender}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Birthday:
-          <input
-            type="date"
-            name="birthday"
-            value={input.birthday}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Pet History:
-          <textarea
-            name="petHistory"
-            value={input.petHistory}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          Image:
-          <input
-            type="file"
-            accept="image/png,image/jpeg"
-            onChange={handleFileChange}
-          />
-        </div>
-        <button type="submit">Add Pet</button>
-      </form>
-      <div onClick={onClose}>X</div>
+      <div className={styles.formContainer}>
+        <h2>เพิ่มสัตว์เลี้ยง</h2>
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label>Pet Name:</label>
+            <input
+              type="text"
+              name="petName"
+              value={input.petName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Animal Type:</label>
+            <input
+              type="text"
+              name="animalType"
+              value={input.animalType}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Breed:</label>
+            <input
+              type="text"
+              name="breed"
+              value={input.breed}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Weight:</label>
+            <input
+              type="number"
+              step="0.01"
+              name="weight"
+              value={input.weight}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Height:</label>
+            <input
+              type="number"
+              step="0.01"
+              name="height"
+              value={input.height}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Gender:</label>
+            <select
+              name="gender"
+              value={input.gender}
+              onChange={handleChange}
+            >
+              <option value="">เลือกเพศ</option>
+              <option value="Male">ชาย</option>
+              <option value="Female">หญิง</option>
+            </select>
+          </div>
+          <div className={styles.formGroup}>
+            <label>Birthday:</label>
+            <input
+              type="date"
+              name="birthday"
+              value={input.birthday}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Pet History:</label>
+            <textarea
+              name="petHistory"
+              value={input.petHistory}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Image:</label>
+            <input
+              type="file"
+              accept="image/png,image/jpeg"
+              onChange={handleFileChange}
+            />
+          </div>
+          <button className={styles.submitButton} type="submit">เพิ่มสัตว์เลี่ยง</button>
+        <button className={styles.closeButton} onClick={onClose}>ปิด</button>
+        </form>
+      </div>
     </Modelpopup>
   );
 }

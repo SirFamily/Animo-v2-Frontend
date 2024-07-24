@@ -19,11 +19,12 @@
   }
   
   .popup {
-    background-color: #fff;
+    /* background-color: #fff; */
     /* margin: 20px; */
     /* border-radius: 20px; */
     width: auto;
     height: auto;
+    margin-bottom: 100px;
     /* Add other styles as needed */
   }
   
