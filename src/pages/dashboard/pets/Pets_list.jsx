@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Css/petlist.module.css";
 import Pets_edit from "./Pets_edit";
+
 function Pets_list({ petData }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const togglePopup = () => {
+  const [selectedPet, setSelectedPet] = useState(null);
+
+  const togglePopup = (pet) => {
+    setSelectedPet(pet);
     setPopupOpen(!isPopupOpen);
   };
+
   return (
     <div className={styles.tableContainer}>
       <h1 className={styles.title}>Pets</h1>
@@ -39,14 +44,14 @@ function Pets_list({ petData }) {
                 <div className={styles.readLink}>Read</div>
               </td>
               <td className={styles.actionLinks}>
-                <div className={styles.editLink} onClick={togglePopup}>Edit</div>
+                <div className={styles.editLink} onClick={() => togglePopup(pet)}>Edit</div>
                 <div className={styles.deleteLink}>Delete</div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {isPopupOpen && <Pets_edit onClose={togglePopup} petData={petData} />}
+      {isPopupOpen && <Pets_edit onClose={togglePopup} pet={selectedPet} />}
     </div>
   );
 }
