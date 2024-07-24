@@ -50,7 +50,7 @@ function Pets() {
       <Menu />
       <div className={csslayer.container_g_layer}>
         <div className={csslayer.container_layer_top}>
-        <div className={csslayer.container_in_top}>ค้นหา</div>
+        <div className={csslayer.container_in_top}></div>
         <div className={csslayer.container_in_top_tow}  onClick={togglePopup}>เพิ่มสัตว์เลี้ยง</div>
         </div>
         <div className={csslayer.container_layer_buttom}>

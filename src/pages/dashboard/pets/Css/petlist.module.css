@@ -1,23 +1,27 @@
 /* PetsList.module.css */
 .tableContainer {
   margin: 20px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .title {
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 20px;
+  animation: slideInFromTop 0.5s ease-out;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .table th, .table td {
   border-bottom: 1px solid #ddd;
   padding: 10px;
   text-align: left;
+  transition: background-color 0.3s ease;
 }
 
 .table th {
@@ -29,6 +33,11 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.table img:hover {
+  transform: scale(1.1);
 }
 
 .actionLinks a {
@@ -36,21 +45,61 @@
   color: #007bff;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .actionLinks a:hover {
   text-decoration: underline;
+  color: #0056b3;
 }
 
 .readLink {
   color: black;
   font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.readLink:hover {
+  color: #333;
 }
 
 .editLink {
   color: orange;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.editLink:hover {
+  color: #cc8400;
 }
 
 .deleteLink {
   color: red;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.deleteLink:hover {
+  color: #a80000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
