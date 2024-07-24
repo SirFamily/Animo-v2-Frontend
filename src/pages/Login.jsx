@@ -37,64 +37,84 @@ function Login() {
   };
   return (
     <div className={logincss.body}>
-      <div className={logincss.dog}><img src="https://img5.pic.in.th/file/secure-sv1/left-dog.png" alt="dog" /></div>
-      <div className={logincss.boxlogin}>
-      <Link to="/" className={logincss["close-link"]}>X</Link>
-      <div className={logincss.head}><p>Hello And Welcome Back</p></div>
-    <form onSubmit={hdlSubmit}>
-    <div className={logincss.login}>
-    <div>
-        <p>Email</p>
-        <input
-            type="text"
-            id="email"
-            name="email"
-            required
-            value={input.email}
-            onChange={hdlChange}
+      <div className={logincss.dog}>
+        <img
+          src="https://img5.pic.in.th/file/secure-sv1/left-dog.png"
+          alt="dog"
         />
-    </div>
-    <div>
-        <p>Password</p>
-        <input
-            type="password"
-            name="password"
-            required
-            value={input.password}
-            onChange={hdlChange}
-        />
-    </div>
-</div>
-
-                <br />
-                <div className={logincss.submit}>
-                <button type="submit">
-                  <div>Login</div>
-                </button>
-                </div>
-                <div className={logincss.or}>
-                  <hr />
-                  <p>OR</p>
-                  <hr />
-                </div>
-                <div className={logincss.register}>
-                  <p>You don't have an account ? <Link to="/register">Register</Link></p>
-                </div>
-                <div className={logincss.google_facebook}>
-  <button className={logincss.google}>
-    <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google logo" />
-    <p>Google</p>
-  </button>
-  <button className={logincss.facebook}>
-    <img src="https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Facebook-256.png" alt="Facebook logo" />
-    <p>Facebook</p>
-  </button>
-</div>
-
-              </form>
-
       </div>
-      <div className={logincss.cat}><img src="https://img5.pic.in.th/file/secure-sv1/right-cat.png" alt="cat" /></div>
+      <div className={logincss.boxlogin}>
+        <Link to="/" className={logincss["close-link"]}>
+          X
+        </Link>
+        <div className={logincss.head}>
+          <p>Hello And Welcome Back</p>
+        </div>
+        <form onSubmit={hdlSubmit}>
+          <div className={logincss.login}>
+            <div>
+              <p>Email</p>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                required
+                value={input.email}
+                onChange={hdlChange}
+              />
+            </div>
+            <div>
+              <p>Password</p>
+              <input
+                type="password"
+                name="password"
+                required
+                value={input.password}
+                onChange={hdlChange}
+              />
+            </div>
+          </div>
+
+          <br />
+          <div className={logincss.submit}>
+            <button type="submit">
+              <div>Login</div>
+            </button>
+          </div>
+          <div className={logincss.or}>
+            <hr />
+            <p>OR</p>
+            <hr />
+          </div>
+          <div className={logincss.register}>
+            <p>
+              You don't have an account ? <Link to="/register">Register</Link>
+            </p>
+          </div>
+          {/* <div className={logincss.google_facebook}>
+            <button className={logincss.google}>
+              <img
+                src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                alt="Google logo"
+              />
+              <p>Google</p>
+            </button>
+            <button className={logincss.facebook}>
+              <img
+                src="https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Facebook-256.png"
+                alt="Facebook logo"
+              />
+              <p>Facebook</p>
+            </button>
+          </div> */}
+        </form>
+      </div>
+      <div className={logincss.cat}>
+        <img
+          src="https://img5.pic.in.th/file/secure-sv1/right-cat.png"
+          alt="cat"
+        />
+      </div>
     </div>
   );
 }
