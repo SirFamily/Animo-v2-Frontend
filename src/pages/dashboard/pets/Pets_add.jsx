@@ -137,8 +137,8 @@ function Pets_add({ onClose, setPetData }) {
               onChange={handleChange}
             >
               <option value="">เลือกเพศ</option>
-              <option value="Male">ชาย</option>
-              <option value="Female">หญิง</option>
+              <option value="ชาย">ชาย</option>
+              <option value="หญิง">หญิง</option>
             </select>
           </div>
           <div className={styles.formGroup}>

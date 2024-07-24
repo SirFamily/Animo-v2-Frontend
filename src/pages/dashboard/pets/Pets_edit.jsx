@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modelpopup from "../../../component/Modelpopup";
 import axios from 'axios';
+import styles from './Css/petedit.module.css';
 
 function Pets_edit({ onClose, pet }) {
   const [input, setInput] = useState({
@@ -84,11 +85,11 @@ function Pets_edit({ onClose, pet }) {
 
   return (
     <Modelpopup>
-      <div>
-        <button onClick={onClose}>x</button>
+      <div className={styles.formContainer}>
+        <button className={styles.closeButton} onClick={onClose}>x</button>
         <h2>Edit Pet Information</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className={styles.formGroup}>
             <label>Pet Name:</label>
             <input
               type="text"
@@ -98,7 +99,7 @@ function Pets_edit({ onClose, pet }) {
               required
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Breed:</label>
             <input
               type="text"
@@ -108,7 +109,7 @@ function Pets_edit({ onClose, pet }) {
               required
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Animal Type:</label>
             <input
               type="text"
@@ -118,7 +119,7 @@ function Pets_edit({ onClose, pet }) {
               required
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Weight:</label>
             <input
               type="number"
@@ -127,7 +128,7 @@ function Pets_edit({ onClose, pet }) {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Height:</label>
             <input
               type="number"
@@ -136,16 +137,19 @@ function Pets_edit({ onClose, pet }) {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Gender:</label>
-            <input
-              type="text"
+            <select
               name="gender"
               value={input.gender}
               onChange={handleChange}
-            />
+            >
+              <option value="">เลือกเพศ</option>
+              <option value="ชาย">ชาย</option>
+              <option value="หญิง">หญิง</option>
+            </select>
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Birthday:</label>
             <input
               type="date"
@@ -154,7 +158,7 @@ function Pets_edit({ onClose, pet }) {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label>Pet History:</label>
             <textarea
               name="petHistory"
@@ -162,12 +166,16 @@ function Pets_edit({ onClose, pet }) {
               onChange={handleChange}
             />
           </div>
-          <img src={input.url} alt="" width="64" height="64" />
-          <div>
+          {input.url && (
+            <div className={styles.imagePreview}>
+              <img src={input.url} alt="Pet" width="64" height="64" />
+            </div>
+          )}
+          <div className={styles.formGroup}>
             <label>Image:</label>
             <input type="file" onChange={handleFileChange} />
           </div>
-          <button type="submit">Save Changes</button>
+          <button className={styles.submitButton} type="submit">Save Changes</button>
         </form>
       </div>
     </Modelpopup>
