@@ -110,7 +110,7 @@ function Pets_edit({ onClose, pet }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Animal Type:</label>
+            <label>Species:</label>
             <input
               type="text"
               name="animalType"
