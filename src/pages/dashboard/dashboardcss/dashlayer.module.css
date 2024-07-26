@@ -20,12 +20,14 @@
     width: 871px;
     height: 40px;
     gap: 30;
+    
 }
 
 .container_in_top {
     width: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .container_in_top_tow {
@@ -39,6 +41,7 @@
     /* จัดให้อยู่ตรงกลางในแนวนอน */
     align-items: center;
     /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: background-color 0.3s ease;
 }
 
@@ -48,6 +51,7 @@
     height: 771px;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 :hover.container_in_top_tow {

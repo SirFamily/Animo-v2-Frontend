@@ -1,8 +1,9 @@
 .container {  
     width: 52px;
     height: 700px;
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .container_list_menu{

@@ -26,7 +26,7 @@ function Pets_delete({ pet, onClose, onDelete }) {
     <Modelpopup>
       <div className={styles.popup}>
         <h2 className={styles.header}>คำเตือน</h2>
-        <p className={styles.message}>คุณต้องการลบน้อง{pet.petName}ใช่ไม</p>
+        <p className={styles.message}>คุณต้องการลบน้อง <b>{pet.petName}</b> ใช่หรือไม่</p>
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.buttonGroup}>
           <button className={`${styles.button} ${styles.deleteButton}`} onClick={handleDelete}>ลบ</button>

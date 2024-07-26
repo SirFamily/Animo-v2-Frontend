@@ -87,7 +87,7 @@ function Pets_edit({ onClose, pet }) {
     <Modelpopup>
       <div className={styles.formContainer}>
         
-        <h2>Edit Pet Information</h2>
+        <h2>แก้ไขข้อมูลสัตว์เลี้ยง</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label>Pet Name:</label>

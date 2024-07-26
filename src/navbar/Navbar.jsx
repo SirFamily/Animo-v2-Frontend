@@ -100,13 +100,13 @@ function Navbar() {
         </div>
         <div>
           <div className={navcss.container_nav2}>
-            <Link to="dashboard/">
+            <Link to="">
               <p>Booking</p>
             </Link>
-            <Link to="dashboard/">
+            <Link to="">
               <p>About us</p>
             </Link>
-            <Link to="dashboard/">
+            <Link to="">
               <p>Contact us </p>
             </Link>
           </div>
