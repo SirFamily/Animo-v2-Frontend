@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styles from './Css/petlist.module.css';
-import Pets_edit from './Pets_edit';
-import Pets_delete from './Pets_delete';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styles from "./Css/petlist.module.css";
+import Pets_edit from "./Pets_edit";
+import Pets_delete from "./Pets_delete";
 
 function Pets_list({ uid, setPetData }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -52,7 +52,7 @@ function Pets_list({ uid, setPetData }) {
   };
 
   const handleDelete = (id) => {
-    const updatedPetData = petData.filter(pet => pet.id !== id);
+    const updatedPetData = petData.filter((pet) => pet.id !== id);
     setLocalPetData(updatedPetData); // Update local state
     setPetData(updatedPetData); // Pass data to parent component
   };
@@ -78,27 +78,51 @@ function Pets_list({ uid, setPetData }) {
           {petData.map((pet) => (
             <tr key={pet.id}>
               <td>
-                <img src={pet.url} alt={pet.petName} className={styles.petImage} />
+                <img
+                  src={pet.url}
+                  alt={pet.petName}
+                  className={styles.petImage}
+                />
               </td>
               <td>{pet.petName}</td>
-              <td>{pet.breed}</td>
-              <td>{pet.gender}</td>
-              <td>{pet.birthday ? new Date(pet.birthday).toLocaleDateString() : ''}</td>
-              <td>{pet.weight}</td>
-              <td>{pet.height}</td>
+              <td>{pet.breed ? pet.breed : "-"}</td>
+              <td>{pet.gender ? pet.gender : "-"}</td>
+              <td>
+                {pet.birthday
+                  ? new Date(pet.birthday).toLocaleDateString()
+                  : "-"}
+              </td>
+              <td>{pet.weight ? pet.weight : "-"}</td>
+              <td>{pet.height ? pet.height : "-"}</td>
               <td className={styles.actionLinks}>
                 <div className={styles.readLink}>Read</div>
               </td>
               <td className={styles.actionLinks}>
-                <div className={styles.editLink} onClick={() => toggleEditPopup(pet)}>Edit</div>
-                <div className={styles.deleteLink} onClick={() => toggleDeletePopup(pet)}>Delete</div>
+                <div
+                  className={styles.editLink}
+                  onClick={() => toggleEditPopup(pet)}
+                >
+                  Edit
+                </div>
+                <div
+                  className={styles.deleteLink}
+                  onClick={() => toggleDeletePopup(pet)}
+                >
+                  Delete
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {isPopupOpen && <Pets_edit onClose={toggleEditPopup} pet={selectedPet} />}
-      {isDeletePopupOpen && <Pets_delete onClose={toggleDeletePopup} onDelete={handleDelete} pet={selectedPet} />}
+      {isDeletePopupOpen && (
+        <Pets_delete
+          onClose={toggleDeletePopup}
+          onDelete={handleDelete}
+          pet={selectedPet}
+        />
+      )}
     </div>
   );
 }
