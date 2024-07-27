@@ -9,7 +9,7 @@ function Pets_add({ onClose, setPetData }) {
   const uid = user.id;
   const [input, setInput] = useState({
     petName: "",
-    animalType: "",
+    species: "",
     breed: "",
     weight: "",
     height: "",
@@ -32,7 +32,7 @@ function Pets_add({ onClose, setPetData }) {
 
     const formData = new FormData();
     formData.append("petName", input.petName);
-    formData.append("animalType", input.animalType);
+    formData.append("species", input.species);
     formData.append("breed", input.breed);
     formData.append("weight", input.weight);
     formData.append("height", input.height);
@@ -58,7 +58,7 @@ function Pets_add({ onClose, setPetData }) {
         setPetData(); // Call the callback to fetch new data
         setInput({
           petName: "",
-          animalType: "",
+          species: "",
           breed: "",
           weight: "",
           height: "",
@@ -94,8 +94,8 @@ function Pets_add({ onClose, setPetData }) {
             <label>Species:</label>
             <input
               type="text"
-              name="animalType"
-              value={input.animalType}
+              name="species"
+              value={input.species}
               onChange={handleChange}
               required
             />

@@ -46,7 +46,7 @@ function Pets() {
       <div className={csslayer.container_g_layer}>
         <div className={csslayer.container_layer_top}>
           <div className={csslayer.container_in_top}></div>
-          <div className={csslayer.container_in_top_tow} onClick={togglePopup}>เพิ่มสัตว์เลี้ยง</div>
+          <div className={csslayer.container_in_top_tow} onClick={togglePopup}><h3>เพิ่มสัตว์เลี้ยง</h3></div>
         </div>
         <div className={csslayer.container_layer_buttom}>
           {isPopupOpen && <Petsadd onClose={togglePopup} setPetData={handlePetUpdate} />}

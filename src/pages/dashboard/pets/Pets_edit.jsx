@@ -7,7 +7,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
   const [input, setInput] = useState({
     petName: '',
     breed: '',
-    animalType: '',
+    species: '',
     weight: '',
     height: '',
     gender: '',
@@ -22,7 +22,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
     setInput({
       petName: pet.petName || '',
       breed: pet.breed || '',
-      animalType: pet.animalType || '',
+      species: pet.species || '',
       weight: pet.weight || '',
       height: pet.height || '',
       gender: pet.gender || '',
@@ -48,7 +48,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("petName", input.petName);
-    formData.append("animalType", input.animalType);
+    formData.append("species", input.species);
     formData.append("breed", input.breed);
     formData.append("weight", input.weight);
     formData.append("height", input.height);
@@ -108,8 +108,8 @@ function Pets_edit({ onClose, pet, setPetData }) {
             <label>Species:</label>
             <input
               type="text"
-              name="animalType"
-              value={input.animalType}
+              name="species"
+              value={input.species}
               onChange={handleChange}
               required
             />
