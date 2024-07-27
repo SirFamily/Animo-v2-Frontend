@@ -3,7 +3,7 @@ import Modelpopup from "../../../component/Modelpopup";
 import axios from 'axios';
 import styles from './Css/petedit.module.css';
 
-function Pets_edit({ onClose, pet }) {
+function Pets_edit({ onClose, pet, setPetData }) {
   const [input, setInput] = useState({
     petName: '',
     breed: '',
@@ -70,13 +70,9 @@ function Pets_edit({ onClose, pet }) {
       });
       if (response.status === 200) {
         alert('Pet information updated successfully!');
-        // Update the input state with the updated data
-        setInput({
-          ...input,
-          url: response.data.url || input.url, // Update with the new image URL if available
-        });
+        setPetData(); // Call the callback to fetch new data
+        onClose();
       }
-      console.log(response)
     } catch (error) {
       console.error('Error updating pet information:', error);
       alert('Failed to update pet information. Please try again.');
@@ -86,7 +82,6 @@ function Pets_edit({ onClose, pet }) {
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        
         <h2>แก้ไขข้อมูลสัตว์เลี้ยง</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>

@@ -55,8 +55,8 @@ function Pets_add({ onClose, setPetData }) {
       );
       if (response.status === 201) {
         alert("ลงทะเบียนสำเร็จ");
-        setPetData((prev) => [...prev, response.data.data]); // Update pet list
-        setInput({ // Reset form
+        setPetData(); // Call the callback to fetch new data
+        setInput({
           petName: "",
           animalType: "",
           breed: "",
@@ -167,7 +167,7 @@ function Pets_add({ onClose, setPetData }) {
             />
           </div>
           <button className={styles.submitButton} type="submit">เพิ่มสัตว์เลี่ยง</button>
-        <button className={styles.closeButton} onClick={onClose}>ปิด</button>
+          <button className={styles.closeButton} onClick={onClose}>ปิด</button>
         </form>
       </div>
     </Modelpopup>

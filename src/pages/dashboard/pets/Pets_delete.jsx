@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modelpopup from '../../../component/Modelpopup';
 import styles from './Css/petdelete.module.css';
 
-function Pets_delete({ pet, onClose, onDelete }) {
+function Pets_delete({ pet, onClose, setPetData }) {
   const [error, setError] = useState(null);
 
   const handleDelete = async () => {
@@ -15,7 +15,7 @@ function Pets_delete({ pet, onClose, onDelete }) {
           'Content-Type': 'application/json',
         },
       });
-      onDelete(pet.id); // Call the onDelete callback to remove the pet from the list
+      setPetData(); // Call the onDelete callback to remove the pet from the list
       onClose(); // Close the popup
     } catch (err) {
       setError('Failed to delete the pet. Please try again.');

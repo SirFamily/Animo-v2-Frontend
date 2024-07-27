@@ -3,7 +3,7 @@ import styles from './Css/petlist.module.css';
 import Pets_edit from './Pets_edit';
 import Pets_delete from './Pets_delete';
 
-function Pets_list({ petData }) {
+function Pets_list({ petData,setPetData }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
@@ -18,10 +18,6 @@ function Pets_list({ petData }) {
     setDeletePopupOpen(!isDeletePopupOpen);
   };
 
-  const handleDelete = (id) => {
-    const updatedPetData = petData.filter(pet => pet.id !== id);
-    // Update the petData state here if necessary or pass a callback to the parent component to update it
-  };
 
   return (
     <div className={styles.tableContainer}>
@@ -81,11 +77,11 @@ function Pets_list({ petData }) {
           ))}
         </tbody>
       </table>
-      {isPopupOpen && <Pets_edit onClose={toggleEditPopup} pet={selectedPet} />}
+      {isPopupOpen && <Pets_edit onClose={toggleEditPopup} pet={selectedPet} setPetData={setPetData} />}
       {isDeletePopupOpen && (
         <Pets_delete
           onClose={toggleDeletePopup}
-          onDelete={handleDelete}
+          setPetData={setPetData}
           pet={selectedPet}
         />
       )}
