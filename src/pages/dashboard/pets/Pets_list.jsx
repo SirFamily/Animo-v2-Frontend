@@ -92,8 +92,8 @@ function Pets_list({ uid, setPetData }) {
                   ? new Date(pet.birthday).toLocaleDateString()
                   : "-"}
               </td>
-              <td>{pet.weight ? pet.weight : "-"}</td>
-              <td>{pet.height ? pet.height : "-"}</td>
+              <td>{pet.weight ? `${pet.weight} kg` : '-'}</td>
+              <td>{pet.height ? `${pet.height} cm` : '-'}</td>
               <td className={styles.actionLinks}>
                 <div className={styles.readLink}>Read</div>
               </td>
