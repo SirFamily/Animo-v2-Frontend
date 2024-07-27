@@ -1,12 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './Css/petlist.module.css';
 import Pets_edit from './Pets_edit';
 import Pets_delete from './Pets_delete';
 
-function Pets_list({ petData }) {
+function Pets_list({ uid, setPetData }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [petData, setLocalPetData] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true; // Add a flag to track if the component is mounted
+
+    const getData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:8112/pets/list/${uid}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (isMounted) {
+          setLocalPetData(response.data.data); // Update to access the data properly
+          setPetData(response.data.data); // Pass data to parent component
+          console.log(response.data);
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error("Error fetching pet data:", error);
+        }
+      }
+    };
+
+    getData();
+
+    return () => {
+      isMounted = false; // Cleanup function to set the flag to false when the component unmounts
+    };
+  }, [uid, setPetData]);
 
   const toggleEditPopup = (pet) => {
     setSelectedPet(pet);
@@ -20,7 +53,8 @@ function Pets_list({ petData }) {
 
   const handleDelete = (id) => {
     const updatedPetData = petData.filter(pet => pet.id !== id);
-    // Update the petData state here if necessary or pass a callback to the parent component to update it
+    setLocalPetData(updatedPetData); // Update local state
+    setPetData(updatedPetData); // Pass data to parent component
   };
 
   return (
