@@ -29,6 +29,24 @@ function Pets_add({ onClose, setPetData }) {
     setInput((prev) => ({ ...prev, species: value, breed: "" })); // Reset breed when species changes
   };
 
+  const handleWeightChange = (e) => {
+    const { name, value } = e.target;
+    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
+    setInput({
+      ...input,
+      [name]: validValue,
+    });
+  };
+
+  const handleHeightChange = (e) => {
+    const { name, value } = e.target;
+    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
+    setInput({
+      ...input,
+      [name]: validValue,
+    });
+  };
+
   const handleFileChange = (e) => {
     setInput((prev) => ({ ...prev, url: e.target.files[0] }));
   };
@@ -96,6 +114,7 @@ function Pets_add({ onClose, setPetData }) {
             <input
               type="text"
               name="petName"
+              placeholder='นกเป็ดน้ำ'
               value={input.petName}
               onChange={handleChange}
               required
@@ -137,21 +156,21 @@ function Pets_add({ onClose, setPetData }) {
           <div className={styles.formGroup}>
             <label>Weight:</label>
             <input
-              type="number"
-              step="0.01"
+              type="text"
               name="weight"
+              placeholder="123.45"
               value={input.weight}
-              onChange={handleChange}
+              onChange={handleWeightChange}
             />
           </div>
           <div className={styles.formGroup}>
             <label>Height:</label>
             <input
-              type="number"
-              step="0.01"
+              type="text"
               name="height"
+              placeholder="123.45"
               value={input.height}
-              onChange={handleChange}
+              onChange={handleHeightChange}
             />
           </div>
           <div className={styles.formGroup}>
