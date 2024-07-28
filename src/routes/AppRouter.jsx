@@ -13,7 +13,7 @@ import Dashboard from "../pages/dashboard/Dashboard"
 import Pets from "../pages/dashboard/pets/Pets"
 import Host from "../pages/dashboard/host/Hosts";
 import Request from "../pages/dashboard/list_request/Requests"
-import History from "../pages/dashboard/list_history/History"
+import History from "../pages/dashboard/list_history/History_R"
 import Profile from "../pages/dashboard/profile/Profile"
 
 
