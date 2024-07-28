@@ -17,6 +17,7 @@ function Pets_delete({ pet, onClose, setPetData }) {
       });
       setPetData(); // Call the onDelete callback to remove the pet from the list
       onClose(); // Close the popup
+      alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");
     } catch (err) {
       setError('Failed to delete the pet. Please try again.');
     }

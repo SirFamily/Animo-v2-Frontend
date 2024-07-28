@@ -3,6 +3,7 @@ import Modelpopup from "../../../component/Modelpopup";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import styles from "./Css/petsadd.module.css";
+import speciesList from "../../../component/data/petdata.json"; // Ensure the path is correct
 
 function Pets_add({ onClose, setPetData }) {
   const { user } = useAuth();
@@ -21,6 +22,11 @@ function Pets_add({ onClose, setPetData }) {
 
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSpeciesChange = (e) => {
+    const { value } = e.target;
+    setInput((prev) => ({ ...prev, species: value, breed: "" })); // Reset breed when species changes
   };
 
   const handleFileChange = (e) => {
@@ -75,6 +81,11 @@ function Pets_add({ onClose, setPetData }) {
     }
   };
 
+  const getBreedsForSpecies = (species) => {
+    const selectedSpecies = speciesList.species.find((s) => s.name === species);
+    return selectedSpecies ? selectedSpecies.breeds : [];
+  };
+
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
@@ -92,22 +103,36 @@ function Pets_add({ onClose, setPetData }) {
           </div>
           <div className={styles.formGroup}>
             <label>Species:</label>
-            <input
-              type="text"
+            <select
               name="species"
               value={input.species}
-              onChange={handleChange}
+              onChange={handleSpeciesChange}
               required
-            />
+            >
+              <option value="">เลือกประเภท</option>
+              {speciesList.species.map((species) => (
+                <option key={species.id} value={species.name}>
+                  {species.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles.formGroup}>
             <label>Breed:</label>
-            <input
-              type="text"
+            <select
               name="breed"
               value={input.breed}
               onChange={handleChange}
-            />
+              required
+              disabled={!input.species}
+            >
+              <option value="">เลือกสายพันธุ์</option>
+              {getBreedsForSpecies(input.species).map((breed, index) => (
+                <option key={index} value={breed}>
+                  {breed}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles.formGroup}>
             <label>Weight:</label>
@@ -166,8 +191,12 @@ function Pets_add({ onClose, setPetData }) {
               onChange={handleFileChange}
             />
           </div>
-          <button className={styles.submitButton} type="submit">เพิ่มสัตว์เลี่ยง</button>
-          <button className={styles.closeButton} onClick={onClose}>ปิด</button>
+          <button className={styles.submitButton} type="submit">
+            เพิ่มสัตว์เลี่ยง
+          </button>
+          <button className={styles.closeButton} onClick={onClose}>
+            ปิด
+          </button>
         </form>
       </div>
     </Modelpopup>

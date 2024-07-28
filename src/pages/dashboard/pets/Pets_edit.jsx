@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modelpopup from "../../../component/Modelpopup";
 import axios from 'axios';
 import styles from './Css/petedit.module.css';
+import speciesList from "../../../component/data/petdata.json";
 
 function Pets_edit({ onClose, pet, setPetData }) {
   const [input, setInput] = useState({
@@ -37,6 +38,15 @@ function Pets_edit({ onClose, pet, setPetData }) {
     setInput({
       ...input,
       [name]: value,
+    });
+  };
+
+  const handleSpeciesChange = (e) => {
+    const { value } = e.target;
+    setInput({
+      ...input,
+      species: value,
+      breed: '', // Reset breed when species changes
     });
   };
 
@@ -79,6 +89,11 @@ function Pets_edit({ onClose, pet, setPetData }) {
     }
   };
 
+  const getBreedsForSpecies = (species) => {
+    const selectedSpecies = speciesList.species.find(s => s.name === species);
+    return selectedSpecies ? selectedSpecies.breeds : [];
+  };
+
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
@@ -95,24 +110,37 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
+            <label>Species:</label>
+            <select
+              name="species"
+              value={input.species}
+              onChange={handleSpeciesChange}
+              required
+            >
+              <option value="">เลือกประเภท</option>
+              {speciesList.species.map((species) => (
+                <option key={species.id} value={species.name}>
+                  {species.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.formGroup}>
             <label>Breed:</label>
-            <input
-              type="text"
+            <select
               name="breed"
               value={input.breed}
               onChange={handleChange}
               required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label>Species:</label>
-            <input
-              type="text"
-              name="species"
-              value={input.species}
-              onChange={handleChange}
-              required
-            />
+              disabled={!input.species}
+            >
+              <option value="">เลือกสายพันธุ์</option>
+              {getBreedsForSpecies(input.species).map((breed, index) => (
+                <option key={index} value={breed}>
+                  {breed}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles.formGroup}>
             <label>Weight:</label>

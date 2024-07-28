@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styles from './Css/petlist.module.css';
 import Pets_edit from './Pets_edit';
 import Pets_delete from './Pets_delete';
-
+import Modelpopup from '../../../component/Modelpopup';
 function Pets_list({ petData,setPetData }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isReadPopupOpen, setReadPopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
 
@@ -18,6 +19,10 @@ function Pets_list({ petData,setPetData }) {
     setDeletePopupOpen(!isDeletePopupOpen);
   };
 
+  const toggleReadPopup = (pet) => {
+    setSelectedPet(pet);
+    setPopupOpen(!isPopupOpen);
+  };
 
   return (
     <div className={styles.tableContainer}>
@@ -27,6 +32,7 @@ function Pets_list({ petData,setPetData }) {
           <tr>
             <th>Image</th>
             <th>Name</th>
+            <th>Species</th>
             <th>Breed</th>
             <th>Gender</th>
             <th>Birthday</th>
@@ -47,6 +53,7 @@ function Pets_list({ petData,setPetData }) {
                 />
               </td>
               <td>{pet.petName}</td>
+              <td>{pet.species ? pet.species : "-"}</td>
               <td>{pet.breed ? pet.breed : "-"}</td>
               <td>{pet.gender ? pet.gender : "-"}</td>
               <td>
