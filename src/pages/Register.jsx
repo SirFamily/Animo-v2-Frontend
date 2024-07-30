@@ -60,7 +60,7 @@ function Register() {
 
     try {
       const rs = await axios.post(
-        "http://localhost:8112/auth/register",
+        "https://animo_api.pcnone.com/auth/register",
         formData,
         {
           headers: {
