@@ -68,7 +68,7 @@ function Pets_add({ onClose, setPetData }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `https://animo_api.pcnone.com/pets/create/${uid}`,
+        `http://localhost:8112/pets/create/${uid}`,
         formData,
         {
           headers: {
