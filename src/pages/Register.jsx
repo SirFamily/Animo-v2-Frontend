@@ -71,7 +71,7 @@ function Register() {
       console.log(rs);
       if (rs.status === 201) {
         alert("Successful");
-        // navigate("/login");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Registration failed", error.response.data);
