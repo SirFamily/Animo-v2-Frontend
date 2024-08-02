@@ -16,7 +16,7 @@ function Pets() {
   const fetchPetData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`https://animo_api.pcnone.com/pets/list/${uid}`, {
+      const response = await axios.get(`http://localhost:8112/pets/list/${uid}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPetData(response.data.data);

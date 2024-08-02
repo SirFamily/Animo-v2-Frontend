@@ -17,10 +17,10 @@ function Login() {
   const hdlSubmit = async (e) => {
     try {
       e.preventDefault();
-      const rs = await axios.post("https://animo_api.pcnone.com/auth/login", input);
+      const rs = await axios.post("http://localhost:8112/auth/login", input);
       console.log(rs.data.token);
       localStorage.setItem("token", rs.data.token);
-      const rs1 = await axios.get("https://animo_api.pcnone.com/auth/getme", {
+      const rs1 = await axios.get("http://localhost:8112/auth/getme", {
         headers: {
           Authorization: `Bearer ${rs.data.token}`,
         },
