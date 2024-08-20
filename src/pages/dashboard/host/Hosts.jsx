@@ -1,6 +1,9 @@
 import React from "react";
 import Menu from "../../../menu/Menu";
 import csslayer from "../dashboardcss/dashlayer.module.css";
+import Host_list from "./Host_list";
+import Room_list from "./room/Room_list";
+import Features_list from "./features/Features_list";
 
 function host() {
   return (
@@ -8,13 +11,15 @@ function host() {
       <Menu />
       <div className={csslayer.container_g_layer_host}>
         <div className={csslayer.container_layer_top_host}>
-         test
+         <Host_list />
         </div>
         <div className={csslayer.container_layer_buttom_host}>
           <div className={csslayer.container_in_button_host}>
-          test
+          <Room_list />
           </div>
-          <div className={csslayer.container_in_button_host}>test</div>
+          <div className={csslayer.container_in_button_host}>
+          <Features_list />
+          </div>
         </div>
       </div>
     </div>
