@@ -16,7 +16,7 @@ import Request from "../pages/dashboard/list_request/Requests"
 import History from "../pages/dashboard/list_history/History_R"
 import Profile from "../pages/dashboard/profile/Profile_user"
 
-
+import Host_add from "../pages/dashboard/host/Host_add";
 
 const guestRouter = createBrowserRouter([
   {
@@ -53,6 +53,7 @@ const userRouter = createBrowserRouter([
         { path: 'dashboard/', element: <Dashboard />,},
         { path: 'dashboard/pets', element: <Pets />,},
         { path: 'dashboard/host', element: <Host />,},
+        { path: 'dashboard/host/create-host', element: <Host_add />,},
         { path: 'dashboard/request', element: <Request />,},
         { path: 'dashboard/history', element: <History />,},
         { path: 'dashboard/profile', element: <Profile />,},
