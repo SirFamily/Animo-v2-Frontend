@@ -68,34 +68,43 @@
 /* ส่วนของ host */
 .container_g_layer_host {
     display: flex;
+    width: 50%;
     flex-direction: column;
     gap: 30px;
+    background-color: #00B2CA;
+    
 }
 
 .container_layer_top_host {
-    width: 871px;
+
     height: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding-bottom: 30px;
 }
 
-.container_layer_buttom_host{
-
+.container_layer_buttom_host {
+    background-color: bisque;
+width: auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    column-gap: 30px;
-
+    justify-content: flex-start;
+        column-gap: 30px;
+    height: auto; /* กำหนดความสูงตามต้องการ */
+    overflow: hidden; /* ป้องกันไม่ให้เนื้อหาทะลุออก */
 }
 
-.container_in_button_host{
-    width: 100%;
-    height: 100%;
+.container_in_l_button_host,
+.container_in_r_button_host {
+width: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
+    overflow: hidden; /* ป้องกันเนื้อหาทะลุออกจากคอนเทนเนอร์นี้ */
+    flex-grow: 1; /* ให้คอนเทนเนอร์ขยายตามพื้นที่ที่มี */
+    flex-shrink: 1; /* ปรับให้ลดขนาดได้เมื่อพื้นที่ไม่พอ */
+    flex-basis: 0; /* แบ่งพื้นที่เท่าๆ กัน */
 }
 
 /* สิ้นสุด */

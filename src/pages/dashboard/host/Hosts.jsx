@@ -11,14 +11,18 @@ function host() {
       <Menu />
       <div className={csslayer.container_g_layer_host}>
         <div className={csslayer.container_layer_top_host}>
-         <Host_list />
+          <Host_list />
         </div>
         <div className={csslayer.container_layer_buttom_host}>
-          <div className={csslayer.container_in_button_host}>
-          <Room_list />
+          <div>
+            <div className={csslayer.container_in_l_button_host}>
+              <Room_list />
+            </div>
           </div>
-          <div className={csslayer.container_in_button_host}>
-          <Features_list />
+          <div>
+            <div className={csslayer.container_in_r_button_host}>
+              <Features_list />
+            </div>
           </div>
         </div>
       </div>
