@@ -2,8 +2,8 @@
 
 .container {
   max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 5% auto;
+  padding: 25px;
   background-color: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -13,20 +13,55 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 1;
 }
 
 .step {
   flex: 1;
   text-align: center;
-  padding: 10px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
-.step.active {
-  background-color: #007bff;
+.step::before {
+  content: attr(data-step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  margin: 0 auto 5px;
+  font-weight: bold;
   color: #fff;
+}
+
+.step.active::before {
+  background-color: #4ca3af;
+}
+
+.step::after {
+  content: attr(data-title);
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+.step.active::after {
+  color: #4ca3af;
+  font-weight: bold;
 }
 
 .formGroup {
@@ -68,6 +103,47 @@
   background-color: #0056b3;
 }
 
+.button_back {
+  width: 40%;
+  padding: 10px 20px;
+  margin-right: auto;
+  background-color: #e2e2e2;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #6fafb8;
+  font-weight: bolder;
+  transition: background-color 0.3s ease;
+  /* Pushes the Back button to the left */
+}
+
+.button_next {
+  width: 40%;
+  padding: 10px 20px;
+  margin-left: auto;
+  background-color: #6fafb8;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bolder;
+  transition: background-color 0.3s ease;
+}
+
+.button_back:hover{
+  background-color: #4ca3af;
+  color: #ffffff;
+
+}
+.button_next:hover {
+  background-color: #d2d2d2;
+  color: #4ca3af;
+
+}
+
+
 .imagePreview {
   display: flex;
   gap: 10px;
@@ -96,7 +172,8 @@
   color: white;
   border: none;
   border-radius: 100%;
-  width: 5px;
+  width: 30px;
+  /* Increase size for better visibility */
   height: 30px;
   display: flex;
   align-items: center;
@@ -106,4 +183,10 @@
 
 .removeButton:hover {
   background: red;
+}
+
+.mapContainer {
+  height: 400px;
+  /* Or any height you want */
+  width: 100%;
 }
