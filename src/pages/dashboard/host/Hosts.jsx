@@ -19,6 +19,7 @@ function host() {
           <div>
             <div className={csslayer.container_in_l_button_host}>
               <Room_list />
+              <Link to="create-host/room"><button>add room</button></Link>
             </div>
           </div>
           <div>
