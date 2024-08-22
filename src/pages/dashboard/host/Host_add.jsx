@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Css/hostadd.module.css"; // Importing CSS Module
+import styles from "./Css/hostadd.module.css"; 
+import useAuth from "../../../hooks/useAuth";
 import {
   MapContainer,
   TileLayer,
@@ -25,6 +26,8 @@ function HostAdd() {
     publish: false,
     images: [],
   });
+  const { user } = useAuth();
+  const uid = user.id;
   const [position, setPosition] = useState(null);
 
   const handleChange = (e) => {
@@ -57,12 +60,39 @@ function HostAdd() {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Host Data:", hostData);
-    // Add your submit logic here (e.g., send data to an API)
-  };
 
+    const formData = new FormData();
+    formData.append('name', hostData.name);
+    formData.append('type', hostData.type);
+    formData.append('address', hostData.address);
+    formData.append('lat', hostData.lat);
+    formData.append('long', hostData.long);
+    formData.append('description', hostData.description);
+    formData.append('publish', hostData.publish);
+  
+    // Append images to the form data
+    hostData.images.forEach((image, index) => {
+      formData.append(`images`, image.file);
+    });
+  
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(`http://localhost:8112/host/create/$${uid}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      console.log("Accommodation created successfully:", response.data);
+      // You can also redirect or update UI based on the response here
+    } catch (error) {
+      console.error("Error creating accommodation:", error);
+    }
+  };
+  
   useEffect(() => {
     return () => {
       hostData.images.forEach((image) => URL.revokeObjectURL(image.preview));
