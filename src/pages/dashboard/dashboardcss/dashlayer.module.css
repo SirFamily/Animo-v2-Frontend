@@ -71,7 +71,7 @@
     width: 50%;
     flex-direction: column;
     gap: 30px;
-    background-color: #00B2CA;
+    /* background-color: #00B2CA; */
     
 }
 
@@ -85,7 +85,7 @@
 }
 
 .container_layer_buttom_host {
-    background-color: bisque;
+    /* background-color: bisque; */
 width: auto;
     display: flex;
     flex-direction: row;

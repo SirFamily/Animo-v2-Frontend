@@ -3,7 +3,8 @@ import styles from "./Css/hostlist.module.css";
 
 function Host_list() {
   return (
-    <div>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Host</h1>
       <table className={styles.table}>
         <thead>
           <tr>

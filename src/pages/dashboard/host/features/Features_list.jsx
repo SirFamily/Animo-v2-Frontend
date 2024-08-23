@@ -3,7 +3,8 @@ import styles from "../Css/hostlist.module.css";
 
 function Features_list() {
   return (
-    <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Features</h2>
        <table className={styles.table}>
         <thead>
           <tr>
