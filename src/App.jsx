@@ -1,21 +1,26 @@
 import useAuth from "./hooks/useAuth";
 import AppRouter from "./routes/AppRouter";
-
+import Hamster from "./component/loading/Hamster";
+import styles from './Css/app.module.css';
 
 function App() {
+  const { loading } = useAuth();
 
-  const {loading} = useAuth()
-
-  if(loading) {
+  if (loading) {
     return (
-      <span>Loding</span>
-    )
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingAnimation}>
+          <Hamster />
+        </div>
+      </div>
+    );
   }
+
   return (
-    <>
+    <div className={styles.container}>
       <AppRouter />
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

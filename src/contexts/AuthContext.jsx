@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
@@ -20,7 +19,9 @@ function AuthContextProvider(props) {
       }catch(err){
         console.log(err.message)
       }finally{
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       }
     }
     run()
