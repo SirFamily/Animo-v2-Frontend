@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "../Css/hostlist.module.css";
 
-function Room_list() {
+function Room_list({ hostId }) {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    if (!hostId) return;
+
+    const fetchRooms = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:8112/room/list/${hostId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setRooms(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      }
+    };
+
+    fetchRooms();
+  }, [hostId]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Room</h1>
@@ -10,23 +36,45 @@ function Room_list() {
           <tr>
             <th>Image</th>
             <th>Name</th>
-            <th>Amenities</th>
+            <th>Type</th>
+            <th>Quantity</th>
             <th>Price</th>
             <th>Setting</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img src="path_to_image" alt="Description" />
-            </td>
-            <td>Sample Name</td>
-            <td>Sample Housing Type</td>
-            <td>Sample Accommodation</td>
-            <td>
-              <button>Settings</button>
-            </td>
-          </tr>
+          {rooms.length > 0 ? (
+            rooms.map((room) => (
+              <tr key={room.id}>
+                <td>
+                  {room.photosRoom && room.photosRoom.length > 0 ? (
+                    <img
+                      src={room.photosRoom[0].url} // ใช้ URL ของรูปภาพจาก photosRoom
+                      alt={room.name}
+                      className={styles.image}
+                      onError={(e) => {
+                        e.target.src = "path_to_default_image"; // ใช้ URL ของรูปภาพเริ่มต้น
+                        e.target.onerror = null; // ป้องกัน loop ของ onError
+                      }}
+                    />
+                  ) : (
+                    <span>No Image</span>
+                  )}
+                </td>
+                <td>{room.name}</td>
+                <td>{room.type}</td>
+                <td>{room.quantity}</td>
+                <td>${room.price}</td>
+                <td>
+                  <button>Settings</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No rooms available</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
