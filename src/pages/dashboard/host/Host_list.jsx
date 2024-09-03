@@ -60,7 +60,14 @@ function Host_list({ onUpdate, onHostSelect }) {
                 <td>{host.address}</td>
                 <td>{new Date(host.createdAt).toLocaleDateString()}</td>
                 <td>
-                  <button>Settings</button>
+                <div
+                >
+                  Edit
+                </div>
+                <div
+                >
+                  Delete
+                </div>
                 </td>
               </tr>
             ))
