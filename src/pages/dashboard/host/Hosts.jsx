@@ -14,28 +14,28 @@ function Hosts() {
   const { user } = useAuth();
   const uid = user.id;
 
-  useEffect(() => {
-    const fetchHosts = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:8112/host/list/${uid}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const hosts = response.data.data;
-        setHasHostData(hosts && hosts.length > 0);
-        if (hosts && hosts.length > 0) {
-          setSelectedHostId(hosts[0].id); // Set the first host as selected by default
+  const fetchHosts = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8112/host/list/${uid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      } catch (error) {
-        console.error("Error fetching hosts:", error);
+      );
+      const hosts = response.data.data;
+      setHasHostData(hosts && hosts.length > 0);
+      if (hosts && hosts.length > 0) {
+        setSelectedHostId(hosts[0].id); // Set the first host as selected by default
       }
-    };
+    } catch (error) {
+      console.error("Error fetching hosts:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchHosts();
   }, [uid]);
 
@@ -54,6 +54,7 @@ function Hosts() {
           <Host_list
             onUpdate={handleHostsUpdate}
             onHostSelect={setSelectedHostId}
+            handleHostUpdate={fetchHosts}
           />
           {!hasHostData && (
             <Link to="create-host">
@@ -65,7 +66,7 @@ function Hosts() {
           <div className={csslayer.container_layer_buttom_host}>
             <div>
               <div className={csslayer.container_in_l_button_host}>
-                <Room_list hostId={selectedHostId} />
+                <Room_list hostId={selectedHostId}/>
                 <Link to="create-host/room">
                   <button>Add room</button>
                 </Link>

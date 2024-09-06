@@ -66,7 +66,8 @@ function Room_list({ hostId }) {
                 <td>{room.quantity}</td>
                 <td>${room.price}</td>
                 <td>
-                  <button>Settings</button>
+                <div className={styles.editLink} >Edit</div>
+                <div className={styles.deleteLink} >Delete</div>
                 </td>
               </tr>
             ))

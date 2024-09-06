@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 import styles from "./Css/hostlist.module.css";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import Host_delete from "./Host_delete";
 
-function Host_list({ onUpdate, onHostSelect }) {
+function Host_list({ onUpdate, onHostSelect, handleHostUpdate }) {
   const [hosts, setHosts] = useState([]);
   const { user } = useAuth();
   const token = localStorage.getItem("token");
   const uid = user.id;
+  const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
+  const [selectedHost, setSelectedHost] = useState(null);
 
   useEffect(() => {
     const fetchHosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8112/host/list/${uid}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `http://localhost:8112/host/list/${uid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const hostsData = response.data.data;
         setHosts(hostsData); // Update hosts
         onUpdate(hostsData); // Notify parent component of the update
@@ -27,6 +33,11 @@ function Host_list({ onUpdate, onHostSelect }) {
 
     fetchHosts();
   }, [token, uid, onUpdate]);
+
+  const toggleDeletePopup = (id) => {
+    setSelectedHost(id);
+    setDeletePopupOpen(!isDeletePopupOpen);
+  };
 
   return (
     <div className={styles.container}>
@@ -60,14 +71,8 @@ function Host_list({ onUpdate, onHostSelect }) {
                 <td>{host.address}</td>
                 <td>{new Date(host.createdAt).toLocaleDateString()}</td>
                 <td>
-                <div
-                >
-                  Edit
-                </div>
-                <div
-                >
-                  Delete
-                </div>
+                  <div className={styles.editLink} >Edit</div>
+                  <div className={styles.deleteLink} onClick={() => toggleDeletePopup(host.id)}>Delete</div>
                 </td>
               </tr>
             ))
@@ -78,6 +83,9 @@ function Host_list({ onUpdate, onHostSelect }) {
           )}
         </tbody>
       </table>
+      {isDeletePopupOpen && (
+        <Host_delete onClose={toggleDeletePopup} selectedHost={selectedHost} handleHostUpdate={handleHostUpdate}/>
+      )}
     </div>
   );
 }

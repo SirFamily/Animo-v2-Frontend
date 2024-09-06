@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Css/roomadd.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Room_add() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [roomData, setRoomData] = useState({
     name: "",
@@ -68,6 +70,8 @@ function Room_add() {
       );
 
       console.log("Room created successfully:", response.data);
+      alert("created successfully");
+      navigate("/dashboard/host");
     } catch (error) {
       console.error("Error creating room:", error);
     }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Css/hostadd.module.css"; 
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import {
   MapContainer,
@@ -29,7 +30,7 @@ function HostAdd() {
   const { user } = useAuth();
   const uid = user.id;
   const [position, setPosition] = useState(null);
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "file") {
@@ -85,9 +86,10 @@ function HostAdd() {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+      
       console.log("Accommodation created successfully:", response.data);
-      // You can also redirect or update UI based on the response here
+      alert("created successfully");
+      navigate("/dashboard/host");
     } catch (error) {
       console.error("Error creating accommodation:", error);
     }
