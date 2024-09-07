@@ -1,32 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../Css/hostlist.module.css";
+import Room_delete from "./Room_delete";
 
 function Room_list({ hostId }) {
   const [rooms, setRooms] = useState([]);
+  const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+
+  const fetchRooms = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8112/room/list/${hostId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setRooms(response.data.data || []);
+    } catch (error) {
+      console.error("Error fetching rooms:", error);
+    }
+  };
 
   useEffect(() => {
     if (!hostId) return;
-
-    const fetchRooms = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:8112/room/list/${hostId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setRooms(response.data.data || []);
-      } catch (error) {
-        console.error("Error fetching rooms:", error);
-      }
-    };
-
     fetchRooms();
   }, [hostId]);
+
+  const toggleDeletePopup = (room) => {
+    setSelectedRoom(room);
+    setDeletePopupOpen(!isDeletePopupOpen);
+  };
 
   return (
     <div className={styles.container}>
@@ -66,8 +73,13 @@ function Room_list({ hostId }) {
                 <td>{room.quantity}</td>
                 <td>${room.price}</td>
                 <td>
-                <div className={styles.editLink} >Edit</div>
-                <div className={styles.deleteLink} >Delete</div>
+                  <div className={styles.editLink}>Edit</div>
+                  <div
+                    className={styles.deleteLink}
+                    onClick={() => toggleDeletePopup(room)}
+                  >
+                    Delete
+                  </div>
                 </td>
               </tr>
             ))
@@ -78,6 +90,13 @@ function Room_list({ hostId }) {
           )}
         </tbody>
       </table>
+      {isDeletePopupOpen && (
+        <Room_delete
+          handleRoomUpdate={fetchRooms}
+          selectedRoom={selectedRoom}
+          onClose={toggleDeletePopup}
+        />
+      )}
     </div>
   );
 }

@@ -3,16 +3,17 @@ import styles from "./Css/hostlist.module.css";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import Host_delete from "./Host_delete";
+import Host_edit from "./Host_edit";
 
-function Host_list({ onUpdate, onHostSelect, handleHostUpdate }) {
+function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
   const [hosts, setHosts] = useState([]);
   const { user } = useAuth();
-  const token = localStorage.getItem("token");
   const uid = user.id;
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedHost, setSelectedHost] = useState(null);
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const token = localStorage.getItem("token");
 
-  useEffect(() => {
     const fetchHosts = async () => {
       try {
         const response = await axios.get(
@@ -31,12 +32,19 @@ function Host_list({ onUpdate, onHostSelect, handleHostUpdate }) {
       }
     };
 
+
+  useEffect(() => {
     fetchHosts();
-  }, [token, uid, onUpdate]);
+  }, [uid]);
 
   const toggleDeletePopup = (id) => {
     setSelectedHost(id);
     setDeletePopupOpen(!isDeletePopupOpen);
+  };
+
+  const toggleEditPopup = (pet) => {
+    setSelectedHost(pet);
+    setPopupOpen(!isPopupOpen);
   };
 
   return (
@@ -71,7 +79,7 @@ function Host_list({ onUpdate, onHostSelect, handleHostUpdate }) {
                 <td>{host.address}</td>
                 <td>{new Date(host.createdAt).toLocaleDateString()}</td>
                 <td>
-                  <div className={styles.editLink} >Edit</div>
+                  <div className={styles.editLink} onClick={() => toggleEditPopup(hosts)}>Edit</div>
                   <div className={styles.deleteLink} onClick={() => toggleDeletePopup(host.id)}>Delete</div>
                 </td>
               </tr>
@@ -83,6 +91,7 @@ function Host_list({ onUpdate, onHostSelect, handleHostUpdate }) {
           )}
         </tbody>
       </table>
+      {isPopupOpen && <Host_edit onClose={toggleEditPopup} host={selectedHost[0]} handleHostUpdate={fetchHosts} />}
       {isDeletePopupOpen && (
         <Host_delete onClose={toggleDeletePopup} selectedHost={selectedHost} handleHostUpdate={handleHostUpdate}/>
       )}

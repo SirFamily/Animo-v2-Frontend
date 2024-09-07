@@ -12,7 +12,6 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate }) {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         }
       );
@@ -40,7 +39,7 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate }) {
       <div className={styles.popup}>
         <h2 className={styles.header}>คำเตือน</h2>
         <p className={styles.message}>
-          คุณต้องการลบสถานที่พัก <b>{selectedHost.id}</b> ใช่หรือไม่
+          คุณต้องการลบสถานที่พัก <b>{selectedHost}</b> ใช่หรือไม่
         </p>
         <div className={styles.buttonGroup}>
           <button

@@ -1,29 +1,28 @@
 {
-    "housing_types": [
-      "Apartment",
-      "Townhouse",
-      "Co-op",
-      "Cape Cod",
-      "Semi-detached",
-      "Colonial architecture",
-      "Duplex",
-      "Mid-century modern",
-      "Single family home",
-      "Bungalow",
-      "Modular building",
-      "American Craftsman",
-      "Split-level",
-      "Contemporary architecture",
-      "Houseboat",
-      "Tudor architecture",
-      "Condo",
-      "Ranch-style house",
-      "Tiny home",
-      "Farmhouse",
-      "Cluster houses",
-      "Cottage",
-      "Mediterranean Revival architecture",
-      "Victorian house"
-    ]
-  }
-  
+  "housing_types": [
+    { "id": 1, "type": "อพาร์ตเมนต์" },
+    { "id": 2, "type": "ทาวน์เฮ้าส์" },
+    { "id": 3, "type": "โคออป" },
+    { "id": 4, "type": "เคปคอด" },
+    { "id": 5, "type": "บ้านแฝด" },
+    { "id": 6, "type": "สถาปัตยกรรมแบบโคโลเนียล" },
+    { "id": 7, "type": "ดูเพล็กซ์" },
+    { "id": 8, "type": "มิดเซ็นจูรีโมเดิร์น" },
+    { "id": 9, "type": "บ้านเดี่ยว" },
+    { "id": 10, "type": "บังกะโล" },
+    { "id": 11, "type": "อาคารโมดูลาร์" },
+    { "id": 12, "type": "อเมริกันคราฟต์สแมน" },
+    { "id": 13, "type": "สปลิท-เลเวล" },
+    { "id": 14, "type": "สถาปัตยกรรมแบบร่วมสมัย" },
+    { "id": 15, "type": "บ้านเรือ" },
+    { "id": 16, "type": "สถาปัตยกรรมแบบทิวดอร์" },
+    { "id": 17, "type": "คอนโด" },
+    { "id": 18, "type": "บ้านสไตล์แรนช์" },
+    { "id": 19, "type": "บ้านหลังเล็ก" },
+    { "id": 20, "type": "ฟาร์มเฮ้าส์" },
+    { "id": 21, "type": "คลัสเตอร์เฮ้าส์" },
+    { "id": 22, "type": "คอทเทจ" },
+    { "id": 23, "type": "สถาปัตยกรรมแบบเมดิเตอร์เรเนียนรีไววัล" },
+    { "id": 24, "type": "บ้านวิกตอเรีย" }
+  ]
+}

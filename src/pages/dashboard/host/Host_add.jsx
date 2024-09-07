@@ -31,6 +31,7 @@ function HostAdd() {
   const uid = user.id;
   const [position, setPosition] = useState(null);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "file") {
@@ -102,10 +103,10 @@ function HostAdd() {
   }, [hostData.images]);
 
   // ส่วนของแผนที่
-  const handleGetAddress = async (lat, lon) => {
+  const handleGetAddress = async (lat, lng) => {
     try {
       const response = await axios.get(
-        `https://api.longdo.com/map/services/address?lon=${lon}&lat=${lat}&noelevation=1&key=e7511f741ce6876a9fc6f0a1429dbdae`
+        `https://api.longdo.com/map/services/address?lon=${lng}&lat=${lat}&noelevation=1&key=e7511f741ce6876a9fc6f0a1429dbdae`
       );
 
       const fetchedAddress = response.data;
@@ -115,7 +116,7 @@ function HostAdd() {
         ...prevData,
         address: formattedAddress,
         lat,
-        long: lon,
+        long: lng,
       }));
     } catch (error) {
       console.error("Error fetching address:", error);

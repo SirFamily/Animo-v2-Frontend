@@ -66,7 +66,9 @@ function Hosts() {
           <div className={csslayer.container_layer_buttom_host}>
             <div>
               <div className={csslayer.container_in_l_button_host}>
-                <Room_list hostId={selectedHostId}/>
+                <Room_list
+                  hostId={selectedHostId}
+                />
                 <Link to="create-host/room">
                   <button>Add room</button>
                 </Link>
