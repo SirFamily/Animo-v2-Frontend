@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../Css/hostlist.module.css";
 import Room_delete from "./Room_delete";
-
+import Room_edit from "./Room_edit";
 function Room_list({ hostId }) {
   const [rooms, setRooms] = useState([]);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
   const fetchRooms = async () => {
     try {
@@ -33,6 +34,11 @@ function Room_list({ hostId }) {
   const toggleDeletePopup = (room) => {
     setSelectedRoom(room);
     setDeletePopupOpen(!isDeletePopupOpen);
+  };
+
+  const toggleEditPopup = (room) => {
+    setSelectedRoom(room);
+    setPopupOpen(!isPopupOpen);
   };
 
   return (
@@ -73,7 +79,12 @@ function Room_list({ hostId }) {
                 <td>{room.quantity}</td>
                 <td>${room.price}</td>
                 <td>
-                  <div className={styles.editLink}>Edit</div>
+                  <div
+                    className={styles.editLink}
+                    onClick={() => toggleEditPopup(room)}
+                  >
+                    Edit
+                  </div>
                   <div
                     className={styles.deleteLink}
                     onClick={() => toggleDeletePopup(room)}
@@ -95,6 +106,13 @@ function Room_list({ hostId }) {
           handleRoomUpdate={fetchRooms}
           selectedRoom={selectedRoom}
           onClose={toggleDeletePopup}
+        />
+      )}
+      {isPopupOpen && (
+        <Room_edit
+          handleRoomUpdate={fetchRooms}
+          room={selectedRoom}
+          onClose={toggleEditPopup}
         />
       )}
     </div>
