@@ -3,7 +3,7 @@ import Modelpopup from "../../../component/Modelpopup";
 import styles from "./Css/้hostdelete.module.css";
 import axios from "axios";
 
-function Host_delete({ selectedHost, onClose, handleHostUpdate }) {
+function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdateData}) {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token"); // Adjust as per your token storage logic
@@ -18,6 +18,7 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate }) {
 
       if (response.status === 200) {
         handleHostUpdate();
+        handleHostUpdateData();
         onClose();
         console.log(selectedHost);
         alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");

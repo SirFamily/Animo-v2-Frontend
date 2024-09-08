@@ -57,21 +57,23 @@ function Hosts() {
             handleHostUpdate={fetchHosts}
           />
           {!hasHostData && (
-            <Link to="create-host">
-              <button>Add host</button>
-            </Link>
+            <div className={csslayer.button_container}>
+              <Link to="create-host">
+                <button className={csslayer.bt}>Add host</button>
+              </Link>
+            </div>
           )}
         </div>
         {hasHostData && selectedHostId && (
           <div className={csslayer.container_layer_buttom_host}>
             <div>
               <div className={csslayer.container_in_l_button_host}>
-                <Room_list
-                  hostId={selectedHostId}
-                />
-                <Link to="create-host/room">
-                  <button>Add room</button>
-                </Link>
+                <Room_list hostId={selectedHostId} />
+                <div className={csslayer.button_container}>
+                  <Link to="create-host/room">
+                    <button className={csslayer.bt}>Add Room</button>
+                  </Link>
+                </div>
               </div>
             </div>
             <div>
