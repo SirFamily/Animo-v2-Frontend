@@ -91,7 +91,7 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
           )}
         </tbody>
       </table>
-      {isPopupOpen && <Host_edit onClose={toggleEditPopup} host={selectedHost[0]} handleHostUpdate={fetchHosts} />}
+      {isPopupOpen && <Host_edit onClose={toggleEditPopup} host={selectedHost[0]} handleHostUpdate={handleHostUpdate} />}
       {isDeletePopupOpen && (
         <Host_delete onClose={toggleDeletePopup} selectedHost={selectedHost} handleHostUpdate={handleHostUpdate}/>
       )}

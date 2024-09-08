@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Css/hostadd.module.css"; 
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import housing_types from "../../../component/data/hostingtype.json";
+
 import {
   MapContainer,
   TileLayer,
@@ -15,7 +17,7 @@ import axios from "axios"; // Make sure axios is imported
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-function HostAdd() {
+function Host_add() {
   const [step, setStep] = useState(1);
   const [hostData, setHostData] = useState({
     name: "",
@@ -190,14 +192,20 @@ function HostAdd() {
               onChange={handleChange}
               required
             />
-            <label>Type</label>
-            <input
-              type="text"
+            <label>Type:</label>
+            <select
               name="type"
               value={hostData.type}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">เลือกประเภท</option>
+              {housing_types.housing_types.map((item) => (
+                <option key={item.id} value={item.type}>
+                  {item.type}
+                </option>
+              ))}
+            </select>
           </div>
         )}
 
@@ -317,4 +325,4 @@ function HostAdd() {
   );
 }
 
-export default HostAdd;
+export default Host_add;
