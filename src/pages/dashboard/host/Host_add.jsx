@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Css/hostadd.module.css"; 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import housing_types from "../../../component/data/hostingtype.json";
 
@@ -296,6 +296,15 @@ function Host_add() {
         {step === 5 && <div>Confirm</div>}
 
         <div className={styles.buttons}>
+        {step === 1 && (
+          <button
+              type="button"
+              className={styles.button_back}
+              onClick={() => navigate("/dashboard/host")}
+              >
+              Exit
+            </button>
+          )}
           {step > 1 && (
             <button
               type="button"

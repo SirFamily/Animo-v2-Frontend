@@ -198,6 +198,15 @@ function Room_add() {
         {step === 5 && <div>Confirm</div>}
 
         <div className={styles.buttons}>
+        {step === 1 && (
+          <button
+              type="button"
+              className={styles.button_back}
+              onClick={() => navigate("/dashboard/host")}
+              >
+              Exit
+            </button>
+          )}
           {step > 1 && (
             <button
               type="button"
