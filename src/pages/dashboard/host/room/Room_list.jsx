@@ -40,7 +40,7 @@ function Room_list({ hostId }) {
     setSelectedRoom(room);
     setPopupOpen(!isPopupOpen);
   };
-
+console.log(rooms)
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Room</h1>

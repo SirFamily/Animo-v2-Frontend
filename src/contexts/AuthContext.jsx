@@ -6,7 +6,7 @@ function AuthContextProvider(props) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
 
-  useEffect(()=>{
+
     const run = async ()=>{
       try{
         setLoading(true)
@@ -24,6 +24,9 @@ function AuthContextProvider(props) {
         }, 2000);
       }
     }
+
+
+  useEffect(()=>{
     run()
   },[])
 
@@ -34,7 +37,7 @@ function AuthContextProvider(props) {
   }
 
   return (
-    <AuthContext.Provider value={{user, setUser, loading, logout}}>
+    <AuthContext.Provider value={{user, setUser, loading, logout , run}}>
       {props.children}
     </AuthContext.Provider>
   );

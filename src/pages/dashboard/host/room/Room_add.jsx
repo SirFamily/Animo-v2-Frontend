@@ -9,12 +9,16 @@ function Room_add() {
   const [roomData, setRoomData] = useState({
     name: "",
     type: "",
-    quantity: 1,  // Default quantity to 1
+    quantity: 1, // Default quantity to 1
     price: "",
     images: [],
+    supportPetName: "", // New: Support pet name
+    supportPetDescription: "" // New: Support pet description
   });
+
+  // Handle input changes
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
+    const { name, value, type, files } = e.target;
     if (type === "file") {
       const newImages = Array.from(files).map((file) => ({
         file,
@@ -27,11 +31,12 @@ function Room_add() {
     } else {
       setRoomData({
         ...roomData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       });
     }
   };
 
+  // Remove image
   const handleRemoveImage = (index) => {
     const updatedImages = roomData.images.filter(
       (_, imgIndex) => imgIndex !== index
@@ -40,9 +45,11 @@ function Room_add() {
     setRoomData({ ...roomData, images: updatedImages });
   };
 
+  // Step navigation
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,6 +58,8 @@ function Room_add() {
     formData.append("type", roomData.type);
     formData.append("quantity", roomData.quantity);
     formData.append("price", roomData.price);
+    formData.append("supportPetName", roomData.supportPetName); // Append support pet name
+    formData.append("supportPetDescription", roomData.supportPetDescription); // Append support pet description
 
     roomData.images.forEach((image) => {
       formData.append("images", image.file);
@@ -77,6 +86,7 @@ function Room_add() {
     }
   };
 
+  // Clean up image previews on unmount
   useEffect(() => {
     return () => {
       roomData.images.forEach((image) => URL.revokeObjectURL(image.preview));
@@ -109,11 +119,17 @@ function Room_add() {
         <div
           className={`${styles.step} ${step >= 5 ? styles.active : ""}`}
           data-step="5"
+          data-title="Support Pet"
+        ></div>
+        <div
+          className={`${styles.step} ${step >= 6 ? styles.active : ""}`}
+          data-step="6"
           data-title="Confirm"
         ></div>
       </div>
 
       <form onSubmit={handleSubmit}>
+        {/* Step 1: Room Name and Type */}
         {step === 1 && (
           <div className={styles.formGroup}>
             <label>Name</label>
@@ -135,6 +151,7 @@ function Room_add() {
           </div>
         )}
 
+        {/* Step 2: Quantity */}
         {step === 2 && (
           <div className={styles.formGroup}>
             <label>Quantity</label>
@@ -149,6 +166,7 @@ function Room_add() {
           </div>
         )}
 
+        {/* Step 3: Price */}
         {step === 3 && (
           <div className={styles.formGroup}>
             <label>Price</label>
@@ -163,6 +181,7 @@ function Room_add() {
           </div>
         )}
 
+        {/* Step 4: Image Upload */}
         {step === 4 && (
           <div className={styles.formGroup}>
             <label>Upload Images</label>
@@ -195,15 +214,36 @@ function Room_add() {
           </div>
         )}
 
-        {step === 5 && <div>Confirm</div>}
+        {/* Step 5: Support Pet Information */}
+        {step === 5 && (
+          <div className={styles.formGroup}>
+            <label>Support Pet Name</label>
+            <input
+              type="text"
+              name="supportPetName"
+              value={roomData.supportPetName}
+              onChange={handleChange}
+            />
+            <label>Support Pet Description</label>
+            <textarea
+              name="supportPetDescription"
+              value={roomData.supportPetDescription}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+        )}
 
+        {/* Step 6: Confirmation */}
+        {step === 6 && <div>Confirm</div>}
+
+        {/* Navigation Buttons */}
         <div className={styles.buttons}>
-        {step === 1 && (
-          <button
+          {step === 1 && (
+            <button
               type="button"
               className={styles.button_back}
               onClick={() => navigate("/dashboard/host")}
-              >
+            >
               Exit
             </button>
           )}
@@ -216,7 +256,7 @@ function Room_add() {
               Previous
             </button>
           )}
-          {step < 5 && (
+          {step < 6 && (
             <button
               type="button"
               className={styles.button_next}
@@ -225,7 +265,7 @@ function Room_add() {
               Next
             </button>
           )}
-          {step === 5 && (
+          {step === 6 && (
             <button type="submit" className={styles.button_next}>
               Submit
             </button>

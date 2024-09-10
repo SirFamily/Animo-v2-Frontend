@@ -6,7 +6,7 @@ import usercss from "./usercss/user.module.css";
 import axios from "axios";
 
 function ProfileUser() {
-  const { user, loading } = useAuth();
+  const { user, loading, run } = useAuth();
   const [isEditMode, setIsEditMode] = useState(false);
   const [updatedUser, setUpdatedUser] = useState({
     firstName: "",
@@ -76,26 +76,26 @@ function ProfileUser() {
       formData.append("subDistrict", updatedUser.subDistrict);
       formData.append("province", updatedUser.province);
       formData.append("bio", updatedUser.bio);
-  
+
       if (selectedImage) {
         formData.append("img", selectedImage);
       }
-  
+
       const token = localStorage.getItem("token");
-  
+
       await axios.put(`${import.meta.env.VITE_API_URL}/auth/update`, formData, {
-        headers: { 
+        headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}` 
+          Authorization: `Bearer ${token}`,
         },
       });
-  
+
       setIsEditMode(false);
+      run();
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
-  
 
   if (loading) return <div>Loading...</div>;
 
@@ -113,15 +113,24 @@ function ProfileUser() {
               <div className={usercss.Box1}>
                 <p>Photo</p>
                 {imagePreview ? (
-                  <img src={imagePreview} alt="Profile Preview" className={usercss.profile_pic} />
+                  <img
+                    src={imagePreview}
+                    alt="Profile Preview"
+                    className={usercss.profile_pic}
+                  />
                 ) : (
                   <img
-                    src={user.url || "https://media.istockphoto.com/id/1298261537/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A2%E0%B8%B6%E0%B8%94%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B9%88%E0%B8%B2.jpg"}
+                    src={
+                      user.url ||
+                      "https://media.istockphoto.com/id/1298261537/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A2%E0%B8%B6%E0%B8%94%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B9%88%E0%B8%B2.jpg"
+                    }
                     alt="User Profile"
                     className={usercss.profile_pic}
                   />
                 )}
-                {isEditMode && <input type="file" onChange={handleImageChange} />}
+                {isEditMode && (
+                  <input type="file" onChange={handleImageChange} />
+                )}
               </div>
             </div>
             <hr />
@@ -144,7 +153,9 @@ function ProfileUser() {
                     />
                   </>
                 ) : (
-                  <p>{user.firstName} {user.lastName}</p>
+                  <p>
+                    {user.firstName} {user.lastName}
+                  </p>
                 )}
                 <label>Phone:</label>
                 {isEditMode ? (
@@ -257,15 +268,15 @@ function ProfileUser() {
               <p>{user.bio}</p>
             )}
             <div className={usercss.Box2}>
-                <div className={usercss.editLink} onClick={toggleEditMode}>
-                  {isEditMode ? "Cancel" : "Edit"}
-                </div>
-                {isEditMode && (
-                  <button className={usercss.editLink} onClick={handleSave}>
-                    Save
-                  </button>
-                )}
+              <div className={usercss.editLink} onClick={toggleEditMode}>
+                {isEditMode ? "Cancel" : "Edit"}
               </div>
+              {isEditMode && (
+                <button className={usercss.editLink} onClick={handleSave}>
+                  Save
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
