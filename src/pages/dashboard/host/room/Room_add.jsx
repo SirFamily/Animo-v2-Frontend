@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Css/roomadd.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import speciesList from "../../../../component/data/petdata.json"; 
 
 function Room_add() {
   const navigate = useNavigate();
@@ -9,11 +10,11 @@ function Room_add() {
   const [roomData, setRoomData] = useState({
     name: "",
     type: "",
-    quantity: 1, // Default quantity to 1
+    quantity: 1,
     price: "",
     images: [],
-    supportPetName: "", // New: Support pet name
-    supportPetDescription: "" // New: Support pet description
+    supportPetName: "", 
+    supportPetDescription: ""
   });
 
   // Handle input changes
@@ -34,6 +35,14 @@ function Room_add() {
         [name]: value,
       });
     }
+  };
+
+  // Handle species selection
+  const handleSpeciesChange = (e) => {
+    setRoomData({
+      ...roomData,
+      supportPetName: e.target.value,
+    });
   };
 
   // Remove image
@@ -58,8 +67,8 @@ function Room_add() {
     formData.append("type", roomData.type);
     formData.append("quantity", roomData.quantity);
     formData.append("price", roomData.price);
-    formData.append("supportPetName", roomData.supportPetName); // Append support pet name
-    formData.append("supportPetDescription", roomData.supportPetDescription); // Append support pet description
+    formData.append("supportPetName", roomData.supportPetName);
+    formData.append("supportPetDescription", roomData.supportPetDescription);
 
     roomData.images.forEach((image) => {
       formData.append("images", image.file);
@@ -79,7 +88,7 @@ function Room_add() {
       );
 
       console.log("Room created successfully:", response.data);
-      alert("created successfully");
+      alert("Created successfully");
       navigate("/dashboard/host");
     } catch (error) {
       console.error("Error creating room:", error);
@@ -218,12 +227,18 @@ function Room_add() {
         {step === 5 && (
           <div className={styles.formGroup}>
             <label>Support Pet Name</label>
-            <input
-              type="text"
+            <select
               name="supportPetName"
               value={roomData.supportPetName}
-              onChange={handleChange}
-            />
+              onChange={handleSpeciesChange}
+            >
+              <option value="">Select a pet species</option>
+              {speciesList.species.map((species) => (
+                <option key={species.id} value={species.name}>
+                  {species.name}
+                </option>
+              ))}
+            </select>
             <label>Support Pet Description</label>
             <textarea
               name="supportPetDescription"

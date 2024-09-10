@@ -3,7 +3,7 @@ import Modelpopup from "../../../component/Modelpopup";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import styles from "./Css/petsadd.module.css";
-import speciesList from "../../../component/data/petdata.json"; // Ensure the path is correct
+import speciesList from "../../../component/data/petdata.json"; 
 
 function Pets_add({ onClose, setPetData }) {
   const { user } = useAuth();
