@@ -17,10 +17,10 @@ function Login() {
   const hdlSubmit = async (e) => {
     try {
       e.preventDefault();
-      const rs = await axios.post("http://localhost:8112/auth/login", input);
+      const rs = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, input);
       console.log(rs.data.token);
       localStorage.setItem("token", rs.data.token);
-      const rs1 = await axios.get("http://localhost:8112/auth/getme", {
+      const rs1 = await axios.get(`${import.meta.env.VITE_API_URL}/auth/getme`, {
         headers: {
           Authorization: `Bearer ${rs.data.token}`,
         },

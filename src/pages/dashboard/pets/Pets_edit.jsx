@@ -89,7 +89,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.put(`http://localhost:8112/pets/update/${pet.id}`, 
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/pets/update/${pet.id}`, 
         formData, {
         headers: {
           Authorization: `Bearer ${token}`,

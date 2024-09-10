@@ -9,7 +9,7 @@ function Room_delete({ selectedRoom, onClose, handleRoomUpdate }) {
       const token = localStorage.getItem("token");
       
       // Perform DELETE request to delete room by ID
-      const response = await axios.delete(`http://localhost:8112/room/delete/${selectedRoom.id}`, {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/room/delete/${selectedRoom.id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },

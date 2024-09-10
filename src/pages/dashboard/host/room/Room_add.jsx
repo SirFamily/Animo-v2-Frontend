@@ -59,7 +59,7 @@ function Room_add() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:8112/room/create`,
+        `${import.meta.env.VITE_API_URL}/room/create`,
         formData,
         {
           headers: {

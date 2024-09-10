@@ -68,7 +68,7 @@ function Pets_add({ onClose, setPetData }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:8112/pets/create/${uid}`,
+        `${import.meta.env.VITE_API_URL}/pets/create/${uid}`,
         formData,
         {
           headers: {

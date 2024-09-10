@@ -13,7 +13,7 @@ function Room_list({ hostId }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:8112/room/list/${hostId}`,
+        `${import.meta.env.VITE_API_URL}/room/list/${hostId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

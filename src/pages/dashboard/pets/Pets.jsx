@@ -16,7 +16,7 @@ function Pets() {
   const fetchPetData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:8112/pets/list/${uid}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/pets/list/${uid}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPetData(response.data.data);

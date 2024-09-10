@@ -8,7 +8,7 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdate
     try {
       const token = localStorage.getItem("token"); // Adjust as per your token storage logic
       const response = await axios.delete(
-        `http://localhost:8112/host/delete/${selectedHost}`,
+        `${import.meta.env.VITE_API_URL}/host/delete/${selectedHost}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

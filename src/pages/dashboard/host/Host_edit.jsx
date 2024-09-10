@@ -100,7 +100,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:8112/host/update/${host.id}`,
+        `${import.meta.env.VITE_API_URL}/host/update/${host.id}`,
         formData,
         {
           headers: {

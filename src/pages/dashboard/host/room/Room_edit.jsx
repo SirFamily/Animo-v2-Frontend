@@ -53,7 +53,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:8112/room/update/${room.id}`, 
+        `${import.meta.env.VITE_API_URL}/room/update/${room.id}`, 
         formData, 
         {
           headers: {

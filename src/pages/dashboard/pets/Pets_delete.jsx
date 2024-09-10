@@ -9,7 +9,7 @@ function Pets_delete({ pet, onClose, setPetData }) {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token'); // Adjust as per your token storage logic
-      await axios.delete(`http://localhost:8112/pets/delete/${pet.id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/pets/delete/${pet.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

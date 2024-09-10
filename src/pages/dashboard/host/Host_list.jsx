@@ -17,7 +17,7 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
     const fetchHosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8112/host/list/${uid}`,
+          `${import.meta.env.VITE_API_URL}/host/list/${uid}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
