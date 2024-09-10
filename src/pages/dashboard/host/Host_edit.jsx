@@ -215,7 +215,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
               value={input.lat}
               onChange={handleChange}
               required
-              pattern="^-?\d+(\.\d+)?$" // Ensure it's a valid float
+              disabled
             />
           </div>
 
@@ -228,7 +228,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
               value={input.long}
               onChange={handleChange}
               required
-              pattern="^-?\d+(\.\d+)?$" // Ensure it's a valid float
+              disabled
             />
           </div>
 

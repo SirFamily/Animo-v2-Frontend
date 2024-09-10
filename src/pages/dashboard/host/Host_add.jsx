@@ -226,6 +226,7 @@ function Host_add() {
               value={hostData.lat}
               onChange={handleChange}
               required
+              disabled
             />
             <label>Longitude</label>
             <input
@@ -234,6 +235,7 @@ function Host_add() {
               value={hostData.long}
               onChange={handleChange}
               required
+              disabled
             />
             <MapContainer
               className={styles.mapContainer}

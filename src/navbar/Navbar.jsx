@@ -94,7 +94,7 @@ function Navbar() {
         <div>
           <Link to="/">
             <div>
-              <span>A</span>nimo
+              <b><span>A</span>nimo</b>
             </div>
           </Link>
         </div>
