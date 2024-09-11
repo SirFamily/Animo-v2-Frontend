@@ -60,6 +60,7 @@ function ListHost() {
           <p>No hosts available</p>
         ) : (
           hosts.map((host) => (
+            <Link to={`/host/${host.id}`}>
             <div key={host.id} className={styles.card}>
               <img
                 src={host.photosHost[1]?.url || 'https://via.placeholder.com/200'}
@@ -67,7 +68,7 @@ function ListHost() {
                 className={styles.cardImage}
               />
               <div className={styles.cardTitle}>{host.name}</div>
-              <Link to={`/host/${host.id}`}>{host.name}</Link>
+          
               <div className={styles.cardLocation}>
                 <span>📍 {host.address.split(', ')[1]}</span>
                 <span>🏠 {host.type}</span>
@@ -78,6 +79,7 @@ function ListHost() {
                   : 'N/A'}
               </div>
             </div>
+            </Link>
           ))
         )}
       </div>
