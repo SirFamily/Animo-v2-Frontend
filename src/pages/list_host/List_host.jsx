@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Css/list_host.module.css';
+import axios from 'axios';
 
 function ListHost() {
+  const [hosts, setHosts] = useState([]);
+
+  useEffect(() => {
+    const fetchHosts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/pre/host/list/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setHosts(response.data.data); // Access the 'data' array from the response
+        console.log(response)
+      } catch (error) {
+        console.error("Error fetching host data:", error);
+      }
+    };
+
+    fetchHosts();
+  }, []);
+
   return (
     <div className={styles.container}>
       {/* Filter Section */}
@@ -27,27 +49,35 @@ function ListHost() {
           <div className={styles.filterTag}>Room - 2</div>
           <div className={styles.filterTag}>Cat - Dog - Snake</div>
           <div className={styles.filterTag}>Pets - 3</div>
+          <div>ยังไม่สามารถใช้งานได้</div>
         </div>
       </div>
 
       {/* Card Grid */}
       <div className={styles.cardGrid}>
-        {/* Cards */}
-        {[...Array(9)].map((_, index) => (
-          <div key={index} className={styles.card}>
-            <img
-              src="https://via.placeholder.com/200"
-              alt="Host"
-              className={styles.cardImage}
-            />
-            <div className={styles.cardTitle}>Gundam Build Fight...</div>
-            <div className={styles.cardLocation}>
-              <span>📍 Roi Et</span>
-              <span>🏠 Home</span>
+        {hosts.length === 0 ? (
+          <p>No hosts available</p>
+        ) : (
+          hosts.map((host) => (
+            <div key={host.id} className={styles.card}>
+              <img
+                src={host.photosHost[1]?.url || 'https://via.placeholder.com/200'}
+                alt={host.name}
+                className={styles.cardImage}
+              />
+              <div className={styles.cardTitle}>{host.name}</div>
+              <div className={styles.cardLocation}>
+                <span>📍 {host.address.split(', ')[1]}</span>
+                <span>🏠 {host.type}</span>
+              </div>
+              <div className={styles.cardPrice}>
+                {host.rooms.length > 0
+                  ? `💵 ${host.rooms[0].price}–${Math.max(...host.rooms.map(room => room.price))}$`
+                  : 'N/A'}
+              </div>
             </div>
-            <div className={styles.cardPrice}>125–300$</div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

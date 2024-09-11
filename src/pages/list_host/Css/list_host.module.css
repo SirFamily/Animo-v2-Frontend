@@ -1,7 +1,10 @@
+/* list_host.module.css */
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* padding: 20px; */
   }
   
   .filterSection {
@@ -36,16 +39,17 @@
   .filterTag {
     padding: 10px 15px;
     border-radius: 30px;
-    background-color: #F7F9FA;
+    background-color: #fff;
     border: 1px solid #ddd;
     font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   .cardGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    padding: 20px;
+    width: 60%;
   }
   
   .card {
@@ -53,13 +57,14 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    text-align: center;
+    text-align: left;
     font-size: 14px;
   }
   
   .cardImage {
     width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     border-radius: 10px;
   }
   
@@ -71,8 +76,10 @@
   
   .cardLocation {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 5px;
+    margin-bottom: 5px;
   }
   
   .cardPrice {
