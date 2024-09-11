@@ -16,8 +16,10 @@ import Request from "../pages/dashboard/list_request/Requests"
 import History from "../pages/dashboard/list_history/History_R"
 import Profile from "../pages/dashboard/profile/Profile_user"
 
+
 import Host_add from "../pages/dashboard/host/Host_add";
 import Room_add from "../pages/dashboard/host/room/Room_add";
+import HostView from "../pages/list_host/view_host/Host_view";
 const guestRouter = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +60,7 @@ const userRouter = createBrowserRouter([
         { path: 'dashboard/request', element: <Request />,},
         { path: 'dashboard/history', element: <History />,},
         { path: 'dashboard/profile', element: <Profile />,},
+        { path: 'host/:hostId', element: <HostView />,},
       ]
     },
   ]);

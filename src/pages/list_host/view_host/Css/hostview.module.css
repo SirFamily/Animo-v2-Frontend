@@ -1,0 +1,110 @@
+.container {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .gallery {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .mainImage img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .imageGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .imageGrid img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .details {
+    margin-bottom: 20px;
+  }
+  
+  .hostName {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .hostLocation, .hostType {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .description {
+    margin: 10px 0;
+  }
+  
+  .rooms {
+    margin-bottom: 20px;
+  }
+  
+  .roomGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .roomCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .roomCard img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .roomDetails {
+    margin-top: 10px;
+  }
+  
+  .roomDetails h4 {
+    margin-bottom: 5px;
+  }
+  
+  .map {
+    margin-bottom: 20px;
+  }
+  
+  .reviews {
+    margin-top: 20px;
+  }
+  
+  .reviewCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+  
+  .review {
+    margin-bottom: 15px;
+  }
+  
+  .reviewRating {
+    font-size: 18px;
+    color: #ffb400;
+  }
+  
+  .reviewUser {
+    font-size: 14px;
+    color: #777;
+  }
+  

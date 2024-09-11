@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Css/list_host.module.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function ListHost() {
   const [hosts, setHosts] = useState([]);
@@ -9,7 +10,7 @@ function ListHost() {
     const fetchHosts = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/pre/host/list/`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/pre/host/list`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,6 +67,7 @@ function ListHost() {
                 className={styles.cardImage}
               />
               <div className={styles.cardTitle}>{host.name}</div>
+              <Link to={`/host/${host.id}`}>{host.name}</Link>
               <div className={styles.cardLocation}>
                 <span>📍 {host.address.split(', ')[1]}</span>
                 <span>🏠 {host.type}</span>
