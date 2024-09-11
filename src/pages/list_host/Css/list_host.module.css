@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filterSection {
+    width: 100%;
+    padding: 20px;
+    background-color: #F7F9FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .searchBar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .searchInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .filterTags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .filterTag {
+    padding: 10px 15px;
+    border-radius: 30px;
+    background-color: #F7F9FA;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .cardTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .cardLocation {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .cardPrice {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+  }
+  
