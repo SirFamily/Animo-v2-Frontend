@@ -1,110 +1,222 @@
 .container {
-    width: 100%;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
-  }
-  
-  .gallery {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .mainImage img {
-    width: 500px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .imageGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  
-  .imageGrid img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-  
-  .details {
-    margin-bottom: 20px;
-  }
-  
-  .hostName {
-    font-size: 24px;
-    margin: 10px 0;
-  }
-  
-  .hostLocation, .hostType {
-    font-size: 18px;
-    color: #555;
-  }
-  
-  .description {
-    margin: 10px 0;
-  }
-  
-  .rooms {
-    margin-bottom: 20px;
-  }
-  
-  .roomGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  
-  .roomCard {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-  }
-  
-  .roomCard img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .roomDetails {
-    margin-top: 10px;
-  }
-  
-  .roomDetails h4 {
-    margin-bottom: 5px;
-  }
-  
-  .map {
-    margin-bottom: 20px;
-  }
-  
-  .reviews {
-    margin-top: 20px;
-  }
-  
-  .reviewCard {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fafafa;
-  }
-  
-  .review {
-    margin-bottom: 15px;
-  }
-  
-  .reviewRating {
-    font-size: 18px;
-    color: #ffb400;
-  }
-  
-  .reviewUser {
-    font-size: 14px;
-    color: #777;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 90%;
+  /* background-color: aqua; */
+  margin: auto;
+  gap: 10px;
+}
+
+
+.container_box_section1 {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  margin: 10px 0px;
+  width: auto;
+  border-radius: 8px;
+
+}
+
+.row2_sectiopn1 {
+  width: auto;
+  height: auto;
+  /* background-color: blanchedalmond; */
+}
+
+
+
+.booking_boxs {
+  width: 400px;
+  /* background-color: blue; */
+}
+
+
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fix_col {
+  gap: 10px;
+
+}
+
+.mainImage img {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 5px;
+}
+
+.imageGrid img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.details {
+  margin-bottom: 20px;
+}
+
+.hostName {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.hostLocation,
+.hostType {
+  font-size: 18px;
+  color: #555;
+}
+
+.description {
+  margin: 10px 0;
+}
+
+.roomScrollContainer {
+  overflow-x: auto;
+  display: flex;
+  gap: 20px;
+  max-width: 610px;
+}
+
+.roomGrid {
+  display: flex;
+  gap: 20px;
+}
+
+.roomCard {
+  min-width: 250px;
+  /* Adjust this as needed */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #ddd;
+}
+
+.roomCard img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.roomDetails {
+  margin-top: 10px;
+}
+
+.roomDetails h4 {
+  margin-bottom: 5px;
+}
+
+.map {
+  margin-bottom: 20px;
+}
+
+.mapContainer {
+  height: 400px;
+  /* Or any height you want */
+  width: 100%;
+}
+
+.reviews {
+  margin-top: 20px;
+}
+
+.reviewCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.review {
+  margin-bottom: 15px;
+}
+
+.reviewRating {
+  font-size: 18px;
+  color: #ffb400;
+}
+
+.reviewUser {
+  font-size: 14px;
+  color: #777;
+}
+
+.booking_box {
+  width: 300px; /* Adjust width to fit the booking box */
+  background-color: white;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding inside the box */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for separation */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between elements */
+  height: auto;
+  margin: 10px 0px;
+
+}
+
+.booking_box h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.booking_box .booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking_box select,
+.booking_box input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.booking_box .price {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.booking_box .total-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.booking_box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.booking_box button:hover {
+  background-color: #008ecc;
+}
