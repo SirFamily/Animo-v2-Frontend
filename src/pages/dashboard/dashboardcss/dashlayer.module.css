@@ -5,15 +5,17 @@
     justify-content: center;
     gap: 30px;
     margin-bottom: 40px;
+
+    .container_g_layer {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
 }
 
 /* ส่วนของpet */
 
-.container_g_layer {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
+
 
 .container_layer_top {
     display: flex;
@@ -109,6 +111,28 @@ width: 100%;
 }
 
 /* สิ้นสุด */
+
+
+/* ส่วนของ request */
+.container_layer_buttom_req {
+    width: 871px;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+/* สิ้นสุด */
+
+/* ส่วนของ request */
+.container_layer_buttom_his {
+    width: 871px;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+/* สิ้นสุด */
+
 
 /* ปุ่ม */
 .button_container {
