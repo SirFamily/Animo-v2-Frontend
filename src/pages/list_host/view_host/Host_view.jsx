@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select"; // import Select from react-select
 import styles from "./Css/hostview.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -7,18 +8,33 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import useAuth from "../../../hooks/useAuth";
 
 function Host_view() {
-  const { hostId } = useParams(); // Get hostId from URL parameters
+  const { hostId } = useParams();
+  const { user } = useAuth();
   const [host, setHost] = useState(null);
+  const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const uid = user.id;
+  const [position, setPosition] = useState(null);
+  const [input, setInput] = useState({
+    lat: null,
+    long: null,
+    room: "",
+    pets: [],
+    checkin: "",
+    checkout: "",
+  });
 
-  const [position, setPosition] = useState(null); // Store map position
-  const [input, setInput] = useState({ lat: null, long: null, address: "" }); // To manage lat, long, and address
+  const [price, setPrice] = useState({
+    petFoodPerDay: 10,
+    extraServiceFee: 0.7,
+    additionalPetCharge: 50,
+  });
 
   useEffect(() => {
-    // Fetch host data
     const fetchHostData = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -34,8 +50,7 @@ function Host_view() {
         const hostData = response.data.data;
         setHost(hostData);
         setLoading(false);
-
-        // Set position if lat/long exists in the host data
+        console.log(host);
         if (hostData.lat && hostData.long) {
           setPosition({ lat: hostData.lat, lng: hostData.long });
           setInput((prev) => ({
@@ -53,7 +68,96 @@ function Host_view() {
     fetchHostData();
   }, [hostId]);
 
-  // Leaflet default marker icon
+  useEffect(() => {
+    // Fetch pets data
+    const fetchPetsData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/pets/find`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setPets(response.data.pet);
+        console.log(pets);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPetsData();
+  }, [hostId]);
+
+  const handleBooking = async () => {
+    const token = localStorage.getItem("token");
+  
+    // Prepare pets data for the API
+    const petsData = input.pets.map((pet) => ({
+      petId: pet.value, // Assuming value is the pet ID from react-select options
+      count: 1, // Assuming each pet has count 1; modify if needed
+    }));
+  
+    const bookingData = {
+      hostId: hostId, // From useParams
+      roomId: host.rooms.find((r) => r.name === input.room)?.id, // Get room ID based on the selected room name
+      userId: uid, // Replace with actual user ID (retrieve from context or other source)
+      startDate: input.checkin,
+      endDate: input.checkout,
+      pets: petsData,
+      paymentAmount: calculateTotalPrice(), // Use the calculated price
+    };
+  
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/booking/create`,
+        bookingData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Booking successful:", response.data);
+      alert("Booking created successfully!");
+    } catch (error) {
+      console.error("Booking failed:", error);
+      alert("Booking failed. Please try again.");
+    }
+  };
+
+  const calculateTotalPrice = () => {
+    const { checkin, checkout, pets, room } = input;
+    const { petFoodPerDay, extraServiceFee, additionalPetCharge } = price;
+
+    if (!checkin || !checkout || !room) return 0;
+
+    const selectedRoom = host.rooms.find((r) => r.name === room);
+    if (!selectedRoom) return 0;
+
+    const roomPrice = selectedRoom.price;
+
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+    const diffTime = Math.abs(checkoutDate - checkinDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    let totalPrice = roomPrice * diffDays;
+
+    totalPrice += pets.length * petFoodPerDay * diffDays;
+
+    if (pets.length > 1) {
+      totalPrice += (pets.length - 1) * additionalPetCharge;
+    }
+
+    totalPrice += extraServiceFee;
+
+    return totalPrice;
+  };
+
   let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
@@ -66,7 +170,6 @@ function Host_view() {
     const map = useMap();
 
     useEffect(() => {
-      // Center the map to the initial position if lat/long is available
       if (position) {
         map.flyTo(position, 14);
       }
@@ -74,17 +177,19 @@ function Host_view() {
 
     return position === null ? null : (
       <Marker position={position}>
-        <Popup>
-          {position.lat}, {position.lng}
-        </Popup>
+        <Popup>📍 {host.address}</Popup>
       </Marker>
     );
   };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!host) return <div>No Host Data Available</div>; // Add this fallback to prevent null reference
+  if (!host) return <div>No Host Data Available</div>;
 
+  const petOptions = pets.map((pet) => ({
+    value: pet.id,
+    label: pet.petName,
+  }));
   return (
     <div className={styles.container}>
       <div className={styles.container_box_section1}>
@@ -108,9 +213,14 @@ function Host_view() {
 
           <div className={styles.details}>
             <h2 className={styles.hostName}>{host.name}</h2>
-            <p className={styles.hostLocation}>
-              📍 {host.address.split(", ")[1]}
-            </p>
+            <p className={styles.hostLocation}>📍 {host.address}</p>
+            <div className={styles.hostContainer}>
+              <img src={host.user.url} alt="" className={styles.hostImage} />
+              <p className={styles.hostType}>
+                Host By {host.user.firstName}
+                {host.user.lastName}
+              </p>
+            </div>
             <p className={styles.hostType}>🏠 {host.type}</p>
             <p className={styles.description}>{host.description}</p>
           </div>
@@ -123,9 +233,7 @@ function Host_view() {
                   <div key={room.id} className={styles.roomCard}>
                     <img
                       src={
-                        room.photosRoom.length > 0
-                          ? room.photosRoom[0].url
-                          : "https://via.placeholder.com/200"
+                        room.photosRoom.length > 0 ? room.photosRoom[0].url : ""
                       }
                       alt={room.name}
                     />
@@ -149,7 +257,7 @@ function Host_view() {
             <h3>Location</h3>
             <MapContainer
               className={styles.mapContainer}
-              center={[input.lat || 13, input.long || 100]} // Default center
+              center={[input.lat || 13, input.long || 100]}
               zoom={5}
               scrollWheelZoom={false}
             >
@@ -177,53 +285,97 @@ function Host_view() {
         </div>
       </div>
       <div className={styles.container_box_section2}>
-          <div className={styles.booking_box}>
+        <div className={styles.booking_box}>
           <div className="booking-info">
             <div>
               <label>Check-in</label>
-              <input type="text" value="Oct 7, 2024" disabled />
+              <input
+                type="date"
+                value={input.checkin}
+                onChange={(e) =>
+                  setInput((prev) => ({ ...prev, checkin: e.target.value }))
+                }
+              />
             </div>
             <div>
               <label>Check-out</label>
-              <input type="text" value="Oct 24, 2024" disabled />
+              <input
+                type="date"
+                value={input.checkout}
+                onChange={(e) =>
+                  setInput((prev) => ({ ...prev, checkout: e.target.value }))
+                }
+              />
             </div>
             <div>
               <label>Room</label>
-              <select>
-                <option>Room 1</option>
-                <option>Room 2</option>
+              <select
+                value={input.room}
+                onChange={(e) =>
+                  setInput((prev) => ({ ...prev, room: e.target.value }))
+                }
+              >
+                <option value="">เลือกห้อง</option>
+                {host.rooms.map((room) => (
+                  <option key={room.id} value={room.name}>
+                    ห้อง : {room.name}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
               <label>Pets</label>
-              <select>
-                <option>Dog, Cat</option>
-              </select>
+
+              <Select
+                isMulti
+                value={input.pets}
+                onChange={(selectedPets) =>
+                  setInput((prev) => ({
+                    ...prev,
+                    pets: selectedPets,
+                  }))
+                }
+                options={petOptions}
+              />
             </div>
-            <div className="extra-features">
-              <label>Extra Features</label>
-              <div>
+            <div className={styles.extraFeatures}>
+              <label>Extra Features *ยังใช้งานไม่ได้</label>
+              <div className={styles.checkboxContainer}>
                 <input type="checkbox" id="extra1" />
                 <label htmlFor="extra1">Test01</label>
               </div>
-              <div>
+              <div className={styles.checkboxContainer}>
                 <input type="checkbox" id="extra2" />
                 <label htmlFor="extra2">Test01</label>
               </div>
-              <div>
+              <div className={styles.checkboxContainer}>
                 <input type="checkbox" id="extra3" />
                 <label htmlFor="extra3">Test01</label>
               </div>
             </div>
             <div className="price">
-              <p>1 Night: $120</p>
-              <p>Food per day per pet: $10</p>
-              <p>Service fee: $0.7</p>
+              <p>
+                One Night: $
+                {input.room
+                  ? host.rooms.find((r) => r.name === input.room)?.price
+                  : "0"}
+              </p>
+              <p>Food per day per pet: ${price.petFoodPerDay}</p>
+              <p>Service fee: ${price.extraServiceFee}</p>
+              {input.pets.length > 1 && (
+                <p>
+                  Extra pet charge (starting from 2nd pet): $
+                  {(input.pets.length - 1) * price.additionalPetCharge}
+                </p>
+              )}
             </div>
+
             <div className="total-price">
-              <p>Total Payment: $130.7</p>
+              <p>Total Payment: ${calculateTotalPrice()}</p>
             </div>
-            <button>Book Now</button>
+            <div className="reserve-button">
+            <button onClick={handleBooking}>Reserve</button>
+            </div>
           </div>
         </div>
       </div>

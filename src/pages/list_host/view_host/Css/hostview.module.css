@@ -9,6 +9,19 @@
   margin: auto;
   gap: 10px;
 }
+.hostContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.hostImage {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 
 .container_box_section1 {
@@ -220,3 +233,10 @@
 .booking_box button:hover {
   background-color: #008ecc;
 }
+
+
+.checkboxContainer {
+  display: flex;
+  width: 100px;
+}
+
