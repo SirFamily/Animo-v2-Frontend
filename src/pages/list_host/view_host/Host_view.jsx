@@ -98,7 +98,6 @@ function Host_view() {
     // Prepare pets data for the API
     const petsData = input.pets.map((pet) => ({
       petId: pet.value, // Assuming value is the pet ID from react-select options
-      count: 1, // Assuming each pet has count 1; modify if needed
     }));
   
     const bookingData = {

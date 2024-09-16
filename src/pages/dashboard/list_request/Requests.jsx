@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from "../../../menu/Menu"
 import csslayer from "../dashboardcss/dashlayer.module.css";
+import Req_list from './Req_list';
 
 function request() {
   return (
@@ -8,7 +9,7 @@ function request() {
       <Menu />
       <div className={csslayer.container_g_layer}>
         <div className={csslayer.container_layer_buttom_req}>
-          <h1>request</h1>
+          <div><Req_list /></div>
         </div>
       </div>
     </div>
