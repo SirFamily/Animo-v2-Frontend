@@ -1,90 +1,102 @@
-/* list_host.module.css */
-
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding: 20px; */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filterSection {
+  width: 100%;
+  max-width: 1200px; /* กำหนดความกว้างสูงสุด */
+  padding: 20px;
+  background-color: #F7F9FA;
+  display: flex;
+  justify-content: space-between; /* ให้ input ค้นหาอยู่ชิดขวา */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  display: flex;
+  margin-right: 10px;
+  justify-content: flex-end; /* จัดให้ search input อยู่ชิดขวา */
+  flex-grow: 1; /* ให้ input ขยายเต็มพื้นที่ที่เหลือ */
+}
+
+.filterTags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* ถ้าพื้นที่ไม่พอให้ไอเท็มไปบรรทัดถัดไป */
+  flex-grow: 2; /* ให้ dropdowns ขยายไปทางซ้าย */
+  justify-content: flex-start; /* ให้ dropdown อยู่ทางซ้าย */
+}
+
+.searchInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.filterSelect {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px; /* ขนาดขั้นต่ำ */
+  max-width: 300px; /* ขนาดสูงสุด */
+  box-sizing: border-box;
+}
+
+.filterTags input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* กำหนดขนาดสูงสุดของ grid */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
   .filterSection {
-    width: 100%;
-    padding: 20px;
-    background-color: #F7F9FA;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: stretch;
   }
-  
+
+  .filterTags {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .searchBar {
-    display: flex;
-    gap: 10px;
+    width: 100%;
     margin-bottom: 15px;
   }
-  
-  .searchInput {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .filterTags {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .filterTag {
-    padding: 10px 15px;
-    border-radius: 30px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cardGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    width: 60%;
-  }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: left;
-    font-size: 14px;
-  }
-  
-  .cardImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .cardTitle {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  
-  .cardLocation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .cardPrice {
-    font-weight: bold;
-    color: #333;
-    margin-top: 5px;
-  }
-  
+}
