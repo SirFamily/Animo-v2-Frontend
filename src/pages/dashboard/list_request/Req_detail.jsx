@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import styles from "./Css/req_detail.module.css";
+import styles from "./Css/requests_detail.module.css";
 
 function Req_detail() {
   const { reqId } = useParams(); // ดึง reqId จาก URL
