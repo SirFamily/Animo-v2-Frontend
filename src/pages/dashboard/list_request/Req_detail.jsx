@@ -101,15 +101,15 @@ function Req_detail() {
           <span className={styles.value}>{request.host?.address || "-"}</span>
         </div>
 
-        {/* ข้อมูลผู้จอง */}
-        <h3 className={styles.subTitle}>User Details</h3>
+        {/* ข้อมูลเจ้าของสถานที่ */}
+        <h3 className={styles.subTitle}>Host Owner Details</h3>
         <div className={styles.userDetail}>
-          <img src={request.user?.url} alt={request.user?.firstName} className={styles.userImage} />
+          <img src={request.host?.user?.url} alt={request.host?.user?.firstName} className={styles.userImage} />
           <div className={styles.userInfo}>
-            <p><strong>Name:</strong> {request.user?.firstName} {request.user?.lastName}</p>
-            <p><strong>Email:</strong> {request.user?.email}</p>
-            <p><strong>Phone:</strong> {request.user?.phone}</p>
-            <p><strong>Address:</strong> {request.user?.address}, {request.user?.subDistrict}, {request.user?.district}, {request.user?.province} {request.user?.postalCode}</p>
+            <p><strong>Name:</strong> {request.host?.user?.firstName} {request.host?.user?.lastName}</p>
+            <p><strong>Email:</strong> {request.host?.user?.email}</p>
+            <p><strong>Phone:</strong> {request.host?.user?.phone}</p>
+            {/* <p><strong>Address:</strong> {request.host?.user?.address}, {request.host?.user?.subDistrict}, {request.host?.user?.district}, {request.host?.user?.province} {request.host?.user?.postalCode}</p> */}
           </div>
         </div>
       </div>
