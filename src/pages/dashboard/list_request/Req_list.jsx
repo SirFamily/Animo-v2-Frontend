@@ -34,7 +34,7 @@ function Req_list() {
             <th>Check-in/out</th>
             <th>Status</th>
             <th>Total Amount</th>
-            <th>Verify</th>
+            <th>Detail</th>
           </tr>
         </thead>
         <tbody>

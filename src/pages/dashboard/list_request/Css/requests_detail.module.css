@@ -1,6 +1,6 @@
 .detailContainer {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -100,3 +100,20 @@
     margin: 5px 0;
   }
   
+
+  .backButton {
+  background-color: #4CAF50; /* สีเขียว */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #45a049; /* สีเข้มขึ้นเมื่อ hover */
+}

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./Css/requests_detail.module.css";
 
 function Req_detail() {
   const { reqId } = useParams(); // ดึง reqId จาก URL
   const [request, setRequest] = useState(null);
+  const navigate = useNavigate(); // ใช้ useNavigate เพื่อนำทาง
 
   useEffect(() => {
     // ฟังก์ชันดึงข้อมูลการจองจาก Backend
@@ -33,6 +34,8 @@ function Req_detail() {
 
   return (
     <div className={styles.detailContainer}>
+      {/* ปุ่มย้อนกลับ */}
+      <button className={styles.backButton} onClick={() => navigate(-1)}>Back</button>
       <h2 className={styles.title}>Booking Details</h2>
       <div className={styles.infoBox}>
         {/* ข้อมูลห้องพัก */}
@@ -109,7 +112,6 @@ function Req_detail() {
             <p><strong>Name:</strong> {request.host?.user?.firstName} {request.host?.user?.lastName}</p>
             <p><strong>Email:</strong> {request.host?.user?.email}</p>
             <p><strong>Phone:</strong> {request.host?.user?.phone}</p>
-            {/* <p><strong>Address:</strong> {request.host?.user?.address}, {request.host?.user?.subDistrict}, {request.host?.user?.district}, {request.host?.user?.province} {request.host?.user?.postalCode}</p> */}
           </div>
         </div>
       </div>
