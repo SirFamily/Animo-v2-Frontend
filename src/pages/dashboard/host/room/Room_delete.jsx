@@ -7,22 +7,18 @@ function Room_delete({ selectedRoom, onClose, handleRoomUpdate }) {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      
-      // Perform DELETE request to delete room by ID
       const response = await axios.delete(`${import.meta.env.VITE_API_URL}/room/delete/${selectedRoom.id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
       });
       
-      // If the response is successful
       if (response.status === 200) {
         alert("ลบห้องสำเร็จ");
-        handleRoomUpdate(); // Trigger host update to refresh the room list
-        onClose(); // Close the modal after successful deletion
+        handleRoomUpdate(); 
+        onClose(); 
       }
     } catch (error) {
-      // Handle possible errors
       if (error.response && error.response.status === 404) {
         alert("ไม่พบห้องที่จะลบ");
       } else {

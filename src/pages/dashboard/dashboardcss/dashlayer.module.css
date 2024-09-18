@@ -13,8 +13,6 @@
     }
 }
 
-/* ส่วนของpet */
-
 
 
 .container_layer_top {
@@ -41,9 +39,7 @@
     border-radius: 15px;
     display: flex;
     justify-content: center;
-    /* จัดให้อยู่ตรงกลางในแนวนอน */
     align-items: center;
-    /* จัดให้อยู่ตรงกลางในแนวตั้ง */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: background-color 0.3s ease;
 }
@@ -64,17 +60,11 @@
     cursor: pointer;
 }
 
-/* สิ้นสุด */
-
-
-/* ส่วนของ host */
 .container_g_layer_host {
     display: flex;
     width: 50%;
     flex-direction: column;
     gap: 30px;
-    /* background-color: #00B2CA; */
-    
 }
 
 .container_layer_top_host {
@@ -87,14 +77,12 @@
 }
 
 .container_layer_buttom_host {
-    /* background-color: bisque; */
 width: auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
         column-gap: 30px;
     height: auto;
-    /* overflow: hidden; */
 }
 
 .container_in_l_button_host,
@@ -103,17 +91,13 @@ width: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    overflow: hidden; /* ป้องกันเนื้อหาทะลุออกจากคอนเทนเนอร์นี้ */
-    flex-grow: 1; /* ให้คอนเทนเนอร์ขยายตามพื้นที่ที่มี */
-    flex-shrink: 1; /* ปรับให้ลดขนาดได้เมื่อพื้นที่ไม่พอ */
-    flex-basis: 0; /* แบ่งพื้นที่เท่าๆ กัน */
+    overflow: hidden; 
+    flex-grow: 1; 
+    flex-shrink: 1; 
+    flex-basis: 0;
     margin-bottom: 12px;
 }
 
-/* สิ้นสุด */
-
-
-/* ส่วนของ request */
 .container_layer_buttom_req {
     width: 871px;
     height: auto;
@@ -121,9 +105,7 @@ width: 100%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-/* สิ้นสุด */
 
-/* ส่วนของ request */
 .container_layer_buttom_his {
     width: 871px;
     height: auto;
@@ -131,15 +113,12 @@ width: 100%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-/* สิ้นสุด */
 
-
-/* ปุ่ม */
 .button_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px; /* Adjust this value if needed */
+    margin: 10px; 
     text-decoration: none;
 
   }
@@ -166,4 +145,3 @@ width: 100%;
     box-shadow: none;
   }
   
-/* สิ้นสุด */

@@ -26,7 +26,7 @@ function Pets_add({ onClose, setPetData }) {
 
   const handleSpeciesChange = (e) => {
     const { value } = e.target;
-    setInput((prev) => ({ ...prev, species: value, breed: "" })); // Reset breed when species changes
+    setInput((prev) => ({ ...prev, species: value, breed: "" }));
   };
 
   const handleWeightChange = (e) => {
@@ -79,7 +79,7 @@ function Pets_add({ onClose, setPetData }) {
       );
       if (response.status === 201) {
         alert("ลงทะเบียนสำเร็จ");
-        setPetData(); // Call the callback to fetch new data
+        setPetData(); 
         setInput({
           petName: "",
           species: "",

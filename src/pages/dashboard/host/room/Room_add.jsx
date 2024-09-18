@@ -17,7 +17,6 @@ function Room_add() {
     supportPetDescription: ""
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -37,7 +36,6 @@ function Room_add() {
     }
   };
 
-  // Handle species selection
   const handleSpeciesChange = (e) => {
     setRoomData({
       ...roomData,
@@ -45,7 +43,6 @@ function Room_add() {
     });
   };
 
-  // Remove image
   const handleRemoveImage = (index) => {
     const updatedImages = roomData.images.filter(
       (_, imgIndex) => imgIndex !== index
@@ -54,11 +51,9 @@ function Room_add() {
     setRoomData({ ...roomData, images: updatedImages });
   };
 
-  // Step navigation
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -95,7 +90,6 @@ function Room_add() {
     }
   };
 
-  // Clean up image previews on unmount
   useEffect(() => {
     return () => {
       roomData.images.forEach((image) => URL.revokeObjectURL(image.preview));
@@ -138,7 +132,6 @@ function Room_add() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        {/* Step 1: Room Name and Type */}
         {step === 1 && (
           <div className={styles.formGroup}>
             <label>Name</label>
@@ -160,7 +153,6 @@ function Room_add() {
           </div>
         )}
 
-        {/* Step 2: Quantity */}
         {step === 2 && (
           <div className={styles.formGroup}>
             <label>Quantity</label>
@@ -175,7 +167,6 @@ function Room_add() {
           </div>
         )}
 
-        {/* Step 3: Price */}
         {step === 3 && (
           <div className={styles.formGroup}>
             <label>Price</label>
@@ -190,7 +181,6 @@ function Room_add() {
           </div>
         )}
 
-        {/* Step 4: Image Upload */}
         {step === 4 && (
           <div className={styles.formGroup}>
             <label>Upload Images</label>
@@ -223,7 +213,6 @@ function Room_add() {
           </div>
         )}
 
-        {/* Step 5: Support Pet Information */}
         {step === 5 && (
           <div className={styles.formGroup}>
             <label>Support Pet Name</label>
@@ -248,10 +237,8 @@ function Room_add() {
           </div>
         )}
 
-        {/* Step 6: Confirmation */}
         {step === 6 && <div>Confirm</div>}
 
-        {/* Navigation Buttons */}
         <div className={styles.buttons}>
           {step === 1 && (
             <button

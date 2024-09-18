@@ -43,7 +43,6 @@
     color: #222;
   }
   
-  /* สไตล์สำหรับการแสดงผลสัตว์เลี้ยง */
   .petDetail {
     display: flex;
     align-items: center;
@@ -73,7 +72,6 @@
     color: #666;
   }
   
-  /* สไตล์สำหรับการแสดงผลข้อมูลผู้จอง */
   .userDetail {
     display: flex;
     align-items: center;
@@ -102,7 +100,7 @@
   
 
   .backButton {
-  background-color: #4CAF50; /* สีเขียว */
+  background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   font-size: 16px;
@@ -115,5 +113,5 @@
 }
 
 .backButton:hover {
-  background-color: #45a049; /* สีเข้มขึ้นเมื่อ hover */
+  background-color: #45a049; 
 }

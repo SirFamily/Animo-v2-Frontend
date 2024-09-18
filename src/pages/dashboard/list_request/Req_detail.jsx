@@ -4,19 +4,18 @@ import axios from "axios";
 import styles from "./Css/requests_detail.module.css";
 
 function Req_detail() {
-  const { reqId } = useParams(); // ดึง reqId จาก URL
+  const { reqId } = useParams();
   const [request, setRequest] = useState(null);
-  const navigate = useNavigate(); // ใช้ useNavigate เพื่อนำทาง
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    // ฟังก์ชันดึงข้อมูลการจองจาก Backend
     const fetchRequestDetail = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/${reqId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setRequest(response.data.data); // ตั้งค่าข้อมูลการจองที่ดึงมา
+        setRequest(response.data.data);
       } catch (error) {
         console.error("Error fetching request detail:", error);
       }
@@ -34,11 +33,9 @@ function Req_detail() {
 
   return (
     <div className={styles.detailContainer}>
-      {/* ปุ่มย้อนกลับ */}
       <button className={styles.backButton} onClick={() => navigate(-1)}>Back</button>
       <h2 className={styles.title}>Booking Details</h2>
       <div className={styles.infoBox}>
-        {/* ข้อมูลห้องพัก */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Room Name:</label>
           <span className={styles.value}>{request.room?.name || "-"}</span>
@@ -51,8 +48,6 @@ function Req_detail() {
           <label className={styles.label}>Room Price:</label>
           <span className={styles.value}>${request.room?.price || "-"}</span>
         </div>
-
-        {/* ข้อมูลสัตว์เลี้ยง */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Pets:</label>
           <span className={styles.value}>{petCount > 0 ? `${petCount}` : "-"}</span>
@@ -67,8 +62,6 @@ function Req_detail() {
             </div>
           </div>
         ))}
-
-        {/* ข้อมูลการจอง */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Check-in/Check-out:</label>
           <span className={styles.value}>
@@ -81,8 +74,6 @@ function Req_detail() {
           <label className={styles.label}>Status:</label>
           <span className={styles.value}>{request.bookingStatus || "-"}</span>
         </div>
-
-        {/* ข้อมูลการชำระเงิน */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Total Amount:</label>
           <span className={styles.value}>${totalAmount.toFixed(2)}</span>
@@ -93,8 +84,6 @@ function Req_detail() {
             {request.payments[0]?.status || "-"}
           </span>
         </div>
-
-        {/* ข้อมูลเจ้าของห้อง */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Host Name:</label>
           <span className={styles.value}>{request.host?.name || "-"}</span>
@@ -103,8 +92,6 @@ function Req_detail() {
           <label className={styles.label}>Host Address:</label>
           <span className={styles.value}>{request.host?.address || "-"}</span>
         </div>
-
-        {/* ข้อมูลเจ้าของสถานที่ */}
         <h3 className={styles.subTitle}>Host Owner Details</h3>
         <div className={styles.userDetail}>
           <img src={request.host?.user?.url} alt={request.host?.user?.firstName} className={styles.userImage} />

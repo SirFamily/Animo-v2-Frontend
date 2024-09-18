@@ -3,18 +3,18 @@ import styles from './Css/list_host.module.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import housing_types from "../../component/data/hostingtype.json";
-import api_province from "../../component/data/api_province.json"; // Import ข้อมูลจังหวัด
-import pet_data from "../../component/data/petdata.json"; // Import ข้อมูลสัตว์เลี้ยง
+import api_province from "../../component/data/api_province.json";
+import pet_data from "../../component/data/petdata.json";
 
 function ListHost() {
   const [hosts, setHosts] = useState([]);
-  const [searchName, setSearchName] = useState(''); // สร้าง state สำหรับเก็บค่าค้นหา
-  const [typedSearchName, setTypedSearchName] = useState(''); // เก็บค่าที่ผู้ใช้พิมพ์แบบทันที
-  const [searchTimeout, setSearchTimeout] = useState(null); // สร้าง state สำหรับเก็บ timeout ID
-  const [selectedType, setSelectedType] = useState(''); // State สำหรับเก็บประเภทที่เลือก
-  const [selectedProvince, setSelectedProvince] = useState(''); // State สำหรับเก็บจังหวัดที่เลือก
-  const [selectedPet, setSelectedPet] = useState(''); // State สำหรับเก็บสัตว์เลี้ยงที่เลือก
-  const [petQuantity, setPetQuantity] = useState(1); // State สำหรับเก็บจำนวนสัตว์เลี้ยงที่ผู้ใช้ระบุ
+  const [searchName, setSearchName] = useState('');
+  const [typedSearchName, setTypedSearchName] = useState('');
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedProvince, setSelectedProvince] = useState('');
+  const [selectedPet, setSelectedPet] = useState('');
+  const [petQuantity, setPetQuantity] = useState(1);
 
   useEffect(() => {
     const fetchHosts = async () => {
@@ -25,7 +25,7 @@ function ListHost() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setHosts(response.data.data); // ตั้งค่า hosts จากการตอบกลับของ API
+        setHosts(response.data.data);
         console.log(response);
       } catch (error) {
         console.error("Error fetching host data:", error);
@@ -35,60 +35,54 @@ function ListHost() {
     fetchHosts();
   }, []);
 
-  // ฟังก์ชันสำหรับกรอง hosts โดยดูจากชื่อ ประเภท จังหวัด สัตว์เลี้ยงที่เลือก และจำนวนสัตว์เลี้ยงที่ห้องรองรับ
   const filteredHosts = hosts.filter((host) => {
     const matchesName = host.name.toLowerCase().includes(searchName.toLowerCase());
-    const matchesType = selectedType === '' || host.type === selectedType; // กรองเฉพาะประเภทที่ตรงกันหรือทั้งหมดถ้าไม่เลือก
-    const matchesProvince = selectedProvince === '' || host.address.includes(selectedProvince); // กรองเฉพาะจังหวัดที่ตรงกันหรือทั้งหมดถ้าไม่เลือก
+    const matchesType = selectedType === '' || host.type === selectedType; 
+    const matchesProvince = selectedProvince === '' || host.address.includes(selectedProvince); 
 
-    // กรองข้อมูลห้องที่รองรับสัตว์เลี้ยงที่เลือกและจำนวนสัตว์เลี้ยงที่สามารถรองรับได้
+
     const matchesPetAndQuantity = host.rooms.some((room) => {
       const supportsSelectedPet = selectedPet === '' || (room.supportPets && room.supportPets.some((pet) => pet.name === selectedPet));
-      const supportsPetQuantity = room.quantity >= petQuantity; // ตรวจสอบว่า room รองรับจำนวนสัตว์เลี้ยงตามที่กำหนดหรือไม่
+      const supportsPetQuantity = room.quantity >= petQuantity; 
       return supportsSelectedPet && supportsPetQuantity;
     });
 
     return matchesName && matchesType && matchesProvince && matchesPetAndQuantity;
   });
 
-  // ฟังก์ชันการจัดการ input เพื่อให้ดีเลย์การค้นหา 5 วินาที
   const handleSearchInput = (e) => {
     const value = e.target.value;
-    setTypedSearchName(value); // เก็บค่าที่พิมพ์ทันที
+    setTypedSearchName(value); 
 
     if (searchTimeout) {
-      clearTimeout(searchTimeout); // ล้าง timeout เดิมหากมี
+      clearTimeout(searchTimeout); 
     }
 
-    // ตั้ง timeout ใหม่หลังจากพิมพ์เสร็จ 5 วินาที
     const timeoutId = setTimeout(() => {
-      setSearchName(value); // อัพเดตค่าจริงของการค้นหาหลังดีเลย์
-    }, 500); // ดีเลย์ 5 วินาที (5000 มิลลิวินาที)
+      setSearchName(value); 
+    }, 500);
 
-    setSearchTimeout(timeoutId); // เก็บ timeout ID เพื่อสามารถเคลียร์ได้
+    setSearchTimeout(timeoutId);
   };
 
   return (
     <div className={styles.container}>
-      {/* ส่วนของการกรองข้อมูล */}
       <div className={styles.filterSection}>
-        {/* Search Bar อยู่ชิดขวา */}
         <div className={styles.searchBar}>
           <input
             type="text"
             placeholder="ค้นหาชื่อ Host"
             className={styles.searchInput}
-            value={typedSearchName} // ใช้ state สำหรับค่าที่พิมพ์ทันที
-            onChange={handleSearchInput} // ใช้ฟังก์ชันใหม่สำหรับการดีเลย์
+            value={typedSearchName} 
+            onChange={handleSearchInput} 
           />
         </div>
 
-        {/* ส่วนอื่นๆ จัดเรียงเป็นบรรทัดเดียวกัน */}
         <div className={styles.filterTags}>
           <select
             className={styles.filterSelect}
             value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)} // อัพเดต state เมื่อมีการเลือกประเภท
+            onChange={(e) => setSelectedType(e.target.value)}
           >
             <option value="">เลือกประเภทของที่พัก</option>
             {housing_types.housing_types.map((type) => (
@@ -101,7 +95,7 @@ function ListHost() {
           <select
             className={styles.filterSelect}
             value={selectedProvince}
-            onChange={(e) => setSelectedProvince(e.target.value)} // อัพเดต state เมื่อมีการเลือกจังหวัด
+            onChange={(e) => setSelectedProvince(e.target.value)}
           >
             <option value="">เลือกจังหวัด</option>
             {api_province.map((province) => (
@@ -114,7 +108,7 @@ function ListHost() {
           <select
             className={styles.filterSelect}
             value={selectedPet}
-            onChange={(e) => setSelectedPet(e.target.value)} // อัพเดต state เมื่อมีการเลือกสัตว์เลี้ยง
+            onChange={(e) => setSelectedPet(e.target.value)}
           >
             <option value="">เลือกประเภทสัตว์เลี้ยง</option>
             {pet_data.species.map((pet) => (
@@ -129,13 +123,12 @@ function ListHost() {
             placeholder="จำนวนสัตว์เลี้ยง"
             className={styles.searchInput}
             value={petQuantity}
-            onChange={(e) => setPetQuantity(parseInt(e.target.value, 10))} // อัพเดต state เมื่อมีการป้อนจำนวนสัตว์เลี้ยง
+            onChange={(e) => setPetQuantity(parseInt(e.target.value, 10))} 
             min="1"
           />
         </div>
       </div>
 
-      {/* กริดของการ์ดแสดง host */}
       <div className={styles.cardGrid}>
         {filteredHosts.length === 0 ? (
           <p>ไม่มีข้อมูล Host</p>

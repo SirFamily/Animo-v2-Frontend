@@ -13,7 +13,6 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
 
   const [imageFile, setImageFile] = useState(null);
 
-  // Populate the form with existing room data when the component mounts
   useEffect(() => {
     setInput({
       name: room.name || '',
@@ -23,7 +22,6 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
     });
   }, [room]);
 
-  // Handle changes to the input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({
@@ -32,12 +30,10 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
     });
   };
 
-  // Handle file change (for room images)
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
-  // Submit the form to update room data
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -47,7 +43,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
     formData.append("price", input.price);
 
     if (imageFile) {
-      formData.append('image', imageFile); // Image field
+      formData.append('image', imageFile);
     }
 
     try {
@@ -64,7 +60,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
       );
       if (response.status === 200) {
         alert('Room information updated successfully!');
-        handleRoomUpdate(); // Call the callback to fetch updated room data
+        handleRoomUpdate();
         onClose();
       }
     } catch (error) {
@@ -123,7 +119,6 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
             />
           </div>
 
-          {/* Display multiple images */}
           {room.photosRoom && room.photosRoom.length > 0 && (
             <div className={styles.imagePreview}>
               {room.photosRoom.map((photo, index) => (

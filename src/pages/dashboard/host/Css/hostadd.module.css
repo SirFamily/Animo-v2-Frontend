@@ -115,7 +115,6 @@
   color: #6fafb8;
   font-weight: bolder;
   transition: background-color 0.3s ease;
-  /* Pushes the Back button to the left */
 }
 
 .button_next {
@@ -173,7 +172,6 @@
   border: none;
   border-radius: 100%;
   width: 30px;
-  /* Increase size for better visibility */
   height: 30px;
   display: flex;
   align-items: center;
@@ -187,6 +185,5 @@
 
 .mapContainer {
   height: 400px;
-  /* Or any height you want */
   width: 100%;
 }

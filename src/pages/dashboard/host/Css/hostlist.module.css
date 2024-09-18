@@ -30,7 +30,6 @@
   }
   
   .table th {
-    /* background-color: #ffffff; */
     font-weight: bold;
   }
   
@@ -88,7 +87,6 @@
     color: #a80000;
   }
   
-  /* Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;

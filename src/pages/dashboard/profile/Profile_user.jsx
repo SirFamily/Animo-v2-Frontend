@@ -24,7 +24,6 @@ function ProfileUser() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
-  // ดึงข้อมูลผู้ใช้มาแสดงใน input fields เมื่อโหลดหน้าเสร็จ
   useEffect(() => {
     if (user) {
       setUpdatedUser({
@@ -43,25 +42,21 @@ function ProfileUser() {
     }
   }, [user]);
 
-  // เปิด/ปิดโหมดแก้ไข
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   };
 
-  // handle การเปลี่ยนค่า input fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUpdatedUser({ ...updatedUser, [name]: value });
   };
 
-  // handle การเปลี่ยนรูปภาพ
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
     setImagePreview(URL.createObjectURL(file));
   };
 
-  // ส่งข้อมูลไปยัง backend เมื่อกด Save
   const handleSave = async () => {
     try {
       const formData = new FormData();

@@ -25,8 +25,8 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
           }
         );
         const hostsData = response.data.data;
-        setHosts(hostsData); // Update hosts
-        onUpdate(hostsData); // Notify parent component of the update
+        setHosts(hostsData); 
+        onUpdate(hostsData); 
       } catch (error) {
         console.error("Error fetching hosts:", error);
       }

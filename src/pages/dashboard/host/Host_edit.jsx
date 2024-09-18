@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modelpopup from "../../../component/Modelpopup";
 import axios from "axios";
-import styles from "./Css/hostedit.module.css"; // You can create this CSS module for styling
+import styles from "./Css/hostedit.module.css"; 
 import housing_types from "../../../component/data/hostingtype.json";
 import {
   MapContainer,
@@ -28,10 +28,9 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
   });
 
   const [imageFile, setImageFile] = useState(null);
-  const [submitting, setSubmitting] = useState(false); // Manage form submit state
-  const [position, setPosition] = useState(null); // Store map position
+  const [submitting, setSubmitting] = useState(false); 
+  const [position, setPosition] = useState(null);
 
-  // Set initial data when host is passed
   useEffect(() => {
     setInput({
       name: host.name || "",
@@ -60,7 +59,6 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     setImageFile(e.target.files[0]);
   };
 
-  // Simulate getting an address based on coordinates
   const handleGetAddress = async (lat, lng) => {
     try {
       const response = await axios.get(
@@ -82,7 +80,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true); // Prevent multiple submissions
+    setSubmitting(true);
 
     const formData = new FormData();
     formData.append("name", input.name);
@@ -94,7 +92,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     formData.append("publish", input.publish);
 
     if (imageFile) {
-      formData.append("image", imageFile); // Add the image file if selected
+      formData.append("image", imageFile);
     }
 
     try {
@@ -105,21 +103,21 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       if (response.status === 200) {
         alert("Accommodation updated successfully!");
-        handleHostUpdate(); // Call to refresh the list of hosts after the update
-        onClose(); // Close the modal popup
+        handleHostUpdate();
+        onClose();
       }
     } catch (error) {
       console.error("Error updating accommodation:", error);
       alert("Failed to update accommodation. Please try again.");
     } finally {
-      setSubmitting(false); // Re-enable form submission
+      setSubmitting(false);
     }
   };
 
@@ -135,7 +133,6 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     const map = useMap();
 
     useEffect(() => {
-      // Center the map to the initial position if lat/long is available
       if (position) {
         map.flyTo(position, 14);
       }
@@ -234,7 +231,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
 
           <MapContainer
             className={styles.mapContainer}
-            center={[input.lat || 13, input.long || 100]} // Default center
+            center={[input.lat || 13, input.long || 100]} 
             zoom={5}
             scrollWheelZoom={true}
           >

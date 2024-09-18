@@ -7,7 +7,7 @@ function Req_detail_host() {
   const { reqId } = useParams();
   const [request, setRequest] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(""); // Status from API
+  const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Req_detail_host() {
           }
         );
         setRequest(response.data.data);
-        setStatus(response.data.data.bookingStatus); // Set the initial status from API
+        setStatus(response.data.data.bookingStatus);
       } catch (error) {
         console.error("Error fetching request detail:", error);
       }
@@ -40,7 +40,7 @@ function Req_detail_host() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setLoading(false);
-      setStatus(newStatus); // Update status after API call
+      setStatus(newStatus);
     } catch (error) {
       console.error("Error updating booking status:", error);
       setLoading(false);

@@ -83,7 +83,6 @@
   color: #a80000;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

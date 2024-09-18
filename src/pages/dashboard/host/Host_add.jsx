@@ -13,7 +13,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import axios from "axios"; // Make sure axios is imported
+import axios from "axios"; 
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
@@ -76,7 +76,6 @@ function Host_add() {
     formData.append('description', hostData.description);
     formData.append('publish', hostData.publish);
   
-    // Append images to the form data
     hostData.images.forEach((image, index) => {
       formData.append(`images`, image.file);
     });
@@ -104,7 +103,6 @@ function Host_add() {
     };
   }, [hostData.images]);
 
-  // ส่วนของแผนที่
   const handleGetAddress = async (lat, lng) => {
     try {
       const response = await axios.get(

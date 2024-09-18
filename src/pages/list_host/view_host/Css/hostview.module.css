@@ -5,7 +5,6 @@
   justify-content: center;
 
   width: 90%;
-  /* background-color: aqua; */
   margin: auto;
   gap: 10px;
 }
@@ -38,14 +37,12 @@
 .row2_sectiopn1 {
   width: auto;
   height: auto;
-  /* background-color: blanchedalmond; */
 }
 
 
 
 .booking_boxs {
   width: 400px;
-  /* background-color: blue; */
 }
 
 
@@ -115,7 +112,6 @@
 
 .roomCard {
   min-width: 250px;
-  /* Adjust this as needed */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
@@ -143,7 +139,6 @@
 
 .mapContainer {
   height: 400px;
-  /* Or any height you want */
   width: 100%;
 }
 
@@ -173,14 +168,14 @@
 }
 
 .booking_box {
-  width: 300px; /* Adjust width to fit the booking box */
+  width: 300px; 
   background-color: white;
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Add padding inside the box */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for separation */
+  border-radius: 10px; 
+  padding: 20px; 
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between elements */
+  gap: 15px;
   height: auto;
   margin: 10px 0px;
 

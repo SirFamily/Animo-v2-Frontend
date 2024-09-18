@@ -46,7 +46,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
     setInput({
       ...input,
       species: value,
-      breed: '', // Reset breed when species changes
+      breed: '',
     });
   };
 
@@ -98,7 +98,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
       });
       if (response.status === 200) {
         alert('Pet information updated successfully!');
-        setPetData(); // Call the callback to fetch new data
+        setPetData();
         onClose();
       }
     } catch (error) {

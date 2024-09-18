@@ -62,12 +62,12 @@ console.log(rooms)
                 <td>
                   {room.photosRoom && room.photosRoom.length > 0 ? (
                     <img
-                      src={room.photosRoom[0].url} // ใช้ URL ของรูปภาพจาก photosRoom
+                      src={room.photosRoom[0].url} 
                       alt={room.name}
                       className={styles.image}
                       onError={(e) => {
-                        e.target.src = "path_to_default_image"; // ใช้ URL ของรูปภาพเริ่มต้น
-                        e.target.onerror = null; // ป้องกัน loop ของ onError
+                        e.target.src = "path_to_default_image"; 
+                        e.target.onerror = null; 
                       }}
                     />
                   ) : (

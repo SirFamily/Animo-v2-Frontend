@@ -4,7 +4,6 @@ import homecss from "./homecss/home.module.css";
 function Home() {
   return (
     <div className={homecss.container}>
-      {/* Section 1: Header with dog image */}
       <div className={homecss.section1}>
         <img
           src="https://img5.pic.in.th/file/secure-sv1/cd7c1b1b516679ae3bd95f093ad15bd1.png"
@@ -21,7 +20,6 @@ function Home() {
         </div>
       </div>
       <hr className={homecss.customHr} />
-      {/* Section 2: Cat Image and Text */}
       <div className={homecss.section2}>
         <div className={homecss.section2_1}>
           <h2>เพราะเรารู้ว่าสัตว์เลี้ยงของคุณสำคัญแค่ไหน</h2>
@@ -37,7 +35,6 @@ function Home() {
           className={homecss.image2}
         />
       </div>
-      {/* Section 3: Dog Image and Text */}
       <div className={homecss.section1}>
         <img
           src="https://img2.pic.in.th/pic/99a66409982a5fadb1e68bf02eed9dd0.png"
@@ -52,10 +49,8 @@ function Home() {
         </div>
       </div>
 
-      {/*พื้นสีขาว*/}
       <div className={homecss.divider}></div>
 
-      {/* Section 4: Services */}
       <div className={homecss.servicesSection}>
         <div className={homecss.servicesSection2}>
         <h2>บริการของเรา</h2>

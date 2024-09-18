@@ -8,15 +8,15 @@ function Pets_delete({ pet, onClose, setPetData }) {
 
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem('token'); // Adjust as per your token storage logic
+      const token = localStorage.getItem('token'); 
       await axios.delete(`${import.meta.env.VITE_API_URL}/pets/delete/${pet.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-      setPetData(); // Call the onDelete callback to remove the pet from the list
-      onClose(); // Close the popup
+      setPetData(); 
+      onClose();
       alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");
     } catch (err) {
       setError('Failed to delete the pet. Please try again.');

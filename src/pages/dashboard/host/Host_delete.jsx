@@ -6,7 +6,7 @@ import axios from "axios";
 function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdateData}) {
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem("token"); // Adjust as per your token storage logic
+      const token = localStorage.getItem("token"); 
       const response = await axios.delete(
         `${import.meta.env.VITE_API_URL}/host/delete/${selectedHost}`,
         {
@@ -28,7 +28,6 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdate
       if (error.response && error.response.status === 409) {
         alert("ต้องลบห้องให้หมดก่อนจึงจะสามารถลบโฮสต์");
       } else {
-        // console.error("Failed to delete the Host. Please try again.:", error);
         alert("เกิดข้อผิดพลาดในการลบโฮสต์ กรุณาลองใหม่อีกครั้ง");
       }
       onClose();

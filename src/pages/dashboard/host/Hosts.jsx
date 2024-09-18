@@ -28,7 +28,7 @@ function Hosts() {
       const hosts = response.data.data;
       setHasHostData(hosts && hosts.length > 0);
       if (hosts && hosts.length > 0) {
-        setSelectedHostId(hosts[0].id); // Set the first host as selected by default
+        setSelectedHostId(hosts[0].id); 
       }
     } catch (error) {
       console.error("Error fetching hosts:", error);
@@ -42,7 +42,7 @@ function Hosts() {
   const handleHostsUpdate = (hosts) => {
     setHasHostData(hosts.length > 0);
     if (hosts.length > 0) {
-      setSelectedHostId(hosts[0].id); // Update selectedHostId if new hosts are fetched
+      setSelectedHostId(hosts[0].id); 
     }
   };
 

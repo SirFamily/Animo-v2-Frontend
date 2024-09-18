@@ -5,26 +5,23 @@ import { Link } from 'react-router-dom';
 
 function Req_list() {
   const [requests, setRequests] = useState([]);
-  const [ownerRequests, setOwnerRequests] = useState([]); // สำหรับข้อมูลการจองจากเจ้าของที่พัก
+  const [ownerRequests, setOwnerRequests] = useState([]);
 
   useEffect(() => {
-    // ฟังก์ชันดึงข้อมูลจาก Backend
     const fetchRequests = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setRequests(response.data.data); // ตั้งค่า data จาก API
+        setRequests(response.data.data);
       } catch (error) {
         console.error("Error fetching requests:", error);
       }
     };
 
-    // ฟังก์ชันดึงข้อมูลการจองของเจ้าของที่พัก
 
-
-    fetchRequests(); // เรียกฟังก์ชันเมื่อคอมโพเนนต์โหลดครั้งแรก
+    fetchRequests();
   }, []);
 
   useEffect(() => {
@@ -34,7 +31,7 @@ function Req_list() {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/owner`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Owner Requests Response:", response.data); // เพิ่มการแสดงข้อมูล
+        console.log("Owner Requests Response:", response.data);
         setOwnerRequests(response.data.data);
       } catch (error) {
         console.error("Error fetching owner requests:", error);
@@ -50,8 +47,6 @@ function Req_list() {
   return (
     <div className={styles.tableContainer}>
       <h1 className={styles.title}>Request</h1>
-
-      {/* ตารางแสดงข้อมูลการจองทั่วไป */}
       <table className={styles.table}>
         <thead>
           <tr>
@@ -95,8 +90,6 @@ function Req_list() {
           )}
         </tbody>
       </table>
-
-      {/* ตารางแสดงข้อมูลการจองของเจ้าของที่พัก */}
       <h2 className={styles.subtitle}>Owner Requests</h2>
       <table className={styles.table}>
         <thead>

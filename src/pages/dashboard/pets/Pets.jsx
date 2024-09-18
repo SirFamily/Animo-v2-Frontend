@@ -12,7 +12,6 @@ function Pets() {
   const { user } = useAuth();
   const uid = user.id;
 
-  // Fetch pet data
   const fetchPetData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -35,7 +34,6 @@ function Pets() {
     setPopupOpen(!isPopupOpen);
   };
 
-  // Handle successful addition or update of pet
   const handlePetUpdate = () => {
     fetchPetData();
   };

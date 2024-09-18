@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select"; // import Select from react-select
+import Select from "react-select";
 import styles from "./Css/hostview.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -69,7 +69,6 @@ function Host_view() {
   }, [hostId]);
 
   useEffect(() => {
-    // Fetch pets data
     const fetchPetsData = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -94,20 +93,18 @@ function Host_view() {
 
   const handleBooking = async () => {
     const token = localStorage.getItem("token");
-  
-    // Prepare pets data for the API
     const petsData = input.pets.map((pet) => ({
-      petId: pet.value, // Assuming value is the pet ID from react-select options
+      petId: pet.value,
     }));
   
     const bookingData = {
-      hostId: hostId, // From useParams
-      roomId: host.rooms.find((r) => r.name === input.room)?.id, // Get room ID based on the selected room name
-      userId: uid, // Replace with actual user ID (retrieve from context or other source)
+      hostId: hostId,
+      roomId: host.rooms.find((r) => r.name === input.room)?.id,
+      userId: uid,
       startDate: input.checkin,
       endDate: input.checkout,
       pets: petsData,
-      paymentAmount: calculateTotalPrice(), // Use the calculated price
+      paymentAmount: calculateTotalPrice(),
     };
   
     try {
