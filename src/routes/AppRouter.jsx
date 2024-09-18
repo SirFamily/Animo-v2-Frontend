@@ -22,6 +22,7 @@ import Room_add from "../pages/dashboard/host/room/Room_add";
 import HostView from "../pages/list_host/view_host/Host_view";
 import Req_detail from "../pages/dashboard/list_request/Req_detail";
 import Req_detail_host from "../pages/dashboard/list_request/Req_detail_host";
+import History_detail from "../pages/dashboard/list_history/History_detail";
 const guestRouter = createBrowserRouter([
   {
     path: "/",
@@ -64,7 +65,8 @@ const userRouter = createBrowserRouter([
         { path: 'dashboard/profile', element: <Profile />,},
         { path: 'host/:hostId', element: <HostView />,},
         { path: 'dashboard/request/booking/detail/:reqId', element: <Req_detail />, },
-        { path: 'dashboard/request/booking/detail/host/:reqId', element: <Req_detail_host />, }
+        { path: 'dashboard/request/booking/detail/host/:reqId', element: <Req_detail_host />, },
+        { path: 'dashboard/history/detail/:reqId', element: <History_detail />, },
       ]
     },
   ]);

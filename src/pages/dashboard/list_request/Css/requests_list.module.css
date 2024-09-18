@@ -29,58 +29,18 @@
   font-weight: bold;
 }
 
-.table img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  transition: transform 0.3s ease;
-}
 
-.table img:hover {
-  transform: scale(1.1);
-}
-
-.actionLinks a {
-  margin-right: 10px;
-  color: #007bff;
-  text-decoration: none;
+.actionButton {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 
-.actionLinks a:hover {
-  text-decoration: underline;
-  color: #0056b3;
-}
-
-.readLink {
-  color: black;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.readLink:hover {
-  color: #333;
-}
-
-.editLink {
-  color: orange;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.editLink:hover {
-  color: #cc8400;
-}
-
-.deleteLink {
-  color: red;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.deleteLink:hover {
-  color: #a80000;
+.actionButton:hover {
+  background-color: #0056b3;
 }
 
 @keyframes fadeIn {

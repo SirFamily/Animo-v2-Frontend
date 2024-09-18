@@ -90,7 +90,7 @@ function Req_list() {
           )}
         </tbody>
       </table>
-      <h2 className={styles.subtitle}>Owner Requests</h2>
+      <h2 className={styles.title}>Owner Requests</h2>
       <table className={styles.table}>
         <thead>
           <tr>
