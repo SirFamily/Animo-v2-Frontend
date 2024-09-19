@@ -8,3 +8,7 @@ export default defineConfig({
     port: 8080,
   },
 });
+
+// export default defineConfig({
+//   plugins: [react()],
+// })
