@@ -91,7 +91,7 @@ function Login() {
               You don't have an account ? <Link to="/register">Register</Link>
             </p>
           </div>
-          {/* <div className={logincss.google_facebook}>
+          <div className={logincss.google_facebook}>
             <button className={logincss.google}>
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
@@ -106,7 +106,7 @@ function Login() {
               />
               <p>Facebook</p>
             </button>
-          </div> */}
+          </div>
         </form>
       </div>
       <div className={logincss.cat}>
