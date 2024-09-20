@@ -61,9 +61,7 @@ function Req_detail_host() {
         Back
       </button>
       <h2 className={styles.title}>Booking Details (Host View)</h2>
-      {/* Booking Information */}
       <div className={styles.infoBox}>
-        {/* Room Information */}
         <div className={styles.infoRow}>
           <label className={styles.label}>Room Name:</label>
           <span className={styles.value}>{request.room?.name || "-"}</span>
@@ -72,11 +70,7 @@ function Req_detail_host() {
           <label className={styles.label}>Room Type:</label>
           <span className={styles.value}>{request.room?.type || "-"}</span>
         </div>
-        <div className={styles.infoRow}>
-          <label className={styles.label}>Room Price:</label>
-          <span className={styles.value}>${request.room?.price || "-"}</span>
-        </div>
-        {/* Pet Information */}
+
         <div className={styles.infoRow}>
           <label className={styles.label}>Pets:</label>
           <span className={styles.value}>
@@ -101,9 +95,8 @@ function Req_detail_host() {
             </div>
           </div>
         ))}
-        {/* Host Information */}
-        <h3 className={styles.subTitle}>User Details</h3>
         <div className={styles.userDetail}>
+          <h3 className={styles.subTitle}>User Details</h3>
           <img
             src={request.host?.user?.url}
             alt={request.host?.user?.firstName}
@@ -123,8 +116,25 @@ function Req_detail_host() {
           </div>
         </div>
       </div>
+      <div className={styles.userDetail} />
+      <h3 className={styles.subTitle}>Total</h3>
 
-      {/* Booking Status */}
+      <div className={styles.infoRow}>
+        <label className={styles.label}>Room Price:</label>
+        <span className={styles.value}>${request.room?.price || "-"}</span>
+      </div>
+      {request.bookingFeatures?.map((feature, index) => (
+        <div key={index} className={styles.infoRow}>
+          <span className={styles.label}>
+            Feature: <span>{feature.feature.name}</span>
+          </span>
+          <span className={styles.value}>
+            {" "}
+            $ {feature.feature.price.toFixed(2)}
+          </span>
+        </div>
+      ))}
+
       <div className={styles.infoRow}>
         <label className={styles.label}>Check-in/Check-out:</label>
         <span className={styles.value}>
@@ -139,16 +149,9 @@ function Req_detail_host() {
         <label className={styles.label}>Status:</label>
         <span className={styles.value}>{status || "-"}</span>
       </div>
-
       <div className={styles.infoRow}>
         <label className={styles.label}>Total Amount:</label>
-        <span className={styles.value}>${totalAmount.toFixed(2)}</span>
-      </div>
-      <div className={styles.infoRow}>
-        <label className={styles.label}>Payment Status:</label>
-        <span className={styles.value}>
-          {request.payments[0]?.status || "-"}
-        </span>
+        <strong className={styles.value}>${totalAmount.toFixed(2)}</strong>
       </div>
 
       {/* Status Update Buttons */}

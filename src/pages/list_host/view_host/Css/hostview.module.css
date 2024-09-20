@@ -8,6 +8,7 @@
   margin: auto;
   gap: 10px;
 }
+
 .hostContainer {
   display: flex;
   flex-direction: row;
@@ -168,10 +169,10 @@
 }
 
 .booking_box {
-  width: 300px; 
+  width: 300px;
   background-color: white;
-  border-radius: 10px; 
-  padding: 20px; 
+  border-radius: 10px;
+  padding: 20px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -232,6 +233,25 @@
 
 .checkboxContainer {
   display: flex;
-  width: 100px;
+  align-items: center;
+  gap: 10px;
 }
 
+.extraFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.checkboxContainer input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkboxContainer label {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Css/history_list.module.css"; 
+import styles from "./Css/history_list.module.css";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function History_list() {
   const [history, setHistory] = useState([]);
@@ -10,12 +10,15 @@ function History_list() {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/history/list/history`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/history/list/history`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         const combinedHistory = [
-          ...response.data.datarent.map(item => ({ ...item, type: 'เช่า' })),
-          ...response.data.dataowner.map(item => ({ ...item, type: 'ให้เช่า' })),
+          ...response.data.datarent?.map(item => ({ ...item, type: "เช่า" })) || [],
+          ...response.data.dataowner?.map(item => ({ ...item, type: "ให้เช่า" })) || [],
         ];
         setHistory(combinedHistory);
       } catch (error) {
@@ -45,7 +48,8 @@ function History_list() {
           {history.length > 0 ? (
             history.map((booking, index) => {
               const petCount = booking.pet_count_bookings?.length || 0;
-              const totalAmount = booking.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
+              const totalAmount =
+                booking.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
 
               return (
                 <tr key={index}>
@@ -54,15 +58,22 @@ function History_list() {
                   <td>{petCount > 0 ? `${petCount}` : "-"}</td>
                   <td>
                     {booking.startDate && booking.endDate
-                      ? `${new Date(booking.startDate).toLocaleDateString()} - ${new Date(booking.endDate).toLocaleDateString()}`
+                      ? `${new Date(booking.startDate).toLocaleDateString()} - ${new Date(
+                          booking.endDate
+                        ).toLocaleDateString()}`
                       : "-"}
                   </td>
                   <td>{booking.bookingStatus || "-"}</td>
                   <td>{totalAmount > 0 ? `$${totalAmount.toFixed(2)}` : "-"}</td>
                   <td>
-                    <Link key={booking.id} to={`detail/${booking.id}`}>
-                      <button className={styles.actionButton}>View</button>
-                    </Link>
+                    {/* Check if booking.id exists before using it in the Link */}
+                    {booking.id ? (
+                      <Link to={`detail/${booking.id}`}>
+                        <button className={styles.actionButton}>View</button>
+                      </Link>
+                    ) : (
+                      "-"
+                    )}
                   </td>
                 </tr>
               );

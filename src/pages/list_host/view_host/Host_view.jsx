@@ -34,6 +34,9 @@ function Host_view() {
     additionalPetCharge: 50,
   });
 
+  // State for tracking selected features
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+
   useEffect(() => {
     const fetchHostData = async () => {
       try {
@@ -50,7 +53,6 @@ function Host_view() {
         const hostData = response.data.data;
         setHost(hostData);
         setLoading(false);
-        console.log(host);
         if (hostData.lat && hostData.long) {
           setPosition({ lat: hostData.lat, lng: hostData.long });
           setInput((prev) => ({
@@ -82,7 +84,6 @@ function Host_view() {
         );
 
         setPets(response.data.pet);
-        console.log(pets);
       } catch (err) {
         setError(err.message);
       }
@@ -91,12 +92,23 @@ function Host_view() {
     fetchPetsData();
   }, [hostId]);
 
+  // Handle feature selection
+  const handleFeatureChange = (featureId, isChecked) => {
+    setSelectedFeatures(
+      (prevSelected) =>
+        isChecked
+          ? [...prevSelected, featureId] // Add feature if checked
+          : prevSelected.filter((id) => id !== featureId) // Remove if unchecked
+    );
+  };
+
   const handleBooking = async () => {
     const token = localStorage.getItem("token");
     const petsData = input.pets.map((pet) => ({
       petId: pet.value,
+      count: 1, // Adjust the count value as needed
     }));
-  
+
     const bookingData = {
       hostId: hostId,
       roomId: host.rooms.find((r) => r.name === input.room)?.id,
@@ -104,9 +116,10 @@ function Host_view() {
       startDate: input.checkin,
       endDate: input.checkout,
       pets: petsData,
+      features: selectedFeatures, // Send selectedFeatures array
       paymentAmount: calculateTotalPrice(),
     };
-  
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/booking/create`,
@@ -149,6 +162,12 @@ function Host_view() {
       totalPrice += (pets.length - 1) * additionalPetCharge;
     }
 
+    // Calculate price for selected features
+    selectedFeatures.forEach((featureId) => {
+      const feature = host.features.find((f) => f.id === featureId);
+      if (feature) totalPrice += feature.price;
+    });
+
     totalPrice += extraServiceFee;
 
     return totalPrice;
@@ -186,6 +205,7 @@ function Host_view() {
     value: pet.id,
     label: pet.petName,
   }));
+
   return (
     <div className={styles.container}>
       <div className={styles.container_box_section1}>
@@ -213,8 +233,7 @@ function Host_view() {
             <div className={styles.hostContainer}>
               <img src={host.user.url} alt="" className={styles.hostImage} />
               <p className={styles.hostType}>
-                Host By {host.user.firstName}
-                {host.user.lastName}
+                Host By {host.user.firstName} {host.user.lastName}
               </p>
             </div>
             <p className={styles.hostType}>🏠 {host.type}</p>
@@ -280,6 +299,7 @@ function Host_view() {
           </div>
         </div>
       </div>
+
       <div className={styles.container_box_section2}>
         <div className={styles.booking_box}>
           <div className="booking-info">
@@ -334,24 +354,29 @@ function Host_view() {
                 options={petOptions}
               />
             </div>
+
             <div className={styles.extraFeatures}>
-              <label>Extra Features *ยังใช้งานไม่ได้</label>
-              <div className={styles.checkboxContainer}>
-                <input type="checkbox" id="extra1" />
-                <label htmlFor="extra1">Test01</label>
-              </div>
-              <div className={styles.checkboxContainer}>
-                <input type="checkbox" id="extra2" />
-                <label htmlFor="extra2">Test01</label>
-              </div>
-              <div className={styles.checkboxContainer}>
-                <input type="checkbox" id="extra3" />
-                <label htmlFor="extra3">Test01</label>
-              </div>
+              <label>Extra Features</label>
+              {host.features.map((feature) => (
+                <div className={styles.checkboxContainer} key={feature.id}>
+                  <input
+                    type="checkbox"
+                    id={`extra${feature.id}`}
+                    value={feature.id}
+                    onChange={(e) =>
+                      handleFeatureChange(feature.id, e.target.checked)
+                    }
+                  />
+                  <label htmlFor={`extra${feature.id}`}>
+                    {feature.name} - ${feature.price}
+                  </label>
+                </div>
+              ))}
             </div>
+
             <div className="price">
               <p>
-                One Night: $
+                Per Night: $
                 {input.room
                   ? host.rooms.find((r) => r.name === input.room)?.price
                   : "0"}
@@ -370,7 +395,7 @@ function Host_view() {
               <p>Total Payment: ${calculateTotalPrice()}</p>
             </div>
             <div className="reserve-button">
-            <button onClick={handleBooking}>Reserve</button>
+              <button onClick={handleBooking}>Reserve</button>
             </div>
           </div>
         </div>
