@@ -31,7 +31,7 @@ function ProfileUser() {
         lastName: user.lastName || "",
         phone: user.phone || "",
         email: user.email || "",
-        birthday: user.birthday || "",
+        birthday: user.birthday ? new Date(user.birthday).toISOString().slice(0, 10) : "",
         address: user.address || "",
         district: user.district || "",
         postalCode: user.postalCode || "",
@@ -95,23 +95,23 @@ function ProfileUser() {
   if (loading) return <div>Loading...</div>;
 
   if (!user) return <div>Failed to load user data</div>;
-
+console.log(user)
   return (
     <div className={csslayer.container}>
       <Menu />
       <div className={csslayer.container_g_layer}>
-        <div className={csslayer.container_layer_buttom}>
-          <div className={usercss.Container0}>
+        <div className={csslayer.container_layer_buttom_user}>
+          <div className={usercss.container}>
             <h1>Profile</h1>
-            <hr />
-            <div className={usercss.Container1}>
-              <div className={usercss.Box1}>
-                <p>Photo</p>
+            <div className={usercss.separator} />
+            <div className={usercss.profileContainer}>
+              <div className={usercss.imageContainer}>
+                <p className={usercss.textLabel}>Photo</p>
                 {imagePreview ? (
                   <img
                     src={imagePreview}
                     alt="Profile Preview"
-                    className={usercss.profile_pic}
+                    className={usercss.profilePic}
                   />
                 ) : (
                   <img
@@ -120,18 +120,22 @@ function ProfileUser() {
                       "https://media.istockphoto.com/id/1298261537/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A2%E0%B8%B6%E0%B8%94%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B9%88%E0%B8%B2.jpg"
                     }
                     alt="User Profile"
-                    className={usercss.profile_pic}
+                    className={usercss.profilePic}
                   />
                 )}
                 {isEditMode && (
-                  <input type="file" onChange={handleImageChange} />
+                  <input
+                    type="file"
+                    onChange={handleImageChange}
+                    className={usercss.inputField}
+                  />
                 )}
               </div>
             </div>
-            <hr />
-            <div className={usercss.Container2}>
-              <div className={usercss.Box3}>
-                <label>Full Name:</label>
+            <div className={usercss.separator} />
+            <div className={usercss.infoContainer}>
+              <div className={usercss.infoBox}>
+                <label className={usercss.textLabel}>Full Name:</label>
                 {isEditMode ? (
                   <>
                     <input
@@ -139,135 +143,148 @@ function ProfileUser() {
                       name="firstName"
                       value={updatedUser.firstName}
                       onChange={handleInputChange}
+                      className={usercss.inputField}
                     />
                     <input
                       type="text"
                       name="lastName"
                       value={updatedUser.lastName}
                       onChange={handleInputChange}
+                      className={usercss.inputField}
                     />
                   </>
                 ) : (
-                  <p>
+                  <p className={usercss.textLabel}>
                     {user.firstName} {user.lastName}
                   </p>
                 )}
-                <label>Phone:</label>
+                <label className={usercss.textLabel}>Phone:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="phone"
                     value={updatedUser.phone}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.phone}</p>
+                  <p className={usercss.textLabel}>{user.phone}</p>
                 )}
               </div>
-              <div className={usercss.Box4}>
-                <label>Email:</label>
+              <div className={usercss.infoBox}>
+                <label className={usercss.textLabel}>Email:</label>
                 {isEditMode ? (
                   <input
                     type="email"
                     name="email"
                     value={updatedUser.email}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.email}</p>
+                  <p className={usercss.textLabel}>{user.email}</p>
                 )}
-                <label>Birthday:</label>
+                <label className={usercss.textLabel}>Birthday:</label>
                 {isEditMode ? (
                   <input
                     type="date"
                     name="birthday"
-                    value={user.birthday}
+                    value={updatedUser.birthday}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{new Date(user.birthday).toLocaleDateString()}</p>
+                  <p className={usercss.textLabel}>
+                    {new Date(user.birthday).toLocaleDateString()}
+                  </p>
                 )}
               </div>
             </div>
-            <hr />
-            <div className={usercss.Container2}>
-              <div className={usercss.Box3}>
-                <label>Address:</label>
+            <div className={usercss.separator} />
+            <div className={usercss.infoContainer}>
+              <div className={usercss.infoBox}>
+                <label className={usercss.textLabel}>Address:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="address"
                     value={updatedUser.address}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.address}</p>
+                  <p className={usercss.textLabel}>{user.address}</p>
                 )}
-                <label>District:</label>
+                <label className={usercss.textLabel}>District:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="district"
                     value={updatedUser.district}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.district}</p>
+                  <p className={usercss.textLabel}>{user.district}</p>
                 )}
-                <label>Postal Code:</label>
+                <label className={usercss.textLabel}>Postal Code:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="postalCode"
                     value={updatedUser.postalCode}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.postalCode}</p>
+                  <p className={usercss.textLabel}>{user.postalCode}</p>
                 )}
               </div>
-              <div className={usercss.Box4}>
-                <label>Sub District:</label>
+              <div className={usercss.infoBox}>
+                <label className={usercss.textLabel}>Sub District:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="subDistrict"
                     value={updatedUser.subDistrict}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.subDistrict}</p>
+                  <p className={usercss.textLabel}>{user.subDistrict}</p>
                 )}
-                <label>Province:</label>
+                <label className={usercss.textLabel}>Province:</label>
                 {isEditMode ? (
                   <input
                     type="text"
                     name="province"
                     value={updatedUser.province}
                     onChange={handleInputChange}
+                    className={usercss.inputField}
                   />
                 ) : (
-                  <p>{user.province}</p>
+                  <p className={usercss.textLabel}>{user.province}</p>
                 )}
               </div>
             </div>
-            <hr />
-            <label>Bio:</label>
+            <div className={usercss.separator} />
+            <label className={usercss.textLabel}>Bio:</label>
             {isEditMode ? (
               <textarea
                 name="bio"
                 value={updatedUser.bio}
                 onChange={handleInputChange}
+                className={usercss.textAreaField}
               />
             ) : (
-              <p>{user.bio}</p>
+              <p className={usercss.textLabel}>{user.bio}</p>
             )}
-            <div className={usercss.Box2}>
-              <div className={usercss.editLink} onClick={toggleEditMode}>
+            <div className={usercss.actionButtons}>
+              <div className={usercss.buttonLink} onClick={toggleEditMode}>
                 {isEditMode ? "Cancel" : "Edit"}
               </div>
               {isEditMode && (
-                <button className={usercss.editLink} onClick={handleSave}>
+                <button className={usercss.buttonLink} onClick={handleSave}>
                   Save
                 </button>
               )}

@@ -114,6 +114,14 @@ width: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.container_layer_buttom_user {
+    width: 871px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
 .button_container {
     display: flex;
     justify-content: center;
