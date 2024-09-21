@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import logincss from "./Css/loginadmin.module.css"; 
 
-function AdminLogin() {
+function Login() {
   const [input, setInput] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { setAdmin } = useAuth();
@@ -119,4 +119,4 @@ function AdminLogin() {
   );
 }
 
-export default AdminLogin;
+export default Login;

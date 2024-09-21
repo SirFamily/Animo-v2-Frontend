@@ -4,13 +4,18 @@ import useAuth from "../hooks/useAuth";
 import navcss from "./navcss/nav.module.css";
 
 function Navbar() {
-  const { user, logout, admin } = useAuth(); 
+  const { user, logout, admin, logoutAdmin } = useAuth(); 
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const hdlLogout = () => {
     logout();
+    navigate("/"); 
+  };
+
+  const hdlLogoutAd = () => {
+    logoutAdmin();
     navigate("/"); 
   };
 
@@ -45,7 +50,6 @@ function Navbar() {
       ),
     },
   ];
-
 
   const userNav = [
     {
@@ -96,13 +100,26 @@ function Navbar() {
               className={navcss.dropdown_toggle}
             >
               <div className={navcss.container_nav_ue}>
-                <div>Admin: {admin?.name}</div>
+                <div>Admin: {admin?.firstName}</div>
                 <div className={navcss.email_text}>{admin?.email}</div>
               </div>
             </div>
+            {user?.url ? (
+                <img
+                  src={admin?.url}
+                  alt="User Profile"
+                  className={navcss.profile_pic}
+                />
+              ) : (
+                <img
+                  src="https://media.istockphoto.com/id/1298261537/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A2%E0%B8%B6%E0%B8%94%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B9%88%E0%B8%B2.jpg?s=170667a&w=0&k=20&c=CWEdziJGe7IACY3aVE8NbRuT0tG2UNfffxRJlfWmZaQ="
+                  alt="Default Profile"
+                  className={navcss.profile_pic}
+                />
+              )}
             {dropdownOpen && (
               <div className={navcss.dropdown_menu}>
-                <button onClick={hdlLogout}>ออกจากระบบ</button>
+                <button onClick={hdlLogoutAd}>ออกจากระบบ</button>
               </div>
             )}
           </div>
@@ -123,7 +140,9 @@ function Navbar() {
             </div>
           </Link>
         </div>
-        <div>
+
+        {/* Conditionally render nav links */}
+        {!admin?.id && ( // Hide if admin is logged in
           <div className={navcss.container_nav2}>
             <Link to="">
               <p>การจอง</p>
@@ -135,6 +154,9 @@ function Navbar() {
               <p>ติดต่อเรา</p>
             </Link>
           </div>
+        )}
+
+        <div>
           {admin?.id ? ( 
             adminNav.map((item, index) => <div key={index}>{item.text}</div>)
           ) : user?.id ? ( 
@@ -149,4 +171,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
