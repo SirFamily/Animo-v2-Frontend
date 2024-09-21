@@ -45,7 +45,7 @@
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 25px;
-  background-color: #f5f5f5;
+  background-color: #eed94f;
   text-align: center;
   width: 100px;
   font-weight: 500;
@@ -54,7 +54,7 @@
 }
 
 .buttonLink:hover {
-  background-color: #e0e0e0;
+  background-color: #ede185;
 }
 
 .editLink {
@@ -110,6 +110,14 @@
 
 .separator {
   border-top: 2px solid #ddd;
-  margin: 30px 0;
 }
 
+.textLabel, .inputField {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;  
+}
+
+.inputField {
+  width: 200px;  
+}

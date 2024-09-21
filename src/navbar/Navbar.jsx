@@ -140,8 +140,7 @@ function Navbar() {
             </div>
           </Link>
         </div>
-
-        {/* Conditionally render nav links */}
+        <div>
         {!admin?.id && ( // Hide if admin is logged in
           <div className={navcss.container_nav2}>
             <Link to="">
@@ -164,6 +163,8 @@ function Navbar() {
           ) : ( 
             guestNav.map((item, index) => <div key={index}>{item.text}</div>)
           )}
+        </div>
+
         </div>
       </nav>
     </div>

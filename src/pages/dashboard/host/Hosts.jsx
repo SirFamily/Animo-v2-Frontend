@@ -48,11 +48,14 @@ function Hosts() {
     }
   };
 
-  // Check if the selected host has a pending verification status
-  const isPending = hosts.some(
+  // Check the verification status (Pending or Rejected)
+  const hostVerificationStatus = hosts.find(
     (host) =>
       host.verifyHosts &&
-      host.verifyHosts.some((verify) => verify.verify_status === "Pending")
+      host.verifyHosts.some(
+        (verify) =>
+          verify.verify_status === "Pending" || verify.verify_status === "Rejected"
+      )
   );
 
   return (
@@ -73,25 +76,31 @@ function Hosts() {
             </div>
           )}
         </div>
-        {isPending ? (
+
+        {hostVerificationStatus ? (
           <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            backgroundColor: "#FFFF",
-            borderRadius: "15px",
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", 
-            paddingTop: "20px"
-          }}
-        >
-          <Hamster  />
-          <h1 style={{ color: "#00B2CA" }}>
-            อยู่ในระหว่างการยืนยัน
-          </h1>
-        </div>
-        
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: "#FFFF",
+              borderRadius: "15px",
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+              paddingTop: "20px",
+            }}
+          >
+            <Hamster />
+            {hostVerificationStatus.verifyHosts.some(
+              (verify) => verify.verify_status === "Pending"
+            ) ? (
+              <h1 style={{ color: "#00B2CA" }}>อยู่ในระหว่างการยืนยัน</h1>
+            ) : (
+              <h1 style={{ color: "#00B2CA" }}>
+                ถูกปฏิเสธเนื่องจากข้อมูลไม่ครบถ้วน
+              </h1>
+            )}
+          </div>
         ) : (
           hosts.length > 0 &&
           selectedHostId && (

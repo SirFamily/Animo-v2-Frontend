@@ -135,6 +135,7 @@ console.log(user)
             <div className={usercss.separator} />
             <div className={usercss.infoContainer}>
               <div className={usercss.infoBox}>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>ชื่อเต็ม:</label>
                 {isEditMode ? (
                   <>
@@ -158,7 +159,9 @@ console.log(user)
                     {user.firstName} {user.lastName}
                   </p>
                 )}
-                <label className={usercss.textLabel}>เบอร์:</label>
+                </div>
+                <div className={usercss.inputGroup}>
+                  <label className={usercss.textLabel}>เบอร์:</label>
                 {isEditMode ? (
                   <input
                     type="text"
@@ -170,8 +173,10 @@ console.log(user)
                 ) : (
                   <p className={usercss.textLabel}>{user.phone}</p>
                 )}
+                </div>
               </div>
               <div className={usercss.infoBox}>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>อีเมล:</label>
                 {isEditMode ? (
                   <input
@@ -184,6 +189,8 @@ console.log(user)
                 ) : (
                   <p className={usercss.textLabel}>{user.email}</p>
                 )}
+                </div>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>วันเกิด:</label>
                 {isEditMode ? (
                   <input
@@ -198,11 +205,13 @@ console.log(user)
                     {new Date(user.birthday).toLocaleDateString()}
                   </p>
                 )}
+                </div>
               </div>
             </div>
             <div className={usercss.separator} />
             <div className={usercss.infoContainer}>
               <div className={usercss.infoBox}>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>ที่อยู่:</label>
                 {isEditMode ? (
                   <input
@@ -215,7 +224,9 @@ console.log(user)
                 ) : (
                   <p className={usercss.textLabel}>{user.address}</p>
                 )}
-                <label className={usercss.textLabel}>อำเภอ:</label>
+                </div>
+                <div className={usercss.inputGroup}>
+                  <label className={usercss.textLabel}>อำเภอ:</label>
                 {isEditMode ? (
                   <input
                     type="text"
@@ -226,8 +237,9 @@ console.log(user)
                   />
                 ) : (
                   <p className={usercss.textLabel}>{user.district}</p>
-                )}
-                <label className={usercss.textLabel}>รหัสไปรษณีย์:</label>
+                )}</div>
+                <div className={usercss.inputGroup}>
+                  <label className={usercss.textLabel}>รหัสไปรษณีย์:</label>
                 {isEditMode ? (
                   <input
                     type="text"
@@ -238,9 +250,10 @@ console.log(user)
                   />
                 ) : (
                   <p className={usercss.textLabel}>{user.postalCode}</p>
-                )}
+                )}</div>
               </div>
               <div className={usercss.infoBox}>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>ตำบล:</label>
                 {isEditMode ? (
                   <input
@@ -253,6 +266,8 @@ console.log(user)
                 ) : (
                   <p className={usercss.textLabel}>{user.subDistrict}</p>
                 )}
+                </div>
+                <div className={usercss.inputGroup}>
                 <label className={usercss.textLabel}>จังหวัด:</label>
                 {isEditMode ? (
                   <input
@@ -265,10 +280,12 @@ console.log(user)
                 ) : (
                   <p className={usercss.textLabel}>{user.province}</p>
                 )}
+                </div>
               </div>
             </div>
             <div className={usercss.separator} />
-            <label className={usercss.textLabel}>ประวัติ:</label>
+             <div className={usercss.inputGroup}>
+             <label className={usercss.textLabel}>ประวัติ:</label>
             {isEditMode ? (
               <textarea
                 name="bio"
@@ -279,6 +296,8 @@ console.log(user)
             ) : (
               <p className={usercss.textLabel}>{user.bio}</p>
             )}
+             </div>
+            
             <div className={usercss.actionButtons}>
               <div className={usercss.buttonLink} onClick={toggleEditMode}>
                 {isEditMode ? "ยกเลิก" : "แก้ไข"}

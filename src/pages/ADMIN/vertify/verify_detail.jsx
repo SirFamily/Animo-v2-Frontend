@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import VerifyReject from "./verify_reject"; // นำเข้า component ใหม่
+import styles from "../Css/verifyDetail.module.css"; // นำเข้าไฟล์ CSS Module
 
 function VerifyDetail() {
   const { id } = useParams(); // Get the verification ID from the URL
@@ -26,29 +28,22 @@ function VerifyDetail() {
     fetchVerificationDetail();
   }, [id]);
 
-  // Approve verification function using FormData
+  // Approve verification function
   const handleApprove = async () => {
     try {
       setLoading(true);
       const token = sessionStorage.getItem("token_admin");
 
-      // Create FormData
-      const formData = new FormData();
-      formData.append('hostId', detail.hostId); 
-      formData.append('newStatus', 'Approved');
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}/verify/${id}`,
+        { newStatus: 'Approved' },
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+      );
 
-      // Send the FormData using Axios
-      const response = await axios.put(`${import.meta.env.VITE_API_URL}/verify/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      // Update the UI to reflect the approval
       setDetail({
         ...detail,
-        verifyStatus: response.data.data.verifyStatus, // Update status to "Approved"
-        verifiedAt: new Date(), // Set the current date as verifiedAt
+        verifyStatus: response.data.data.verifyStatus,
+        verifiedAt: new Date(),
       });
 
       alert("Verification approved successfully");
@@ -60,51 +55,73 @@ function VerifyDetail() {
     }
   };
 
+  // Callback to update status when rejected
+  const handleRejectUpdate = (newStatus) => {
+    setDetail((prevDetail) => ({
+      ...prevDetail,
+      verifyStatus: newStatus,
+    }));
+  };
+
   if (!detail) {
-    return <p>Loading...</p>;
+    return <p className={styles.loadingMessage}>Loading...</p>;
   }
 
-  // Destructure host details for easier access
   const { host } = detail;
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Verification Detail</h2>
-      <p><strong>ID:</strong> {detail.id}</p>
-      <p><strong>Verify Status:</strong> {detail.verifyStatus}</p>
-      <p><strong>Admin ID:</strong> {detail.adminId || "Not assigned"}</p>
-      <p><strong>Host ID:</strong> {detail.hostId}</p>
-      <p><strong>Created At:</strong> {new Date(detail.createdAt).toLocaleString()}</p>
-      <p><strong>Verified At:</strong> {detail.verifiedAt ? new Date(detail.verifiedAt).toLocaleString() : "Not verified"}</p>
+      <div className={styles.card}>
+        <p><strong>ID:</strong> {detail.id}</p>
+        <p><strong>Verify Status:</strong> {detail.verifyStatus}</p>
+        <p><strong>Admin ID:</strong> {detail.adminId || "Not assigned"}</p>
+        <p><strong>Host ID:</strong> {detail.hostId}</p>
+        <p><strong>Created At:</strong> {new Date(detail.createdAt).toLocaleString()}</p>
+        <p><strong>Verified At:</strong> {detail.verifiedAt ? new Date(detail.verifiedAt).toLocaleString() : "Not verified"}</p>
+      </div>
 
-      <h3>Host Information</h3>
-      <p><strong>Host Name:</strong> {host.name}</p>
-      <p><strong>Host Type:</strong> {host.type}</p>
-      <p><strong>Host Address:</strong> {host.address}</p>
-      <p><strong>Host Description:</strong> {host.description}</p>
-      <p><strong>Latitude:</strong> {host.lat}</p>
-      <p><strong>Longitude:</strong> {host.long}</p>
-      <p><strong>Host Created At:</strong> {new Date(host.createdAt).toLocaleString()}</p>
+      <div className={styles.hostInfo}>
+        <div className={styles.card}>
+          <h3>Host Information</h3>
+          <p><strong>Host Name:</strong> {host.name}</p>
+          <p><strong>Host Type:</strong> {host.type}</p>
+          <p><strong>Host Address:</strong> {host.address}</p>
+          <p><strong>Host Description:</strong> {host.description}</p>
+          <div className={styles.coordinates}>
+            <p><strong>Latitude:</strong> {host.lat}</p>
+            <p><strong>Longitude:</strong> {host.long}</p>
+          </div>
+        </div>
+      </div>
 
-      <h3>Host Photos</h3>
-      <div>
+      <div className={styles.photosContainer}>
+        <h3>Host Photos</h3>
         {host.photosHost && host.photosHost.length > 0 ? (
           host.photosHost.map((photo) => (
-            <div key={photo.id}>
-              <img src={photo.url} alt={`Host Photo ${photo.id}`} width="200" />
+            <div key={photo.id} className={styles.photoItem}>
+              <img src={photo.url} alt={`Host Photo ${photo.id}`} />
               <p><strong>Photo ID:</strong> {photo.id}</p>
               <p><strong>Photo Created At:</strong> {new Date(photo.createdAt).toLocaleString()}</p>
             </div>
           ))
         ) : (
-          <p>No photos available</p>
+          <p className={styles.noPhotos}>No photos available</p>
         )}
       </div>
 
       {/* Approve button */}
-      <button onClick={handleApprove} disabled={loading || detail.verifyStatus === 'Approved'}>
-        {loading ? "Approving..." : detail.verifyStatus === 'Approved' ? "Already Approved" : "Approve"}
-      </button>
+      <div className={styles.actions}>
+        <button 
+          className={styles.approveButton} 
+          onClick={handleApprove} 
+          disabled={loading || detail.verifyStatus === 'Approved'}>
+          {loading ? "Approving..." : detail.verifyStatus === 'Approved' ? "Already Approved" : "Approve"}
+        </button>
+
+        {/* Reject button (Modal Component) */}
+        <VerifyReject id={id} onReject={handleRejectUpdate} />
+      </div>
     </div>
   );
 }
