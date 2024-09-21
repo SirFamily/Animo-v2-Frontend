@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth"; 
 import navcss from "./navcss/nav.module.css";
 
 function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout, admin } = useAuth(); 
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const hdlLogout = () => {
     logout();
-    navigate("/");
+    navigate("/"); 
   };
 
   const handleDropdownToggle = () => {
@@ -34,19 +34,18 @@ function Navbar() {
   const guestNav = [
     {
       text: (
-        <>
-          <div className={navcss.container_nav_user}>
-            <div className={navcss.container_nav_userlogin}>
-              <Link to="/login">เข้าสู่ระบบ</Link>
-            </div>
-            <div className={navcss.container_nav_userregister}>
-              <Link to="/register">ลงทะเบียน</Link>
-            </div>
+        <div className={navcss.container_nav_user}>
+          <div className={navcss.container_nav_userlogin}>
+            <Link to="/login">เข้าสู่ระบบ</Link>
           </div>
-        </>
+          <div className={navcss.container_nav_userregister}>
+            <Link to="/register">ลงทะเบียน</Link>
+          </div>
+        </div>
       ),
     },
   ];
+
 
   const userNav = [
     {
@@ -60,7 +59,6 @@ function Navbar() {
               <div className={navcss.container_nav_ue}>
                 <div>{user?.firstName}</div>
                 <div className={navcss.email_text}>{user?.email}</div>
-                <p></p>
               </div>
               {user?.url ? (
                 <img
@@ -88,13 +86,40 @@ function Navbar() {
     },
   ];
 
+  const adminNav = [
+    {
+      text: (
+        <div className={navcss.container_nav_gap}>
+          <div ref={dropdownRef} className={navcss.dropdown}>
+            <div
+              onClick={handleDropdownToggle}
+              className={navcss.dropdown_toggle}
+            >
+              <div className={navcss.container_nav_ue}>
+                <div>Admin: {admin?.name}</div>
+                <div className={navcss.email_text}>{admin?.email}</div>
+              </div>
+            </div>
+            {dropdownOpen && (
+              <div className={navcss.dropdown_menu}>
+                <button onClick={hdlLogout}>ออกจากระบบ</button>
+              </div>
+            )}
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className={navcss.container}>
       <nav className={navcss.container_nav}>
         <div>
           <Link to="/">
             <div>
-              <b><span>A</span>nimo</b>
+              <b>
+                <span>A</span>nimo
+              </b>
             </div>
           </Link>
         </div>
@@ -110,13 +135,11 @@ function Navbar() {
               <p>ติดต่อเรา</p>
             </Link>
           </div>
-          {user?.id ? (
-            <>
-              {userNav.map((item, index) => (
-                <div key={index}>{item.text}</div>
-              ))}
-            </>
-          ) : (
+          {admin?.id ? ( 
+            adminNav.map((item, index) => <div key={index}>{item.text}</div>)
+          ) : user?.id ? ( 
+            userNav.map((item, index) => <div key={index}>{item.text}</div>)
+          ) : ( 
             guestNav.map((item, index) => <div key={index}>{item.text}</div>)
           )}
         </div>
@@ -126,3 +149,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

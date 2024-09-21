@@ -35,8 +35,6 @@ function VerifyHostList() {
 
   return (
     <div>
-      <button onClick={hdlLogout}>Logout</button>
-
       <h2>Verification List</h2>
       {verifications.length > 0 ? (
         <table border="1" cellPadding="10" cellSpacing="0">
