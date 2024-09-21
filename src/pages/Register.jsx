@@ -83,7 +83,7 @@ function Register() {
       <Link to="/">X</Link>
       <form onSubmit={hdlSubmit} encType="multipart/form-data">
         <div>
-          <label>First Name:</label>
+          <label>ชื่อจริง:</label>
           <input
             type="text"
             name="firstName"
@@ -92,7 +92,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Last Name:</label>
+          <label>นามสกุล:</label>
           <input
             type="text"
             name="lastName"
@@ -101,7 +101,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Email:</label>
+          <label>อีเมล:</label>
           <input
             type="email"
             name="email"
@@ -110,7 +110,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label>รหัสผ่าน:</label>
           <input
             type="password"
             name="password"
@@ -119,7 +119,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
+          <label>ยืนยันรหัสผ่าน:</label>
           <input
             type="password"
             name="password2"
@@ -128,7 +128,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Phone:</label>
+          <label>เบอร์โทร:</label>
           <input
             type="text"
             name="phone"
@@ -137,7 +137,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Birthday:</label>
+          <label>วันเกิด:</label>
           <input
             type="date"
             name="birthday"
@@ -146,7 +146,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Address:</label>
+          <label>ที่อยู่:</label>
           <input
             type="text"
             name="address"
@@ -155,7 +155,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Sub District:</label>
+          <label>ตำบล:</label>
           <input
             type="text"
             name="subDistrict"
@@ -164,7 +164,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>District:</label>
+          <label>อำเภอ:</label>
           <input
             type="text"
             name="district"
@@ -173,7 +173,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Province:</label>
+          <label>จังหวัด:</label>
           <input
             type="text"
             name="province"
@@ -182,7 +182,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Postal Code:</label>
+          <label>รหัสไปรษณีย์:</label>
           <input
             type="text"
             name="postalCode"
@@ -191,14 +191,14 @@ function Register() {
           />
         </div>
         <div>
-          <label>Bio:</label>
+          <label>ประวัติ:</label>
           <textarea name="bio" value={input.bio} onChange={handleChange} />
         </div>
         <div>
-          <label>Profile Picture:</label>
+          <label>รูปโปรไฟล์:</label>
           <input type="file" name="img" accept="image/png,image/jpeg" onChange={handleFileChange} />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">ลงทะเบียน</button>
       </form>
     </>
   );

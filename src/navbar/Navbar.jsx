@@ -37,10 +37,10 @@ function Navbar() {
         <>
           <div className={navcss.container_nav_user}>
             <div className={navcss.container_nav_userlogin}>
-              <Link to="/login">Login</Link>
+              <Link to="/login">เข้าสู่ระบบ</Link>
             </div>
             <div className={navcss.container_nav_userregister}>
-              <Link to="/register">Register</Link>
+              <Link to="/register">ลงทะเบียน</Link>
             </div>
           </div>
         </>
@@ -78,8 +78,8 @@ function Navbar() {
             </div>
             {dropdownOpen && (
               <div className={navcss.dropdown_menu}>
-                <Link to="dashboard/">Dashboard</Link>
-                <button onClick={hdlLogout}>Logout</button>
+                <Link to="dashboard/">แดชบอร์ด</Link>
+                <button onClick={hdlLogout}>ออกจากระบบ</button>
               </div>
             )}
           </div>
@@ -101,13 +101,13 @@ function Navbar() {
         <div>
           <div className={navcss.container_nav2}>
             <Link to="">
-              <p>Booking</p>
+              <p>การจอง</p>
             </Link>
             <Link to="">
-              <p>About us</p>
+              <p>เกี่ยวกับเรา</p>
             </Link>
             <Link to="">
-              <p>Contact us </p>
+              <p>ติดต่อเรา</p>
             </Link>
           </div>
           {user?.id ? (

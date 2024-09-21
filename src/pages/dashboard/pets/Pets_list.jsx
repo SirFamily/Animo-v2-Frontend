@@ -26,20 +26,20 @@ function Pets_list({ petData,setPetData }) {
 
   return (
     <div className={styles.tableContainer}>
-      <h1 className={styles.title}>Pets</h1>
+      <h1 className={styles.title}>สัตว์เลี้ยงของคุณ</h1>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Species</th>
-            <th>Breed</th>
-            <th>Gender</th>
-            <th>Birthday</th>
-            <th>Weight</th>
-            <th>Height</th>
-            <th>More</th>
-            <th>Setting</th>
+            <th>รูปถ่าย</th>
+            <th>ชื่อสัตว์เลี้ยง</th>
+            <th>ประเภท</th>
+            <th>สายพันธุ์</th>
+            <th>เพศ</th>
+            <th>วันเกิด</th>
+            <th>น้ำหนัก</th>
+            <th>ส่วนสูง</th>
+            <th>อื่นๆ</th>
+            <th>ตั้งค่า</th>
           </tr>
         </thead>
         <tbody>
@@ -64,20 +64,20 @@ function Pets_list({ petData,setPetData }) {
               <td>{pet.weight ? `${pet.weight} kg` : '-'}</td>
               <td>{pet.height ? `${pet.height} cm` : '-'}</td>
               <td className={styles.actionLinks}>
-                <div className={styles.readLink}>Read</div>
+                <div className={styles.readLink}>อ่าน</div>
               </td>
               <td className={styles.actionLinks}>
                 <div
                   className={styles.editLink}
                   onClick={() => toggleEditPopup(pet)}
                 >
-                  Edit
+                  แก้ไข
                 </div>
                 <div
                   className={styles.deleteLink}
                   onClick={() => toggleDeletePopup(pet)}
                 >
-                  Delete
+                  ลบ
                 </div>
               </td>
             </tr>

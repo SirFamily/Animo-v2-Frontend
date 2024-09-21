@@ -68,7 +68,7 @@ function Hosts() {
           {hosts.length === 0 && (
             <div className={csslayer.button_container}>
               <Link to="create-host">
-                <button className={csslayer.bt}>Add host</button>
+                <button className={csslayer.bt}>เพิ่มที่พัก</button>
               </Link>
             </div>
           )}
@@ -101,7 +101,7 @@ function Hosts() {
                   <Room_list hostId={selectedHostId} />
                   <div className={csslayer.button_container}>
                     <Link to="create-host/room">
-                      <button className={csslayer.bt}>Add Room</button>
+                      <button className={csslayer.bt}>เพิ่มห้องพัก</button>
                     </Link>
                   </div>
                 </div>

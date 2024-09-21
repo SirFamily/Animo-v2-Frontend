@@ -36,7 +36,7 @@ function Features_edit({ feature, onClose, refreshFeatures }) {
   return (
     <Modelpopup>
       <div className={styles.container}>
-        <h2 className={styles.title}>Edit Feature</h2>
+        <h2 className={styles.title}>แก้ไขบริการเสริม</h2>
         <input 
           type="text" 
           value={name} 
@@ -54,13 +54,13 @@ function Features_edit({ feature, onClose, refreshFeatures }) {
           onChange={(e) => setStatus(e.target.value)} 
           className={styles.select}
         >
-          <option value="">Select Status</option>
-          <option value="ready">Ready</option>
-          <option value="not ready">Not Ready</option>
+          <option value="">เลือกสถานะ</option>
+          <option value="ready">พร้อม</option>
+          <option value="not ready">ยังไม่พร้อม</option>
         </select>
         <div className={styles.buttonGroup}>
-          <button onClick={handleEdit} className={styles.button}>Save</button>
-          <button onClick={onClose} className={styles.button}>Close</button>
+          <button onClick={handleEdit} className={styles.button}>บันทึก</button>
+          <button onClick={onClose} className={styles.button}>ปิด</button>
         </div>
       </div>
     </Modelpopup>

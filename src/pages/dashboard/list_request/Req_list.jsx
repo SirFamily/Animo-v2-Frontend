@@ -46,16 +46,16 @@ function Req_list() {
 
   return (
     <div className={styles.tableContainer}>
-      <h1 className={styles.title}>Request</h1>
+      <h1 className={styles.title}>คำขอ</h1>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Room Name</th>
-            <th>Pets</th>
-            <th>Check-in/out</th>
-            <th>Status</th>
-            <th>Total Amount</th>
-            <th>Detail</th>
+            <th>ชื่อห้อง</th>
+            <th>สัตว์เลี้ยง</th>
+            <th>เช็คอิน/เช็คเอาท์</th>
+            <th>สถานะ</th>
+            <th>จำนวนเงินรวม</th>
+            <th>รายละเอียด</th>
           </tr>
         </thead>
         <tbody>
@@ -77,7 +77,7 @@ function Req_list() {
                   <td>{totalAmount > 0 ? `$${totalAmount.toFixed(2)}` : "-"}</td>
                   <td>
                   <Link key={request.id} to={`booking/detail/${request.id}`}> 
-                    <button className={styles.actionButton}>View</button>
+                    <button className={styles.actionButton}>ดู</button>
                   </Link>
                   </td>
                 </tr>
@@ -85,21 +85,21 @@ function Req_list() {
             })
           ) : (
             <tr>
-              <td colSpan="6">No requests available</td>
+              <td colSpan="6">ไม่มีคำขอใดๆ</td>
             </tr>
           )}
         </tbody>
       </table>
-      <h2 className={styles.title}>Owner Requests</h2>
+      <h2 className={styles.title}>คำขอของเจ้าของ</h2>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Room Name</th>
-            <th>Pets</th>
-            <th>Check-in/out</th>
-            <th>Status</th>
-            <th>Total Amount</th>
-            <th>Detail</th>
+            <th>ชื่อห้อง</th>
+            <th>สัตว์เลี้ยง</th>
+            <th>เช็คอิน/เช็คเอาท์</th>
+            <th>สถานะ</th>
+            <th>จำนวนเงินรวม</th>
+            <th>รายละเอียด</th>
           </tr>
         </thead>
         <tbody>
@@ -129,7 +129,7 @@ function Req_list() {
             })
           ) : (
             <tr>
-              <td colSpan="6">No owner requests available</td>
+              <td colSpan="6">ไม่มีคำขอเจ้าของที่มีอยู่</td>
             </tr>
           )}
         </tbody>

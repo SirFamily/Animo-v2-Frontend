@@ -134,7 +134,7 @@ function Room_add() {
       <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div className={styles.formGroup}>
-            <label>Name</label>
+            <label>ชื่อ</label>
             <input
               type="text"
               name="name"
@@ -142,7 +142,7 @@ function Room_add() {
               onChange={handleChange}
               required
             />
-            <label>Type Room</label>
+            <label>ประเภทห้อง</label>
             <input
               type="text"
               name="type"
@@ -155,7 +155,7 @@ function Room_add() {
 
         {step === 2 && (
           <div className={styles.formGroup}>
-            <label>Quantity</label>
+            <label>รองรับสัตว์เลี้ยง</label>
             <input
               type="number"
               name="quantity"
@@ -169,7 +169,7 @@ function Room_add() {
 
         {step === 3 && (
           <div className={styles.formGroup}>
-            <label>Price</label>
+            <label>ราคา</label>
             <input
               type="number"
               name="price"
@@ -183,7 +183,7 @@ function Room_add() {
 
         {step === 4 && (
           <div className={styles.formGroup}>
-            <label>Upload Images</label>
+            <label>อัพโหลดรูปภาพ</label>
             <input
               type="file"
               name="images"
@@ -215,20 +215,20 @@ function Room_add() {
 
         {step === 5 && (
           <div className={styles.formGroup}>
-            <label>Support Pet Name</label>
+            <label>รองรับสัตว์เลี้้ยงประเภท</label>
             <select
               name="supportPetName"
               value={roomData.supportPetName}
               onChange={handleSpeciesChange}
             >
-              <option value="">Select a pet species</option>
+              <option value="">เลือกสายพันธุ์สัตว์เลี้ยง</option>
               {speciesList.species.map((species) => (
                 <option key={species.id} value={species.name}>
                   {species.name}
                 </option>
               ))}
             </select>
-            <label>Support Pet Description</label>
+            <label>คำอธิบาย การรองรับสัตว์เลี้ยง</label>
             <textarea
               name="supportPetDescription"
               value={roomData.supportPetDescription}
@@ -237,7 +237,7 @@ function Room_add() {
           </div>
         )}
 
-        {step === 6 && <div>Confirm</div>}
+        {step === 6 && <div>ยืนยัน</div>}
 
         <div className={styles.buttons}>
           {step === 1 && (
@@ -246,7 +246,7 @@ function Room_add() {
               className={styles.button_back}
               onClick={() => navigate("/dashboard/host")}
             >
-              Exit
+              ออก
             </button>
           )}
           {step > 1 && (
@@ -255,7 +255,7 @@ function Room_add() {
               className={styles.button_back}
               onClick={prevStep}
             >
-              Previous
+              ก่อนหน้า
             </button>
           )}
           {step < 6 && (
@@ -264,12 +264,12 @@ function Room_add() {
               className={styles.button_next}
               onClick={nextStep}
             >
-              Next
+              ถัดไป
             </button>
           )}
           {step === 6 && (
             <button type="submit" className={styles.button_next}>
-              Submit
+              ยืนยัน
             </button>
           )}
         </div>

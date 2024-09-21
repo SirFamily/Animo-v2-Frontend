@@ -48,12 +48,12 @@ function Login() {
           X
         </Link>
         <div className={logincss.head}>
-          <p>Hello And Welcome Back</p>
+          <p>สวัสดีและยินดีต้อนรับกลับมา</p>
         </div>
         <form onSubmit={hdlSubmit}>
           <div className={logincss.login}>
             <div>
-              <p>Email</p>
+              <p>อีเมล</p>
               <input
                 type="text"
                 id="email"
@@ -64,7 +64,7 @@ function Login() {
               />
             </div>
             <div>
-              <p>Password</p>
+              <p>รหัสผ่าน</p>
               <input
                 type="password"
                 name="password"
@@ -78,17 +78,17 @@ function Login() {
           <br />
           <div className={logincss.submit}>
             <button type="submit">
-              <div>Login</div>
+              <div>เข้าสู่ระบบ</div>
             </button>
           </div>
           <div className={logincss.or}>
             <hr />
-            <p>OR</p>
+            <p>หรือ</p>
             <hr />
           </div>
           <div className={logincss.register}>
             <p>
-              You don't have an account ? <Link to="/register">Register</Link>
+              คุณยังไม่มีบัญชีใช่ไหม? <Link to="/register">ลงทะเบียน</Link>
             </p>
           </div>
           <div className={logincss.google_facebook}>

@@ -43,16 +43,16 @@ function Room_list({ hostId }) {
 console.log(rooms)
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Room</h1>
+      <h1 className={styles.title}>ห้องพัก</h1>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Setting</th>
+            <th>รูป</th>
+            <th>ชื่อ</th>
+            <th>ประเภท</th>
+            <th>รองรับสัตว์เลี้ยง</th>
+            <th>ราคา</th>
+            <th>ตั้งค่า</th>
           </tr>
         </thead>
         <tbody>
@@ -71,7 +71,7 @@ console.log(rooms)
                       }}
                     />
                   ) : (
-                    <span>No Image</span>
+                    <span>ไม่มีรูปภาพ</span>
                   )}
                 </td>
                 <td>{room.name}</td>
@@ -83,20 +83,20 @@ console.log(rooms)
                     className={styles.editLink}
                     onClick={() => toggleEditPopup(room)}
                   >
-                    Edit
+                    แก้ไข
                   </div>
                   <div
                     className={styles.deleteLink}
                     onClick={() => toggleDeletePopup(room)}
                   >
-                    Delete
+                    ลบ
                   </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6">No rooms available</td>
+              <td colSpan="6">ไม่มีห้องที่พร้อมใช้งาน</td>
             </tr>
           )}
         </tbody>

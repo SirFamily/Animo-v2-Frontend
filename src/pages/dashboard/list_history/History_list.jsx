@@ -31,14 +31,14 @@ function History_list() {
 
   return (
     <div className={styles.tableContainer}>
-      <h1 className={styles.title}>Booking History</h1>
+      <h1 className={styles.title}>ประวัติการจอง</h1>
       <table className={styles.table}>
         <thead>
           <tr>
             <th>ประเภท</th>
             <th>ชื่อห้อง</th>
             <th>จำนวนสัตว์เลี้ยง</th>
-            <th>Check-in/out</th>
+            <th>เช็คอิน/เช็คเอาท์</th>
             <th>สถานะ</th>
             <th>ยอดรวม</th>
             <th>รายละเอียด</th>
@@ -69,7 +69,7 @@ function History_list() {
                     {/* Check if booking.id exists before using it in the Link */}
                     {booking.id ? (
                       <Link to={`detail/${booking.id}`}>
-                        <button className={styles.actionButton}>View</button>
+                        <button className={styles.actionButton}>ดู</button>
                       </Link>
                     ) : (
                       "-"

@@ -118,7 +118,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
         <h2>แก้ไขข้อมูลสัตว์เลี้ยง</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>Pet Name:</label>
+            <label>ชื่อสัตว์เลี้ยง:</label>
             <input
               type="text"
               name="petName"
@@ -129,7 +129,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Species:</label>
+            <label>ประเภท:</label>
             <select
               name="species"
               value={input.species}
@@ -145,7 +145,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             </select>
           </div>
           <div className={styles.formGroup}>
-            <label>Breed:</label>
+            <label>สายพันธุ์:</label>
             <select
               name="breed"
               value={input.breed}
@@ -162,7 +162,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             </select>
           </div>
           <div className={styles.formGroup}>
-            <label>Weight:</label>
+            <label>น้ำหนัก:</label>
             <input
               type="text"
               name="weight"
@@ -172,7 +172,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Height:</label>
+            <label>ส่วนสูง:</label>
             <input
               type="text"
               name="height"
@@ -182,7 +182,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Gender:</label>
+            <label>เพศ:</label>
             <select
               name="gender"
               value={input.gender}
@@ -194,7 +194,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             </select>
           </div>
           <div className={styles.formGroup}>
-            <label>Birthday:</label>
+            <label>วันเกิด:</label>
             <input
               type="date"
               name="birthday"
@@ -203,7 +203,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Pet History:</label>
+            <label>ประวัติสัตว์เลี้ยง:</label>
             <textarea
               name="petHistory"
               value={input.petHistory}
@@ -216,7 +216,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
             </div>
           )}
           <div className={styles.formGroup}>
-            <label>Image:</label>
+            <label>รูปถ่าย:</label>
             <input type="file" onChange={handleFileChange} />
           </div>
           <button className={styles.submitButton} type="submit">บันทึก</button>

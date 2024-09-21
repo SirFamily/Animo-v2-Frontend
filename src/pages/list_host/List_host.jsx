@@ -71,7 +71,7 @@ function ListHost() {
         <div className={styles.searchBar}>
           <input
             type="text"
-            placeholder="ค้นหาชื่อ Host"
+            placeholder="ค้นหาชื่อที่พัก"
             className={styles.searchInput}
             value={typedSearchName} 
             onChange={handleSearchInput} 
@@ -131,7 +131,7 @@ function ListHost() {
 
       <div className={styles.cardGrid}>
         {filteredHosts.length === 0 ? (
-          <p>ไม่มีข้อมูล Host</p>
+          <p>ไม่มีข้อมูลที่พัก</p>
         ) : (
           filteredHosts.map((host) => (
             <Link key={host.id} to={`/host/${host.id}`}>

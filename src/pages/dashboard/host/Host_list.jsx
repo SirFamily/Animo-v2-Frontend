@@ -49,17 +49,17 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Host</h1>
+      <h1 className={styles.title}>ที่พัก</h1>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Housing type</th>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Create date</th>
-            <th>Setting</th>
+            <th>รูป</th>
+            <th>ชื่อ</th>
+            <th>ประเภทที่พัก</th>
+            <th>รายละเอียด</th>
+            <th>ที่ตั้ง</th>
+            <th>สร้างวันที่</th>
+            <th>ตั้งค่า</th>
           </tr>
         </thead>
         <tbody>
@@ -79,14 +79,14 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
                 <td>{host.address}</td>
                 <td>{new Date(host.createdAt).toLocaleDateString()}</td>
                 <td>
-                  <div className={styles.editLink} onClick={() => toggleEditPopup(hosts)}>Edit</div>
-                  <div className={styles.deleteLink} onClick={() => toggleDeletePopup(host.id)}>Delete</div>
+                  <div className={styles.editLink} onClick={() => toggleEditPopup(hosts)}>แก้ไข</div>
+                  <div className={styles.deleteLink} onClick={() => toggleDeletePopup(host.id)}>ลบ</div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="7">No hosts available</td>
+              <td colSpan="7">ไม่มีที่พักที่พร้อมใช้งาน</td>
             </tr>
           )}
         </tbody>

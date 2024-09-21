@@ -30,7 +30,7 @@ function Features_add({ onClose, refreshFeatures }) {
   return (
     <Modelpopup>
       <div className={styles.container}>
-        <h2 className={styles.title}>Add Feature</h2>
+        <h2 className={styles.title}>เพิมบริการเสริม</h2>
         <input
           type="text"
           placeholder="Name"
@@ -50,12 +50,12 @@ function Features_add({ onClose, refreshFeatures }) {
           onChange={(e) => setStatus(e.target.value)}
           className={styles.select}
         >
-          <option value="ready">Ready</option>
-          <option value="not ready">Not Ready</option>
+          <option value="ready">พร้อม</option>
+          <option value="not ready">ยังไม่พร้อม</option>
         </select>
         <div className={styles.buttonGroup}>
-          <button onClick={handleAdd} className={styles.button}>Add</button>
-          <button onClick={onClose} className={styles.button}>Close</button>
+          <button onClick={handleAdd} className={styles.button}>เพิ่ม</button>
+          <button onClick={onClose} className={styles.button}>ปิด</button>
         </div>
       </div>
     </Modelpopup>

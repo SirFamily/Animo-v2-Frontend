@@ -23,9 +23,9 @@ function Features_delete({ feature, onClose, refreshFeatures }) {
   return (
     <Modelpopup>
       <div className={styles.popup}>
-        <h2 className={styles.header}>Delete Feature</h2>
+        <h2 className={styles.header}>ลบบริการเสริม</h2>
         <p className={styles.message}>
-          Are you sure you want to delete the feature "{feature.name}"?
+        คุณแน่ใจว่าต้องการลบบริการเสริมนี้หรือไม่ "{feature.name}"?
         </p>
         <div className={styles.buttonGroup}>
           <button onClick={handleDelete} className={`${styles.button} ${styles.deleteButton}`}>

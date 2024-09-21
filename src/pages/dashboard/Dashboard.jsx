@@ -7,7 +7,7 @@ function Dashboard() {
       <Menu />
       <div className={csslayer.container_g_layer}>
         <div className={csslayer.container_layer_buttom}>
-          <h1>Dashboard</h1>
+          <h1>แดชบอร์ด</h1>
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ function History_detail() {
   }, [reqId]);
 
   if (!history) {
-    return <div>Loading...</div>;
+    return <div>กำลังดาวน์โหลด...</div>;
   }
 
   console.log(user.id === history.userId);
@@ -44,27 +44,27 @@ function History_detail() {
       <button className={styles.backButton} onClick={() => navigate(-1)}>
         Back
       </button>
-      <h2 className={styles.title}>Booking History Details</h2>
+      <h2 className={styles.title}>รายละเอียดประวัติการจอง</h2>
       <div className={styles.infoBox}>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Host Name:</label>
+          <label className={styles.label}>ชื่อสถานที่พัก:</label>
           <span className={styles.value}>{history.host?.name || "-"}</span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Host Address:</label>
+          <label className={styles.label}>ที่อยู่สถานที่พัก:</label>
           <span className={styles.value}>{history.host?.address || "-"}</span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Room Name:</label>
+          <label className={styles.label}>ชื่อห้อง:</label>
           <span className={styles.value}>{history.room?.name || "-"}</span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Room Type:</label>
+          <label className={styles.label}>ประเภทห้อง:</label>
           <span className={styles.value}>{history.room?.type || "-"}</span>
         </div>
 
         <div className={styles.infoRow}>
-          <label className={styles.label}>Pets:</label>
+          <label className={styles.label}>สัตว์เลี้ยง:</label>
           <span className={styles.value}>{petCount > 0 ? petCount : "-"}</span>
         </div>
         {history.pet_count_bookings?.map((petBooking, index) => (
@@ -79,22 +79,22 @@ function History_detail() {
                 <strong>{petBooking.pet.petName}</strong>
               </p>
               <p className={styles.petSpecies}>
-                Species: {petBooking.pet.species}
+                ประเภท: {petBooking.pet.species}
               </p>
-              <p className={styles.petBreed}>Breed: {petBooking.pet.breed}</p>
+              <p className={styles.petBreed}>สายพันธุ์: {petBooking.pet.breed}</p>
             </div>
           </div>
         ))}
         <div className={styles.userDetail} />
-        <h3 className={styles.subTitle}>Total</h3>
+        <h3 className={styles.subTitle}>ทั้งหมด</h3>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Room Price:</label>
+          <label className={styles.label}>ราคาห้องพัก:</label>
           <span className={styles.value}>${history.room?.price || "-"}</span>
         </div>
         {history.bookingFeatures?.map((feature, index) => (
           <div key={index} className={styles.infoRow}>
             <span className={styles.label}>
-              Feature: <span>{feature.feature.name}</span>
+              บริการเสริม: <span>{feature.feature.name}</span>
             </span>
             <span className={styles.value}>
               {" "}
@@ -103,7 +103,7 @@ function History_detail() {
           </div>
         ))}
         <div className={styles.infoRow}>
-          <label className={styles.label}>Check-in/Check-out:</label>
+          <label className={styles.label}>เช็คอิน/เช็คเอาท์:</label>
           <span className={styles.value}>
             {history.startDate && history.endDate
               ? `${new Date(
@@ -115,17 +115,17 @@ function History_detail() {
           </span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Status:</label>
+          <label className={styles.label}>สถานะ:</label>
           <span className={styles.value}>{history.bookingStatus || "-"}</span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Total Amount:</label>
+          <label className={styles.label}>จำนวนเงินรวม:</label>
           <span className={styles.value}>${totalAmount.toFixed(2)}</span>
         </div>
 
         {user.id === history.userId && (
           <>
-            <h3 className={styles.subTitle}>Host Owner Details</h3>
+            <h3 className={styles.subTitle}>รายละเอียดเจ้าของโฮสต์</h3>
             <div className={styles.userDetail}>
               <img
                 src={history.host?.user?.url}
@@ -134,14 +134,14 @@ function History_detail() {
               />
               <div className={styles.userInfo}>
                 <p>
-                  <strong>Name:</strong> {history.host?.user?.firstName}{" "}
+                  <strong>ชื่อ:</strong> {history.host?.user?.firstName}{" "}
                   {history.host?.user?.lastName}
                 </p>
                 <p>
-                  <strong>Email:</strong> {history.host?.user?.email}
+                  <strong>อีเมล:</strong> {history.host?.user?.email}
                 </p>
                 <p>
-                  <strong>Phone:</strong> {history.host?.user?.phone}
+                  <strong>เบอร์:</strong> {history.host?.user?.phone}
                 </p>
               </div>
             </div>

@@ -48,7 +48,7 @@ function Req_detail_host() {
   };
 
   if (!request) {
-    return <div>Loading...</div>;
+    return <div>กำลังดาวน์โหลด...</div>;
   }
 
   const totalAmount =
@@ -58,21 +58,21 @@ function Req_detail_host() {
   return (
     <div className={styles.detailContainer}>
       <button className={styles.backButton} onClick={() => navigate(-1)}>
-        Back
+      กลับ
       </button>
-      <h2 className={styles.title}>Booking Details (Host View)</h2>
+      <h2 className={styles.title}>รายละเอียดการจอง (Host View)</h2>
       <div className={styles.infoBox}>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Room Name:</label>
+          <label className={styles.label}>ชื่อห้อง:</label>
           <span className={styles.value}>{request.room?.name || "-"}</span>
         </div>
         <div className={styles.infoRow}>
-          <label className={styles.label}>Room Type:</label>
+          <label className={styles.label}>ประเภทห้อง:</label>
           <span className={styles.value}>{request.room?.type || "-"}</span>
         </div>
 
         <div className={styles.infoRow}>
-          <label className={styles.label}>Pets:</label>
+          <label className={styles.label}>สัตว์เลี้ยง:</label>
           <span className={styles.value}>
             {petCount > 0 ? `${petCount}` : "-"}
           </span>
@@ -89,14 +89,14 @@ function Req_detail_host() {
                 <strong>{petBooking.pet.petName}</strong>
               </p>
               <p className={styles.petSpecies}>
-                Species: {petBooking.pet.species}
+                ประเภท: {petBooking.pet.species}
               </p>
-              <p className={styles.petBreed}>Breed: {petBooking.pet.breed}</p>
+              <p className={styles.petBreed}>สายพันธุ์: {petBooking.pet.breed}</p>
             </div>
           </div>
         ))}
         <div className={styles.userDetail}>
-          <h3 className={styles.subTitle}>User Details</h3>
+          <h3 className={styles.subTitle}>รายละเอียดผู้ใช้</h3>
           <img
             src={request.host?.user?.url}
             alt={request.host?.user?.firstName}
@@ -104,29 +104,29 @@ function Req_detail_host() {
           />
           <div className={styles.userInfo}>
             <p>
-              <strong>Name:</strong> {request.host?.user?.firstName}{" "}
+              <strong>ชื่อ:</strong> {request.host?.user?.firstName}{" "}
               {request.host?.user?.lastName}
             </p>
             <p>
-              <strong>Email:</strong> {request.host?.user?.email}
+              <strong>อีเมล:</strong> {request.host?.user?.email}
             </p>
             <p>
-              <strong>Phone:</strong> {request.host?.user?.phone}
+              <strong>เบอร์:</strong> {request.host?.user?.phone}
             </p>
           </div>
         </div>
       </div>
       <div className={styles.userDetail} />
-      <h3 className={styles.subTitle}>Total</h3>
+      <h3 className={styles.subTitle}>ทั้งหมด</h3>
 
       <div className={styles.infoRow}>
-        <label className={styles.label}>Room Price:</label>
+        <label className={styles.label}>ราคาห้องพัก:</label>
         <span className={styles.value}>${request.room?.price || "-"}</span>
       </div>
       {request.bookingFeatures?.map((feature, index) => (
         <div key={index} className={styles.infoRow}>
           <span className={styles.label}>
-            Feature: <span>{feature.feature.name}</span>
+          บริการเสริม: <span>{feature.feature.name}</span>
           </span>
           <span className={styles.value}>
             {" "}
@@ -136,7 +136,7 @@ function Req_detail_host() {
       ))}
 
       <div className={styles.infoRow}>
-        <label className={styles.label}>Check-in/Check-out:</label>
+        <label className={styles.label}>เช็คอิน/เช็คเอาท์:</label>
         <span className={styles.value}>
           {request.startDate && request.endDate
             ? `${new Date(request.startDate).toLocaleDateString()} - ${new Date(
@@ -146,11 +146,11 @@ function Req_detail_host() {
         </span>
       </div>
       <div className={styles.infoRow}>
-        <label className={styles.label}>Status:</label>
+        <label className={styles.label}>สถานะ:</label>
         <span className={styles.value}>{status || "-"}</span>
       </div>
       <div className={styles.infoRow}>
-        <label className={styles.label}>Total Amount:</label>
+        <label className={styles.label}>ยอดเงินรวมที่ต้องชำระ:</label>
         <strong className={styles.value}>${totalAmount.toFixed(2)}</strong>
       </div>
 

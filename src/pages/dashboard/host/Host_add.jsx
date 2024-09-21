@@ -182,7 +182,7 @@ function Host_add() {
       <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div className={styles.formGroup}>
-            <label>Name</label>
+            <label>ชื่อ</label>
             <input
               type="text"
               name="name"
@@ -190,7 +190,7 @@ function Host_add() {
               onChange={handleChange}
               required
             />
-            <label>Type:</label>
+            <label>ประเภท:</label>
             <select
               name="type"
               value={hostData.type}
@@ -209,7 +209,7 @@ function Host_add() {
 
         {step === 2 && (
           <div className={styles.formGroup}>
-            <label>Address</label>
+            <label>ที่อยู่</label>
             <input
               type="text"
               name="address"
@@ -217,7 +217,7 @@ function Host_add() {
               onChange={handleChange}
               required
             />
-            <label>Latitude</label>
+            <label>ละติจูด</label>
             <input
               type="text"
               name="lat"
@@ -226,7 +226,7 @@ function Host_add() {
               required
               disabled
             />
-            <label>Longitude</label>
+            <label>ลองจิจูด</label>
             <input
               type="text"
               name="long"
@@ -252,7 +252,7 @@ function Host_add() {
 
         {step === 3 && (
           <div className={styles.formGroup}>
-            <label>Description</label>
+            <label>คำอธิบาย</label>
             <textarea
               name="description"
               value={hostData.description}
@@ -263,7 +263,7 @@ function Host_add() {
 
         {step === 4 && (
           <div className={styles.formGroup}>
-            <label>Upload Images</label>
+            <label>อัพโหลดรูปภาพ</label>
             <input
               type="file"
               name="images"
@@ -293,7 +293,7 @@ function Host_add() {
           </div>
         )}
 
-        {step === 5 && <div>Confirm</div>}
+        {step === 5 && <div>ยืนยัน</div>}
 
         <div className={styles.buttons}>
         {step === 1 && (
@@ -302,7 +302,7 @@ function Host_add() {
               className={styles.button_back}
               onClick={() => navigate("/dashboard/host")}
               >
-              Exit
+              ออก
             </button>
           )}
           {step > 1 && (
@@ -311,7 +311,7 @@ function Host_add() {
               className={styles.button_back}
               onClick={prevStep}
             >
-              Previous
+              ก่อนหน้า
             </button>
           )}
           {step < 5 && (
@@ -320,12 +320,12 @@ function Host_add() {
               className={styles.button_next}
               onClick={nextStep}
             >
-              Next
+              ถัดไป
             </button>
           )}
           {step === 5 && (
             <button type="submit" className={styles.button_next}>
-              Submit
+              ยืนยัน
             </button>
           )}
         </div>

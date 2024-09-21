@@ -72,10 +72,10 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        <h2>Edit Room</h2>
+        <h2>แก้ไขห้อง</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>Room Name:</label>
+            <label>ชื่อห้อง:</label>
             <input
               type="text"
               name="name"
@@ -86,7 +86,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Quantity:</label>
+            <label>รองรับสัตว์เลี้ยง:</label>
             <input
               type="number"
               name="quantity"
@@ -97,7 +97,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Type:</label>
+            <label>ประเภทห้อง:</label>
             <input
               type="text"
               name="type"
@@ -108,7 +108,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Price:</label>
+            <label>ราคา:</label>
             <input
               type="text"
               name="price"
@@ -128,7 +128,7 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
           )}
 
           <div className={styles.formGroup}>
-            <label>Image: *ยังไม่สามารถเพิ่มลบหรือแก้ไขรูปภาพได้</label>
+            <label>รูปถ่าย: *ยังไม่สามารถเพิ่มลบหรือแก้ไขรูปภาพได้</label>
             <input type="file" onChange={handleFileChange} />
           </div>
           <button className={styles.submitButton} type="submit">บันทึก</button>

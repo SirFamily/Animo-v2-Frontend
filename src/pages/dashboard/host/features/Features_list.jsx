@@ -45,14 +45,14 @@ function Features_list() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Features</h2>
+      <h2 className={styles.title}>บริการเสริม</h2>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Price</th>
-            <th>Setting</th>
+            <th>ชื่อ</th>
+            <th>สถานะ</th>
+            <th>ราคา</th>
+            <th>ตั้งค่า</th>
           </tr>
         </thead>
         <tbody>
@@ -67,27 +67,27 @@ function Features_list() {
                     className={styles.editLink}
                     onClick={() => toggleEditPopup(feature)}
                   >
-                    Edit
+                    แก้ไข
                   </div>
                   <div
                     className={styles.deleteLink}
                     onClick={() => toggleDeletePopup(feature)}
                   >
-                    Delete
+                    ลบ
                   </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="4">No features available</td>
+              <td colSpan="4">ไม่มีบริการเสริมที่ใช้พร้อมใช้งาน</td>
             </tr>
           )}
         </tbody>
       </table>
       <div className={styles.button_container}>
         <button className={styles.bt} onClick={toggleAddPopup}>
-          Add Feature
+         เพิ่มบริการเสริม
         </button>
       </div>
       {/* Popups for add, edit, delete */}

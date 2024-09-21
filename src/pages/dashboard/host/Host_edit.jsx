@@ -159,10 +159,10 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        <h2>Edit Accommodation</h2>
+        <h2>แก้ไขที่พัก</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>Name:</label>
+            <label>ชื่อ:</label>
             <input
               type="text"
               name="name"
@@ -174,7 +174,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Type:</label>
+            <label>ประเภท:</label>
             <select
               name="type"
               value={input.type}
@@ -192,7 +192,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Address:</label>
+            <label>ที่อยู่:</label>
             <input
               type="text"
               name="address"
@@ -204,7 +204,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Latitude:</label>
+            <label>ละติจูด:</label>
             <input
               type="text"
               name="lat"
@@ -217,7 +217,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Longitude:</label>
+            <label>ลองจิจูด:</label>
             <input
               type="text"
               name="long"
@@ -243,7 +243,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </MapContainer>
 
           <div className={styles.formGroup}>
-            <label>Description:</label>
+            <label>คำอธิบาย:</label>
             <textarea
               name="description"
               placeholder="Enter description"
@@ -254,7 +254,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label>Publish:</label>
+            <label>เผยแพร่:</label>
             <input
               type="checkbox"
               name="publish"
@@ -279,7 +279,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
           )}
 
           <div className={styles.formGroup}>
-            <label>Upload Image: *ยังไม่สามารถแก้ไขรูปได้</label>
+            <label>อัพโหลดรูปภาพ: *ยังไม่สามารถแก้ไขรูปได้</label>
             <input type="file" onChange={handleFileChange} />
           </div>
 
@@ -291,7 +291,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
             {submitting ? "Saving..." : "Save"}
           </button>
           <button className={styles.closeButton} onClick={onClose}>
-            Close
+          ปิด
           </button>
         </form>
       </div>
