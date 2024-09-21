@@ -5,18 +5,20 @@ import { Link } from "react-router-dom";
 
 function VerifyHostList() {
   const [verifications, setVerifications] = useState([]);
-  const { admin } = useAuth(); 
-
+  const { admin, logoutAdmin } = useAuth();
 
   const fetchVerifications = async () => {
     try {
-      const token = sessionStorage.getItem("token_admin"); 
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/verify/list`, {
-        headers: {
-          Authorization: `Bearer ${token}`, 
-        },
-      });
-      setVerifications(response.data.data); 
+      const token = sessionStorage.getItem("token_admin");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/verify/list`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setVerifications(response.data.data);
     } catch (error) {
       console.error("Error fetching verifications:", error);
     }
@@ -26,8 +28,15 @@ function VerifyHostList() {
     fetchVerifications();
   }, []);
 
+  const hdlLogout = () => {
+    logoutAdmin();
+    navigate("/");
+  };
+
   return (
     <div>
+      <button onClick={hdlLogout}>Logout</button>
+
       <h2>Verification List</h2>
       {verifications.length > 0 ? (
         <table border="1" cellPadding="10" cellSpacing="0">
@@ -50,10 +59,14 @@ function VerifyHostList() {
                 <td>{verification.adminId || "Not assigned"}</td>
                 <td>{verification.hostId}</td>
                 <td>{new Date(verification.createdAt).toLocaleString()}</td>
-                <td>{verification.verifiedAt ? new Date(verification.verifiedAt).toLocaleString() : "Not verified"}</td>
                 <td>
-                <Link to={`/verify/detail/${verification.id}`}>
-                  <button>detail</button>
+                  {verification.verifiedAt
+                    ? new Date(verification.verifiedAt).toLocaleString()
+                    : "Not verified"}
+                </td>
+                <td>
+                  <Link to={`/verify/detail/${verification.id}`}>
+                    <button>detail</button>
                   </Link>
                 </td>
               </tr>
