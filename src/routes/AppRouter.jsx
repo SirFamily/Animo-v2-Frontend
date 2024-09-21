@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import LoginAdmin from "../pages/ADMIN/Login";
 import RegisterAdmin from "../pages/ADMIN/Register";
 import VerifyHost from "../pages/ADMIN/vertify/verify_host";
+import VerifyDetail from "../pages/ADMIN/vertify/verify_detail";
 
 import List_host from "../pages/list_host/List_host";
 import Dashboard from "../pages/dashboard/Dashboard";
@@ -65,7 +66,10 @@ const adminRouter = createBrowserRouter([
         <Outlet />
       </>
     ),
-    children: [{ index: true, element: <VerifyHost /> }],
+    children: [
+      { index: true, element: <VerifyHost /> },
+      { path: "verify/detail/:id", element: <VerifyDetail /> },
+    ],
   },
 ]);
 
