@@ -63,7 +63,7 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(hosts) && hosts.length > 0 ? (
+          {hosts && hosts.length > 0 ? (
             hosts.map((host, index) => (
               <tr key={index} onClick={() => onHostSelect(host.id)}>
                 <td>

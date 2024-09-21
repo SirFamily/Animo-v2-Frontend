@@ -7,9 +7,11 @@ import Features_list from "./features/Features_list";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import Hamster from "../../../component/loading/Hamster"; // Hamster loading component
+import Modelpopup from "../../../component/Modelpopup";
 
 function Hosts() {
-  const [hasHostData, setHasHostData] = useState(false);
+  const [hosts, setHosts] = useState([]); // Store hosts data
   const [selectedHostId, setSelectedHostId] = useState(null);
   const { user } = useAuth();
   const uid = user.id;
@@ -25,10 +27,10 @@ function Hosts() {
           },
         }
       );
-      const hosts = response.data.data;
-      setHasHostData(hosts && hosts.length > 0);
-      if (hosts && hosts.length > 0) {
-        setSelectedHostId(hosts[0].id); 
+      const hostsData = response.data.data;
+      setHosts(hostsData); // Store hosts data
+      if (hostsData && hostsData.length > 0) {
+        setSelectedHostId(hostsData[0].id);
       }
     } catch (error) {
       console.error("Error fetching hosts:", error);
@@ -39,12 +41,19 @@ function Hosts() {
     fetchHosts();
   }, [uid]);
 
-  const handleHostsUpdate = (hosts) => {
-    setHasHostData(hosts.length > 0);
-    if (hosts.length > 0) {
-      setSelectedHostId(hosts[0].id); 
+  const handleHostsUpdate = (updatedHosts) => {
+    setHosts(updatedHosts);
+    if (updatedHosts.length > 0) {
+      setSelectedHostId(updatedHosts[0].id);
     }
   };
+
+  // Check if the selected host has a pending verification status
+  const isPending = hosts.some(
+    (host) =>
+      host.verifyHosts &&
+      host.verifyHosts.some((verify) => verify.verify_status === "Pending")
+  );
 
   return (
     <div className={csslayer.container}>
@@ -56,7 +65,7 @@ function Hosts() {
             onHostSelect={setSelectedHostId}
             handleHostUpdate={fetchHosts}
           />
-          {!hasHostData && (
+          {hosts.length === 0 && (
             <div className={csslayer.button_container}>
               <Link to="create-host">
                 <button className={csslayer.bt}>Add host</button>
@@ -64,24 +73,46 @@ function Hosts() {
             </div>
           )}
         </div>
-        {hasHostData && selectedHostId && (
-          <div className={csslayer.container_layer_buttom_host}>
-            <div>
-              <div className={csslayer.container_in_l_button_host}>
-                <Room_list hostId={selectedHostId} />
-                <div className={csslayer.button_container}>
-                  <Link to="create-host/room">
-                    <button className={csslayer.bt}>Add Room</button>
-                  </Link>
+        {isPending ? (
+          <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            backgroundColor: "#FFFF",
+            borderRadius: "15px",
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", 
+            paddingTop: "20px"
+          }}
+        >
+          <Hamster  />
+          <h1 style={{ color: "#00B2CA" }}>
+            อยู่ในระหว่างการยืนยัน
+          </h1>
+        </div>
+        
+        ) : (
+          hosts.length > 0 &&
+          selectedHostId && (
+            <div className={csslayer.container_layer_buttom_host}>
+              <div>
+                <div className={csslayer.container_in_l_button_host}>
+                  <Room_list hostId={selectedHostId} />
+                  <div className={csslayer.button_container}>
+                    <Link to="create-host/room">
+                      <button className={csslayer.bt}>Add Room</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className={csslayer.container_in_r_button_host}>
+                  <Features_list />
                 </div>
               </div>
             </div>
-            <div>
-              <div className={csslayer.container_in_r_button_host}>
-                <Features_list />
-              </div>
-            </div>
-          </div>
+          )
         )}
       </div>
     </div>
