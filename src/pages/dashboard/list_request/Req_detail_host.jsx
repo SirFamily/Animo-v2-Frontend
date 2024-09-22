@@ -96,22 +96,22 @@ function Req_detail_host() {
           </div>
         ))}
         <div className={styles.userDetail}>
-          <h3 className={styles.subTitle}>รายละเอียดผู้ใช้</h3>
+          <h3 className={styles.subTitle}>รายละเอียดผู้จอง</h3>
           <img
-            src={request.host?.user?.url}
-            alt={request.host?.user?.firstName}
+            src={request.user?.url}
+            alt={request.user?.firstName}
             className={styles.userImage}
           />
           <div className={styles.userInfo}>
             <p>
-              <strong>ชื่อ:</strong> {request.host?.user?.firstName}{" "}
-              {request.host?.user?.lastName}
+              <strong>ชื่อ:</strong> {request.user?.firstName}{" "}
+              {request.user?.lastName}
             </p>
             <p>
-              <strong>อีเมล:</strong> {request.host?.user?.email}
+              <strong>อีเมล:</strong> {request.user?.email}
             </p>
             <p>
-              <strong>เบอร์:</strong> {request.host?.user?.phone}
+              <strong>เบอร์:</strong> {request.user?.phone}
             </p>
           </div>
         </div>
