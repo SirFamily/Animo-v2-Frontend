@@ -1,4 +1,4 @@
-/* Container หลัก */
+
 .container {
   max-width: 900px;
   margin: 40px auto;
@@ -9,7 +9,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* หัวข้อหลัก */
+
 h2 {
   text-align: center;
   font-size: 28px;
@@ -18,7 +18,7 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* กล่อง (Card) */
+
 .card {
   background-color: #ffffff;
   padding: 20px;
@@ -27,7 +27,7 @@ h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* ข้อมูลในกล่อง */
+
 .card p {
   font-size: 16px;
   color: #555;
@@ -38,7 +38,7 @@ h2 {
   color: #333;
 }
 
-/* การจัดการข้อมูลโฮสต์ */
+
 .hostInfo {
   margin-top: 30px;
 }
@@ -51,13 +51,13 @@ h2 {
   color: #555;
 }
 
-/* ไอคอนสำหรับพิกัด */
+
 .coordinates i {
   color: #2196F3;
   font-size: 20px;
 }
 
-/* กล่องรูปภาพโฮสต์ */
+
 .photosContainer {
   display: flex;
   flex-wrap: wrap;
@@ -87,26 +87,17 @@ h2 {
   font-size: 16px;
 }
 
-/* ปุ่ม Approve/Reject */
 .actions {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 0 10px;
-  transition: all 0.3s ease;
-}
-
 .approveButton {
   background-color: #4CAF50;
+  margin: 5px;
+  border: none;
+  padding: 8px 16px;
   color: white;
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
 }
@@ -115,17 +106,20 @@ button {
   background-color: #45a049;
 }
 
-.rejectButton {
+.rejectButton button {
   background-color: #f44336;
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
   color: white;
   box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
 }
 
-.rejectButton:hover {
+.rejectButton button:hover {
   background-color: #e53935;
+  border: none;
 }
 
-/* Loading Message */
 .loadingMessage {
   text-align: center;
   font-size: 18px;
@@ -133,7 +127,6 @@ button {
   padding: 20px 0;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 15px;
@@ -154,11 +147,5 @@ button {
 
   .actions {
     flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px 0;
   }
 }

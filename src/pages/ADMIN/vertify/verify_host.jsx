@@ -44,9 +44,8 @@ function VerifyHostList() {
     navigate("/");
   };
 
-  // ฟังก์ชันช่วยในการแสดงตาราง
   const renderTable = (verifications) => (
-    <table border="1" cellPadding="10" cellSpacing="0">
+    <table className={verifyhost.table} border="1" cellPadding="10" cellSpacing="0">
       <thead>
         <tr>
           <th>ID</th>
@@ -73,7 +72,9 @@ function VerifyHostList() {
             </td>
             <td>
               <Link to={`/verify/detail/${verification.id}`}>
-                <button>Detail</button>
+                <div className={verifyhost.button02}>
+                  <button>Detail</button>
+                </div>
               </Link>
             </td>
           </tr>
@@ -81,23 +82,29 @@ function VerifyHostList() {
       </tbody>
     </table>
   );
+  
 
   return (
     <div className={verifyhost.body}>
       <h2>Verification List</h2>
-
-      {/* ปุ่มเปิด/ปิดการมองเห็นของตาราง Pending */}
+      <div className={verifyhost.allbutton}>
+      <div className={verifyhost.button01}>
       <button onClick={() => setShowPending(!showPending)}>
         {showPending ? "ซ่อนตาราง Pending" : "โชว์ตาราง Pending"}
       </button>
-      {/* ปุ่มเปิด/ปิดการมองเห็นของตาราง Approved */}
+      </div>
+      <div className={verifyhost.button01}>
       <button onClick={() => setShowApproved(!showApproved)}>
         {showApproved ? "ซ่อนตาราง Approved" : "โชว์ตาราง Approved"}
       </button>
-            {/* ปุ่มเปิด/ปิดการมองเห็นของตาราง Rejected */}
-            <button onClick={() => setShowRejected(!showRejected)}>
+      </div>
+      <div className={verifyhost.button01}>
+      <button onClick={() => setShowRejected(!showRejected)}>
         {showRejected ? "ซ่อนตาราง Rejected" : "โชว์ตาราง Rejected"}
       </button>
+      </div>
+      </div>
+      
       {showPending && (
         <>
           <h3>Pending Verifications</h3>

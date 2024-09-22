@@ -120,7 +120,9 @@ function VerifyDetail() {
         </button>
 
         {/* Reject button (Modal Component) */}
+        <div className={styles.rejectButton} >
         <VerifyReject id={id} onReject={handleRejectUpdate} />
+        </div>
       </div>
     </div>
   );
