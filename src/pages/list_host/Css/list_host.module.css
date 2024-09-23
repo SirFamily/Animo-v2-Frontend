@@ -2,73 +2,58 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   height: 100vh;
 }
 
 .filterSection {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding-left: 60px;
   background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 25px;
+  margin: 20px;
+}
+
+.filterSection01 {
   display: flex;
-  justify-content: space-between; 
   align-items: center;
-  margin-bottom: 20px;
+  gap: 20px;
+}
+.filterSection01 input {
+  margin-left: 10px;
+  padding-left: 15px;
+}
+
+.filterSection01 select, input {
+  font-size: 16px;
+  height: 30px; 
+  padding: 0; 
+  border: 1px solid #ccccccb5;
+  border-radius: 15px;
 }
 
 .searchBar {
   display: flex;
-  margin-right: 10px;
-  justify-content: flex-end; 
-  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
 }
 
+.filterSection01 input[type="number"] {
+  width: auto;
+  width: 40px; 
+}
+
+
 .BackgroundCardGrid {
-  background-color: #A4D9E0;
+  background-color: #f5f6f6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   border-radius: 25px;
   width: 1200px;
   min-height:80%;
   height: auto;
   padding: 40px;
-}
-
-.filterTags {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  flex-grow: 2; 
-  justify-content: flex-start; 
-}
-
-.searchInput {
-  padding:0;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  min-width: 200px;
-  max-width: 300px;
-  box-sizing: border-box;
-}
-
-.filterSelect {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  min-width: 200px;
-  max-width: 300px;
-  box-sizing: border-box;
-}
-
-.filterTags input[type="number"] {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  min-width: 200px;
-  max-width: 300px;
-  box-sizing: border-box;
 }
 
 .cardGrid {
@@ -105,21 +90,4 @@
 .cardLocation {
   display: flex;
   justify-content: space-between;
-}
-
-@media (max-width: 768px) {
-  .filterSection {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filterTags {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .searchBar {
-    width: 100%;
-    margin-bottom: 15px;
-  }
 }
