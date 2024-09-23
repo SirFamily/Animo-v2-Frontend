@@ -1,4 +1,4 @@
-/* จัดรูปแบบของ container */
+
 .body {  
   max-width: 1100px;
   width: auto;
@@ -12,16 +12,15 @@
   overflow: hidden;  
 }
 
-/* สไตล์สำหรับหัวข้อ */
-h2, h3 {
+.body h2, h3 {
 text-align: center;
 color: #333;
 }
 
-/* ปุ่มทั้งหมด */
+
 .allbutton {
 display: flex;
-justify-content: center;  /* จัดให้อยู่ตรงกลาง */
+justify-content: center;  
 margin-bottom: 20px;
 }
 
@@ -32,7 +31,7 @@ color: white;
 padding: 8px 16px;
 text-align: center;
 font-size: 16px;
-margin: 0 5px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+margin: 0 5px; 
 cursor: pointer;
 border-radius: 5px;
 }
@@ -41,7 +40,6 @@ border-radius: 5px;
 background-color: #45a049;
 }
 
-/* จัดรูปแบบตาราง */
 .table {
 width: 100%;
 border-collapse: collapse;
@@ -73,7 +71,7 @@ color: #555;
 padding: 5px 15px;
 text-align: center;
 }
-p {
+.body p {
 color: #787878;
 text-align: center;
 }
