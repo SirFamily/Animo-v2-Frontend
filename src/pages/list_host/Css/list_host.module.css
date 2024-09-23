@@ -2,13 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ffffff;
+  height: 100vh;
 }
 
 .filterSection {
   width: 100%;
   max-width: 1200px;
   padding: 20px;
-  background-color: #F7F9FA;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between; 
   align-items: center;
@@ -22,6 +24,15 @@
   flex-grow: 1;
 }
 
+.BackgroundCardGrid {
+  background-color: #A4D9E0;
+  border-radius: 25px;
+  width: 1200px;
+  min-height:80%;
+  height: auto;
+  padding: 40px;
+}
+
 .filterTags {
   display: flex;
   gap: 10px;
@@ -31,7 +42,7 @@
 }
 
 .searchInput {
-  padding: 10px;
+  padding:0;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -41,7 +52,7 @@
 }
 
 .filterSelect {
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -70,11 +81,12 @@
 
 .card {
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 15px;
   text-align: left;
   font-size: 14px;
+  color: #000;
 }
 
 .cardImage {
@@ -82,6 +94,17 @@
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.cardTitle {
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.cardLocation {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {

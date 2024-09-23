@@ -115,28 +115,26 @@ function Pets_edit({ onClose, pet, setPetData }) {
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        <h2>แก้ไขข้อมูลสัตว์เลี้ยง</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>เพิ่มสัตว์เลี้ยง</h2>
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>ชื่อสัตว์เลี้ยง:</label>
             <input
               type="text"
               name="petName"
-              placeholder='นกเป็ดน้ำ'
+              placeholder='ชื่อสัตว์เลี้ยง'
               value={input.petName}
               onChange={handleChange}
               required
             />
           </div>
           <div className={styles.formGroup}>
-            <label>ประเภท:</label>
             <select
               name="species"
               value={input.species}
               onChange={handleSpeciesChange}
               required
             >
-              <option value="">เลือกประเภท</option>
+              <option value="">ประเภท</option>
               {speciesList.species.map((species) => (
                 <option key={species.id} value={species.name}>
                   {species.name}
@@ -145,7 +143,6 @@ function Pets_edit({ onClose, pet, setPetData }) {
             </select>
           </div>
           <div className={styles.formGroup}>
-            <label>สายพันธุ์:</label>
             <select
               name="breed"
               value={input.breed}
@@ -153,7 +150,7 @@ function Pets_edit({ onClose, pet, setPetData }) {
               required
               disabled={!input.species}
             >
-              <option value="">เลือกสายพันธุ์</option>
+              <option value="">สายพันธุ์</option>
               {getBreedsForSpecies(input.species).map((breed, index) => (
                 <option key={index} value={breed}>
                   {breed}
@@ -161,34 +158,33 @@ function Pets_edit({ onClose, pet, setPetData }) {
               ))}
             </select>
           </div>
+          <div className={styles.DuoformGroup}>
           <div className={styles.formGroup}>
-            <label>น้ำหนัก:</label>
             <input
               type="text"
               name="weight"
-              placeholder="123.45"
+              placeholder="น้ำหนัก"
               value={input.weight}
               onChange={handleWeightChange}
             />
           </div>
           <div className={styles.formGroup}>
-            <label>ส่วนสูง:</label>
             <input
               type="text"
               name="height"
-              placeholder="123.45"
+              placeholder="ส่วนสูง"
               value={input.height}
               onChange={handleHeightChange}
             />
           </div>
+          </div>
           <div className={styles.formGroup}>
-            <label>เพศ:</label>
             <select
               name="gender"
               value={input.gender}
               onChange={handleChange}
             >
-              <option value="">เลือกเพศ</option>
+              <option value="">เพศ</option>
               <option value="ชาย">ชาย</option>
               <option value="หญิง">หญิง</option>
             </select>
@@ -203,9 +199,9 @@ function Pets_edit({ onClose, pet, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>ประวัติสัตว์เลี้ยง:</label>
             <textarea
               name="petHistory"
+              placeholder="ประวัติสัตว์เลี้ยง"
               value={input.petHistory}
               onChange={handleChange}
             />
@@ -218,9 +214,15 @@ function Pets_edit({ onClose, pet, setPetData }) {
           <div className={styles.formGroup}>
             <label>รูปถ่าย:</label>
             <input type="file" onChange={handleFileChange} />
+          </div> 
+          <div className={styles.allButton}>
+          <button className={styles.submitButton} type="submit">
+            บันทึก
+          </button>
+          <button className={styles.closeButton} onClick={onClose}>
+            ปิด
+          </button>
           </div>
-          <button className={styles.submitButton} type="submit">บันทึก</button>
-          <button className={styles.closeButton} onClick={onClose}>ปิด</button>
         </form>
       </div>
     </Modelpopup>

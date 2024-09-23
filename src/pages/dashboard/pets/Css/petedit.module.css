@@ -1,19 +1,26 @@
-.formContainer {
+  .formContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #f9f9f9;
     width: 400px;
     margin: 0 auto;
-    position: relative;
   }
   
   .formContainer h2 {
     margin-bottom: 20px;
     color: #333;
+  }
+  .DuoformGroup {
+    display: flex;
+    gap: 8%;
+  }
+  
+  .DuoformGroup .formGroup input {
+    width: 98%;
   }
   
   .formGroup {
@@ -29,12 +36,21 @@
   }
   
   .formGroup input,
-  .formGroup textarea,
-  .formGroup select {
+  .formGroup textarea {
     width: 100%;
+    padding-left: 40px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
+    background-color: #ffffff;
+  }
+  
+  .formGroup select {
+    width: 105%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #ffffff;
   }
   
   .formGroup textarea {
@@ -42,32 +58,43 @@
     min-height: 100px;
   }
   
-  .imagePreview {
-    margin-bottom: 15px;
+  .allButton {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
   }
   
   .submitButton {
-    background-color: #28a745;
+    background-color: #81cfd9;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    width: 35%;
     cursor: pointer;
     font-size: 16px;
   }
   
   .submitButton:hover {
-    background-color: #218838;
+    background-color: #A4D9E0;
   }
   
   .closeButton {
-    top: 10px;
-    right: 10px;
-    background: none;
+    background-color: #ebd963;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    font-size: 16px;
+    border-radius: 5px;
+    width: 35%;
     cursor: pointer;
-    color: #000000;
+    font-size: 16px;
   }
   
+  .closeButton:hover {
+    background-color: #f1e179;
+  } 
+  
+  .imagePreview {
+    margin-bottom: 15px;
+  }
   
