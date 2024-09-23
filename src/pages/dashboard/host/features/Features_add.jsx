@@ -33,26 +33,26 @@ function Features_add({ onClose, refreshFeatures }) {
         <h2 className={styles.title}>เพิมบริการเสริม</h2>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="ชื่อบริการเสริม"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className={styles.input}
         />
         <input
           type="text"
-          placeholder="Price"
+          placeholder="ราคา"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           className={styles.input}
         />
-        <select
+        {/* <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className={styles.select}
         >
           <option value="ready">พร้อม</option>
           <option value="not ready">ยังไม่พร้อม</option>
-        </select>
+        </select> */}
         <div className={styles.buttonGroup}>
           <button onClick={handleAdd} className={styles.button}>เพิ่ม</button>
           <button onClick={onClose} className={styles.button}>ปิด</button>

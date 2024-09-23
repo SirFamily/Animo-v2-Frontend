@@ -151,31 +151,32 @@ function Host_add() {
 
   return (
     <div className={styles.container}>
+      <h1>เพิ่มสถานที่พัก</h1>
       <div className={styles.progress}>
         <div
           className={`${styles.step} ${step >= 1 ? styles.active : ""}`}
           data-step="1"
-          data-title="Name"
+          data-title="ชื่อ"
         ></div>
         <div
           className={`${styles.step} ${step >= 2 ? styles.active : ""}`}
           data-step="2"
-          data-title="Address"
+          data-title="ที่อยู๋"
         ></div>
         <div
           className={`${styles.step} ${step >= 3 ? styles.active : ""}`}
           data-step="3"
-          data-title="Description"
+          data-title="คำอธิบาย"
         ></div>
         <div
           className={`${styles.step} ${step >= 4 ? styles.active : ""}`}
           data-step="4"
-          data-title="Image"
+          data-title="รูปภาพ"
         ></div>
         <div
           className={`${styles.step} ${step >= 5 ? styles.active : ""}`}
           data-step="5"
-          data-title="Confirm"
+          data-title="ยืนยันข้อมูล"
         ></div>
       </div>
 
@@ -216,8 +217,9 @@ function Host_add() {
               value={hostData.address}
               onChange={handleChange}
               required
+              disabled
             />
-            <label>ละติจูด</label>
+            {/* <label>ละติจูด</label>
             <input
               type="text"
               name="lat"
@@ -234,7 +236,7 @@ function Host_add() {
               onChange={handleChange}
               required
               disabled
-            />
+            /> */}
             <MapContainer
               className={styles.mapContainer}
               center={[13, 100]}

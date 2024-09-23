@@ -98,36 +98,37 @@ function Room_add() {
 
   return (
     <div className={styles.container}>
+      <h1>เพื่อห้อง</h1>
       <div className={styles.progress}>
         <div
           className={`${styles.step} ${step >= 1 ? styles.active : ""}`}
           data-step="1"
-          data-title="Name"
+          data-title="ชื่อ"
         ></div>
         <div
           className={`${styles.step} ${step >= 2 ? styles.active : ""}`}
           data-step="2"
-          data-title="Quantity"
+          data-title="จำนวน"
         ></div>
         <div
           className={`${styles.step} ${step >= 3 ? styles.active : ""}`}
           data-step="3"
-          data-title="Price"
+          data-title="ราคา"
         ></div>
         <div
           className={`${styles.step} ${step >= 4 ? styles.active : ""}`}
           data-step="4"
-          data-title="Image"
+          data-title="รูป"
         ></div>
         <div
           className={`${styles.step} ${step >= 5 ? styles.active : ""}`}
           data-step="5"
-          data-title="Support Pet"
+          data-title="สัตว์เลี้ยงที่รองรับ"
         ></div>
         <div
           className={`${styles.step} ${step >= 6 ? styles.active : ""}`}
           data-step="6"
-          data-title="Confirm"
+          data-title="ยืนยัน"
         ></div>
       </div>
 
@@ -228,12 +229,12 @@ function Room_add() {
                 </option>
               ))}
             </select>
-            <label>คำอธิบาย การรองรับสัตว์เลี้ยง</label>
+            {/* <label>คำอธิบาย การรองรับสัตว์เลี้ยง</label>
             <textarea
               name="supportPetDescription"
               value={roomData.supportPetDescription}
               onChange={handleChange}
-            ></textarea>
+            ></textarea> */}
           </div>
         )}
 
