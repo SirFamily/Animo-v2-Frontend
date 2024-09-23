@@ -110,23 +110,25 @@ function Pets_add({ onClose, setPetData }) {
         <h2>เพิ่มสัตว์เลี้ยง</h2>
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
+          <label>ชื่อสัตว์เลี้ยง:</label>
             <input
               type="text"
               name="petName"
-              placeholder='ชื่อสัตว์เลี้ยง'
+              placeholder='เป่าเปา'
               value={input.petName}
               onChange={handleChange}
               required
             />
           </div>
           <div className={styles.formGroup}>
+          <label>ประเภท:</label>
             <select
               name="species"
               value={input.species}
               onChange={handleSpeciesChange}
               required
             >
-              <option value="">ประเภท</option>
+              <option value="">เลือกประเภท</option>
               {speciesList.species.map((species) => (
                 <option key={species.id} value={species.name}>
                   {species.name}
@@ -135,6 +137,7 @@ function Pets_add({ onClose, setPetData }) {
             </select>
           </div>
           <div className={styles.formGroup}>
+          <label>สายพันธุ์:</label>
             <select
               name="breed"
               value={input.breed}
@@ -142,7 +145,7 @@ function Pets_add({ onClose, setPetData }) {
               required
               disabled={!input.species}
             >
-              <option value="">สายพันธุ์</option>
+              <option value="">เลือกสายพันธุ์</option>
               {getBreedsForSpecies(input.species).map((breed, index) => (
                 <option key={index} value={breed}>
                   {breed}
@@ -152,31 +155,34 @@ function Pets_add({ onClose, setPetData }) {
           </div>
           <div className={styles.DuoformGroup}>
           <div className={styles.formGroup}>
+          <label>น้ำหนัก:</label>
             <input
               type="text"
               name="weight"
-              placeholder="น้ำหนัก"
+              placeholder="5.2 กก."
               value={input.weight}
               onChange={handleWeightChange}
             />
           </div>
           <div className={styles.formGroup}>
+          <label>ส่วนสูง:</label>
             <input
               type="text"
               name="height"
-              placeholder="ส่วนสูง"
+              placeholder="15 ซม."
               value={input.height}
               onChange={handleHeightChange}
             />
           </div>
           </div>
           <div className={styles.formGroup}>
+            <label>เพศ:</label>
             <select
               name="gender"
               value={input.gender}
               onChange={handleChange}
             >
-              <option value="">เพศ</option>
+              <option value="">เลือกเพศ</option>
               <option value="ชาย">ชาย</option>
               <option value="หญิง">หญิง</option>
             </select>
@@ -191,9 +197,9 @@ function Pets_add({ onClose, setPetData }) {
             />
           </div>
           <div className={styles.formGroup}>
+          <label>ประวัติสัตว์เลี้ยง:</label>
             <textarea
               name="petHistory"
-              placeholder="ประวัติสัตว์เลี้ยง"
               value={input.petHistory}
               onChange={handleChange}
             />

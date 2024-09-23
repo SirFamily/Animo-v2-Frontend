@@ -65,33 +65,35 @@
   }
  
   .submitButton {
-    background-color: #81cfd9;
-    color: white;
+    background-color: #489ca5;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 35%;
     cursor: pointer;
     font-size: 16px;
   }
   
   .submitButton:hover {
-    background-color: #A4D9E0;
+    background-color: #ffffff;
   }
   
   .closeButton {
-    background-color: #ebd963;
-    color: white;
+    background-color: #b9b9b9;
+    color: rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 35%;
     cursor: pointer;
     font-size: 16px;
   }
 
   .closeButton:hover {
-    background-color: #f1e179;
+    background-color: #ffffff;
   } 
   
   

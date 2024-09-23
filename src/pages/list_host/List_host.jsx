@@ -78,31 +78,16 @@ function ListHost() {
   return (
     <div className={styles.container}>
       <div className={styles.filterSection}>
-        <div className={styles.searchBar}>
-          <p>ค้นหาชื่อที่พัก:</p>
-          <input
-            type="text"
-            className={styles.searchInput}
-            value={typedSearchName}
-            onChange={handleSearchInput}
-          />
-        </div>
-        <div className={styles.filterTags}>
+        <div className={styles.filterSection01}>
+          <div className={styles.searchBar}>
+            <p>ค้นหาชื่อที่พัก:</p>
+            <input
+              type="text"
+              value={typedSearchName}
+              onChange={handleSearchInput}
+            />
+          </div>
           <select
-            className={styles.filterSelect}
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-          >
-            <option value="">เลือกประเภทของที่พัก</option>
-            {housing_types.housing_types.map((type) => (
-              <option key={type.id} value={type.type}>
-                {type.type}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className={styles.filterSelect}
             value={selectedProvince}
             onChange={(e) => setSelectedProvince(e.target.value)}
           >
@@ -113,9 +98,20 @@ function ListHost() {
               </option>
             ))}
           </select>
-
+        </div>
+        <div className={styles.filterSection01}>
           <select
-            className={styles.filterSelect}
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+          >
+            <option value="">เลือกประเภทของที่พัก</option>
+            {housing_types.housing_types.map((type) => (
+              <option key={type.id} value={type.type}>
+                {type.type}
+              </option>
+            ))}
+          </select>
+          <select
             value={selectedPet}
             onChange={(e) => setSelectedPet(e.target.value)}
           >
@@ -127,55 +123,56 @@ function ListHost() {
             ))}
           </select>
           <div className={styles.searchBar}>
-          <p>ค้นหาชื่อที่พัก:</p>
-          <input
-            type="number"
-            placeholder="จำนวนสัตว์เลี้ยง"
-            className={styles.searchInput}
-            value={petQuantity}
-            onChange={(e) => setPetQuantity(parseInt(e.target.value, 10))}
-            min="1"
-          />
+            <p>จำนวนสัตว์เลี้ยง:</p>
+            <input
+              type="number"
+              placeholder="จำนวนสัตว์เลี้ยง"
+              className={styles.searchInput}
+              value={petQuantity}
+              onChange={(e) => setPetQuantity(parseInt(e.target.value, 10))}
+              min="1"
+            />
           </div>
         </div>
       </div>
       <div className={styles.BackgroundCardGrid}>
-      <div className={styles.cardGrid}>
-        {filteredHosts.length === 0 ? (
-          <p>ไม่มีข้อมูลที่พัก</p>
-        ) : (
-          filteredHosts.map((host) => (
-            <Link
-              key={host.id}
-              to={`/host/${host.id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <div key={host.id} className={styles.card}>
-                <img
-                  src={
-                    host.photosHost[0]?.url || "https://via.placeholder.com/200"
-                  }
-                  alt={host.name}
-                  className={styles.cardImage}
-                />
-                <div className={styles.cardTitle}>{host.name}</div>
+        <div className={styles.cardGrid}>
+          {filteredHosts.length === 0 ? (
+            <p>ไม่มีข้อมูลที่พัก</p>
+          ) : (
+            filteredHosts.map((host) => (
+              <Link
+                key={host.id}
+                to={`/host/${host.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <div key={host.id} className={styles.card}>
+                  <img
+                    src={
+                      host.photosHost[0]?.url ||
+                      "https://via.placeholder.com/200"
+                    }
+                    alt={host.name}
+                    className={styles.cardImage}
+                  />
+                  <div className={styles.cardTitle}>{host.name}</div>
 
-                <div className={styles.cardLocation}>
-                  <span>📍 {host.address.split(", ")[1]}</span>
-                  <span>🏠 {host.type}</span>
+                  <div className={styles.cardLocation}>
+                    <span>📍 {host.address.split(", ")[1]}</span>
+                    <span>🏠 {host.type}</span>
+                  </div>
+                  <div className={styles.cardPrice}>
+                    {host.rooms.length > 0
+                      ? `💵 ${host.rooms[0].price}–${Math.max(
+                          ...host.rooms.map((room) => room.price)
+                        )}$`
+                      : "N/A"}
+                  </div>
                 </div>
-                <div className={styles.cardPrice}>
-                  {host.rooms.length > 0
-                    ? `💵 ${host.rooms[0].price}–${Math.max(
-                        ...host.rooms.map((room) => room.price)
-                      )}$`
-                    : "N/A"}
-                </div>
-              </div>
-            </Link>
-          ))
-        )}
-      </div>
+              </Link>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
