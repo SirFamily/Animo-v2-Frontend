@@ -219,24 +219,6 @@ function Host_add() {
               required
               disabled
             />
-            {/* <label>ละติจูด</label>
-            <input
-              type="text"
-              name="lat"
-              value={hostData.lat}
-              onChange={handleChange}
-              required
-              disabled
-            />
-            <label>ลองจิจูด</label>
-            <input
-              type="text"
-              name="long"
-              value={hostData.long}
-              onChange={handleChange}
-              required
-              disabled
-            /> */}
             <MapContainer
               className={styles.mapContainer}
               center={[13, 100]}

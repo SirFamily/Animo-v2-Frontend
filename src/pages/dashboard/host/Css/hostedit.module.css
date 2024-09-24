@@ -1,76 +1,103 @@
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    width: 400px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .formContainer h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
-  .formGroup label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .formGroup input,
-  .formGroup textarea,
-  .formGroup select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .formGroup textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  .imagePreview {
-    margin-bottom: 15px;
-  }
-  
-  .submitButton {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .submitButton:hover {
-    background-color: #218838;
-  }
-  
-  .closeButton {
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    color: #000000;
-  }
-  
-  .mapContainer {
-    height: 400px;
-    width: 100%;
-  }
+/* Host_edit.module.css */
+
+.container {
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formTextarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between; /* จัดปุ่มให้อยู่ระหว่างขอบซ้ายและขวา */
+  margin-top: 20px;
+}
+
+.button,
+.button_back {
+  width: 48%; /* ปรับขนาดปุ่มให้อยู่ภายในขอบ */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bolder;
+  transition: background-color 0.3s ease;
+}
+
+.button {
+  background-color: #6fafb8;
+  color: #ffffff;
+  margin-left: 0; /* ชิดซ้าย */
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button:hover {
+  background-color: #d2d2d2;
+  color: #4ca3af;
+}
+
+.button_back {
+  background-color: #e2e2e2;
+  color: #6fafb8;
+  margin-right: 0; /* ชิดขวา */
+}
+
+.button_back:hover {
+  background-color: #4ca3af;
+  color: #ffffff;
+}
+
+.mapContainer {
+  margin-top: 20px;
+}
+
+.imagePreview {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.imagePreview img {
+  margin-right: 10px;
+  border-radius: 4px;
+}

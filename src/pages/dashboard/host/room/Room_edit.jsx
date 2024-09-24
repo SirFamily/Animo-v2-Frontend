@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Modelpopup from "../../../../component/Modelpopup";
-import axios from 'axios';
-import styles from './Css/roomedit.module.css';
+import axios from "axios";
+import styles from "./Css/roomedit.module.css";  
 
 function Room_edit({ onClose, room, handleRoomUpdate }) {
+  const [step, setStep] = useState(1); 
   const [input, setInput] = useState({
-    name: '',
-    quantity: '',
-    type: '',
-    price: '',
+    name: "",
+    quantity: "",
+    type: "",
+    price: "",
   });
 
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     setInput({
-      name: room.name || '',
-      quantity: room.quantity || '',
-      type: room.type || '',
-      price: room.price || '',
+      name: room.name || "",
+      quantity: room.quantity || "",
+      type: room.type || "",
+      price: room.price || "",
     });
   }, [room]);
 
@@ -43,14 +44,14 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
     formData.append("price", input.price);
 
     if (imageFile) {
-      formData.append('image', imageFile);
+      formData.append("image", imageFile);
     }
 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/room/update/${room.id}`, 
-        formData, 
+        `${import.meta.env.VITE_API_URL}/room/update/${room.id}`,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,80 +60,128 @@ function Room_edit({ onClose, room, handleRoomUpdate }) {
         }
       );
       if (response.status === 200) {
-        alert('Room information updated successfully!');
+        alert("Room information updated successfully!");
         handleRoomUpdate();
         onClose();
       }
     } catch (error) {
-      console.error('Error updating room information:', error);
-      alert('Failed to update room information. Please try again.');
+      console.error("Error updating room information:", error);
+      alert("Failed to update room information. Please try again.");
     }
   };
+
+  const nextStep = () => setStep((prevStep) => prevStep + 1);
+  const prevStep = () => setStep((prevStep) => prevStep - 1);
 
   return (
     <Modelpopup>
       <div className={styles.formContainer}>
-        <h2>แก้ไขห้อง</h2>
+        <h2 className={styles.title}>แก้ไขห้อง</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label>ชื่อห้อง:</label>
-            <input
-              type="text"
-              name="name"
-              placeholder='Room Name'
-              value={input.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label>รองรับสัตว์เลี้ยง:</label>
-            <input
-              type="number"
-              name="quantity"
-              placeholder="1"
-              value={input.quantity}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label>ประเภทห้อง:</label>
-            <input
-              type="text"
-              name="type"
-              placeholder="Room Type"
-              value={input.type}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label>ราคา:</label>
-            <input
-              type="text"
-              name="price"
-              placeholder="123.45"
-              value={input.price}
-              onChange={handleChange}
-              required
-            />
-          </div>
 
-          {room.photosRoom && room.photosRoom.length > 0 && (
-            <div className={styles.imagePreview}>
-              {room.photosRoom.map((photo, index) => (
-                <img key={index} src={photo.url} alt={`Room ${index}`} width="64" height="64" />
-              ))}
-            </div>
+          {step === 1 && (
+            <>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>ชื่อห้อง:</label>
+                <input
+                  type="text"
+                  name="name"
+                  className={styles.formInput}
+                  placeholder="Room Name"
+                  value={input.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>รองรับสัตว์เลี้ยง:</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  className={styles.formInput}
+                  placeholder="1"
+                  value={input.quantity}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>ประเภทห้อง:</label>
+                <input
+                  type="text"
+                  name="type"
+                  className={styles.formInput}
+                  placeholder="Room Type"
+                  value={input.type}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>ราคา:</label>
+                <input
+                  type="text"
+                  name="price"
+                  className={styles.formInput}
+                  placeholder="123.45"
+                  value={input.price}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+             
+            </>
           )}
 
-          <div className={styles.formGroup}>
-            <label>รูปถ่าย: *ยังไม่สามารถเพิ่มลบหรือแก้ไขรูปภาพได้</label>
-            <input type="file" onChange={handleFileChange} />
+          {step === 2 && (
+            <>
+               {room.photosRoom && room.photosRoom.length > 0 && (
+                <div className={styles.imagePreview}>
+                  {room.photosRoom.map((photo, index) => (
+                    <img
+                      key={index}
+                      src={photo.url}
+                      alt={`Room ${index}`}
+                      className={styles.imageThumbnail}
+                    />
+                  ))}
+                </div>
+              )}
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>รูปถ่าย: *ยังไม่สามารถเพิ่มลบหรือแก้ไขรูปภาพได้</label>
+                <input
+                  type="file"
+                  className={styles.formInput}
+                  onChange={handleFileChange}
+                />
+              </div>
+            </>
+          )}
+
+          <div className={styles.buttonGroup}>
+            {step === 1 && (
+              <button type="button" className={styles.button_back} onClick={onClose}>
+                ปิด
+              </button>
+            )}
+            {step > 1 && (
+              <button type="button" className={styles.button} onClick={prevStep}>
+                ก่อนหน้า
+              </button>
+            )}
+            {step < 2 && (
+              <button type="button" className={styles.button} onClick={nextStep}>
+                ถัดไป
+              </button>
+            )}
+            {step === 2 && (
+              <button type="submit" className={styles.button}>
+                ยืนยัน
+              </button>
+            )}
           </div>
-          <button className={styles.submitButton} type="submit">บันทึก</button>
-          <button className={styles.closeButton} onClick={onClose}>ปิด</button>
         </form>
       </div>
     </Modelpopup>

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Modelpopup from "../../../component/Modelpopup";
 import axios from "axios";
-import styles from "./Css/hostedit.module.css"; 
 import housing_types from "../../../component/data/hostingtype.json";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
-  useMap,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import styles from "./Css/hostedit.module.css"; // Import CSS module
 
 function Host_edit({ onClose, host, handleHostUpdate }) {
+  const [step, setStep] = useState(1);
   const [input, setInput] = useState({
     name: "",
     type: "",
@@ -26,9 +26,8 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     description: "",
     publish: false,
   });
-
   const [imageFile, setImageFile] = useState(null);
-  const [submitting, setSubmitting] = useState(false); 
+  const [submitting, setSubmitting] = useState(false);
   const [position, setPosition] = useState(null);
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
         `https://api.longdo.com/map/services/address?lon=${lng}&lat=${lat}&noelevation=1&key=e7511f741ce6876a9fc6f0a1429dbdae`
       );
       const fetchedAddress = response.data;
-      console.log(fetchedAddress);
       const formattedAddress = `${fetchedAddress.country}, ${fetchedAddress.province}, ${fetchedAddress.district}, ${fetchedAddress.subdistrict}, ${fetchedAddress.postcode}`;
       setInput((prev) => ({
         ...prev,
@@ -121,6 +119,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     }
   };
 
+  // Map icon setup
   let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
@@ -130,15 +129,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
   L.Marker.prototype.options.icon = DefaultIcon;
 
   const LocationMarker = () => {
-    const map = useMap();
-
-    useEffect(() => {
-      if (position) {
-        map.flyTo(position, 14);
-      }
-    }, [position, map]);
-
-    useMapEvents({
+    const map = useMapEvents({
       async click(e) {
         const newLatLng = e.latlng;
         map.flyTo(newLatLng, 14);
@@ -156,143 +147,147 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
     );
   };
 
+  const nextStep = () => setStep((prevStep) => prevStep + 1);
+  const prevStep = () => setStep((prevStep) => prevStep - 1);
+
   return (
     <Modelpopup>
-      <div className={styles.formContainer}>
-        <h2>แก้ไขที่พัก</h2>
+      <div className={styles.container}>
+        <h2 className={styles.title}>แก้ไขที่พัก</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label>ชื่อ:</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter name"
-              value={input.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>ประเภท:</label>
-            <select
-              name="type"
-              value={input.type}
-              onChange={handleChange}
-              required
-              disabled={!input.type}
-            >
-              <option value="">เลือกประเภท</option>
-              {housing_types.housing_types.map((item) => (
-                <option key={item.id} value={item.type}>
-                  {item.type}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>ที่อยู่:</label>
-            <input
-              type="text"
-              name="address"
-              placeholder="Enter address"
-              value={input.address}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>ละติจูด:</label>
-            <input
-              type="text"
-              name="lat"
-              placeholder="Enter latitude"
-              value={input.lat}
-              onChange={handleChange}
-              required
-              disabled
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>ลองจิจูด:</label>
-            <input
-              type="text"
-              name="long"
-              placeholder="Enter longitude"
-              value={input.long}
-              onChange={handleChange}
-              required
-              disabled
-            />
-          </div>
-
-          <MapContainer
-            className={styles.mapContainer}
-            center={[input.lat || 13, input.long || 100]} 
-            zoom={5}
-            scrollWheelZoom={true}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <LocationMarker />
-          </MapContainer>
-
-          <div className={styles.formGroup}>
-            <label>คำอธิบาย:</label>
-            <textarea
-              name="description"
-              placeholder="Enter description"
-              value={input.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label>เผยแพร่:</label>
-            <input
-              type="checkbox"
-              name="publish"
-              checked={input.publish}
-              onChange={handleChange}
-            />
-          </div>
-
-          {host.photosHost && host.photosHost.length > 0 && (
-            <div className={styles.imagePreviewContainer}>
-              {host.photosHost.map((photo, index) => (
-                <div key={index} className={styles.imagePreview}>
-                  <img
-                    src={photo.url}
-                    alt={`Accommodation ${index + 1}`}
-                    width="64"
-                    height="64"
-                  />
-                </div>
-              ))}
+          {step === 1 && (
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>ชื่อ:</label>
+              <input
+                type="text"
+                name="name"
+                className={styles.formInput}
+                placeholder="Enter name"
+                value={input.name}
+                onChange={handleChange}
+                required
+              />
+              <label className={styles.formLabel}>ประเภท:</label>
+              <select
+                name="type"
+                className={styles.formSelect}
+                value={input.type}
+                onChange={handleChange}
+                required
+              >
+                <option value="">เลือกประเภท</option>
+                {housing_types.housing_types.map((item) => (
+                  <option key={item.id} value={item.type}>
+                    {item.type}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
-          <div className={styles.formGroup}>
-            <label>อัพโหลดรูปภาพ: *ยังไม่สามารถแก้ไขรูปได้</label>
-            <input type="file" onChange={handleFileChange} />
-          </div>
+          {step === 2 && (
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>ที่อยู่:</label>
+              <input
+                type="text"
+                name="address"
+                className={styles.formInput}
+                value={input.address}
+                onChange={handleChange}
+                required
+                disabled
+              />
+              <div className={styles.mapContainer}>
+                <MapContainer
+                  center={[input.lat || 13, input.long || 100]}
+                  zoom={5}
+                  scrollWheelZoom={true}
+                  style={{ height: "400px", width: "100%" }}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <LocationMarker />
+                </MapContainer>
+              </div>
+            </div>
+          )}
 
-          <button
-            class={styles.submitButton}
-            type="submit"
-            disabled={submitting}
-          >
-            {submitting ? "Saving..." : "Save"}
-          </button>
-          <button className={styles.closeButton} onClick={onClose}>
-          ปิด
-          </button>
+          {step === 3 && (
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>คำอธิบาย:</label>
+              <textarea
+                name="description"
+                className={styles.formTextarea}
+                placeholder="Enter description"
+                value={input.description}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
+
+          {step === 4 && (
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>
+                รูปภาพ: *ยังไม่สามารถแก้ไขรูปได้
+              </label>
+              <input type="file" onChange={handleFileChange} />
+              {host.photosHost && host.photosHost.length > 0 && (
+                <div className={styles.imagePreview}>
+                  {host.photosHost.map((photo, index) => (
+                    <div key={index}>
+                      <img
+                        src={photo.url}
+                        alt={`Accommodation ${index + 1}`}
+                        style={{ width: "64px", height: "64px" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className={styles.buttonGroup}>
+            {step === 1 && (
+              <button
+                type="button"
+                onClick={onClose}
+                className={styles.button_back}
+              >
+                ปิด
+              </button>
+            )}
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={prevStep}
+                className={styles.button}
+              >
+                ก่อนหน้า
+              </button>
+            )}
+            {step < 4 && (
+              <button
+                type="button"
+                onClick={nextStep}
+                className={styles.button}
+              >
+                ถัดไป
+              </button>
+            )}
+            {step === 4 && (
+              <button
+                type="submit"
+                disabled={submitting}
+                className={styles.button}
+              >
+                {submitting ? "กำลังบันทึก..." : "ยืนยัน"}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </Modelpopup>
