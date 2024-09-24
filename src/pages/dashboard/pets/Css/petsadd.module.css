@@ -3,9 +3,9 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 20px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     width: 400px;
     margin: 0 auto;
   }
@@ -60,19 +60,20 @@
 
   .allButton {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 5%;
   }
  
   .submitButton {
-    background-color: #489ca5;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    color: rgb(0, 0, 0);
+    background-color: #4ca3af;
+    color: #ffffff;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
     width: 35%;
     cursor: pointer;
+    font-weight: bolder;
     font-size: 16px;
   }
   
@@ -81,19 +82,22 @@
   }
   
   .closeButton {
-    background-color: #b9b9b9;
+    background-color: #e2e2e2;
+    color: #6fafb8;
     color: rgb(0, 0, 0);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
     width: 35%;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bolder;
   }
 
   .closeButton:hover {
-    background-color: #ffffff;
+    background-color: #4ca3af;
+    color: #ffffff;
   } 
   
   
