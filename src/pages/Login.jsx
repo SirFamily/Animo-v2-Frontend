@@ -48,7 +48,7 @@ function Login() {
           X
         </Link>
         <div className={logincss.head}>
-          <p>สวัสดีและยินดีต้อนรับกลับมา</p>
+          <h2>สวัสดีและยินดีต้อนรับกลับมา</h2>
         </div>
         <form onSubmit={hdlSubmit}>
           <div className={logincss.login}>
@@ -91,7 +91,7 @@ function Login() {
               คุณยังไม่มีบัญชีใช่ไหม? <Link to="/register">ลงทะเบียน</Link>
             </p>
           </div>
-          <div className={logincss.google_facebook}>
+          {/* <div className={logincss.google_facebook}>
             <button className={logincss.google}>
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
@@ -106,7 +106,7 @@ function Login() {
               />
               <p>Facebook</p>
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
       <div className={logincss.cat}>

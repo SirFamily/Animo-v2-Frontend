@@ -2,13 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import logincss from "./Css/loginadmin.module.css"; 
+import logincss from "./Css/loginadmin.module.css";
 
 function Login() {
   const [input, setInput] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { setAdmin } = useAuth();
-  
+
   const handleChange = (e) => {
     setInput((prv) => ({ ...prv, [e.target.name]: e.target.value }));
   };
@@ -16,14 +16,20 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/login`, input);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/a/login`,
+        input
+      );
       const { token } = res.data;
       sessionStorage.setItem("token_admin", token);
-      const res2 = await axios.get(`${import.meta.env.VITE_API_URL}/auth/a/getad`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res2 = await axios.get(
+        `${import.meta.env.VITE_API_URL}/auth/a/getad`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setAdmin(res2.data);
       if (res.status === 200) {
         alert("Login successful");
@@ -91,7 +97,7 @@ function Login() {
               คุณยังไม่มีบัญชีใช่ไหม? <Link to="/register/a">ลงทะเบียน</Link>
             </p>
           </div>
-          <div className={logincss.google_facebook}>
+          {/* <div className={logincss.google_facebook}>
             <button className={logincss.google}>
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
@@ -106,7 +112,7 @@ function Login() {
               />
               <p>Facebook</p>
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
       <div className={logincss.cat}>

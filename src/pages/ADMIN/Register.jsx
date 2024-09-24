@@ -118,8 +118,9 @@ function Register() {
               required
             />
           </div>
-          <div>
-            <label >Phone:</label>
+
+          <div className={registercss.formGroup}>
+            <label>Phone</label>
             <input
               type="text"
               name="phone"
@@ -133,8 +134,8 @@ function Register() {
           </button>
         </form>
 
-        <p>
-          Already have an account? <Link to="/login/a">Login here</Link>
+        <p className={registercss.loginPrompt}>
+          Already have an account? <Link to="/login/a" className={registercss.loginLink}>Login here</Link>
         </p>
       </div>
     </div>
