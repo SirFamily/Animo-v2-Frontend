@@ -96,7 +96,6 @@ function VerifyDetail() {
       </div>
 
       <div className={styles.photosContainer}>
-        <h3>Host Photos</h3>
         {host.photosHost && host.photosHost.length > 0 ? (
           host.photosHost.map((photo) => (
             <div key={photo.id} className={styles.photoItem}>
@@ -110,20 +109,22 @@ function VerifyDetail() {
         )}
       </div>
 
-      {/* Approve button */}
-      <div className={styles.actions}>
-        <button 
-          className={styles.approveButton} 
-          onClick={handleApprove} 
-          disabled={loading || detail.verifyStatus === 'Approved'}>
-          {loading ? "Approving..." : detail.verifyStatus === 'Approved' ? "Already Approved" : "Approve"}
-        </button>
+      {/* Conditionally render approve and reject buttons if not already approved */}
+      {detail.verifyStatus !== 'Approved' && (
+        <div className={styles.actions}>
+          <button 
+            className={styles.approveButton} 
+            onClick={handleApprove} 
+            disabled={loading}>
+            {loading ? "Approving..." : "Approve"}
+          </button>
 
-        {/* Reject button (Modal Component) */}
-        <div className={styles.rejectButton} >
-        <VerifyReject id={id} onReject={handleRejectUpdate} />
+          {/* Reject button (Modal Component) */}
+          <div className={styles.rejectButton}>
+            <VerifyReject id={id} onReject={handleRejectUpdate} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
