@@ -150,6 +150,10 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
   const nextStep = () => setStep((prevStep) => prevStep + 1);
   const prevStep = () => setStep((prevStep) => prevStep - 1);
 
+  const togglePublish = () => {
+    setInput((prev) => ({ ...prev, publish: !prev.publish }));
+  };
+
   return (
     <Modelpopup>
       <div className={styles.container}>
@@ -182,6 +186,18 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
                   </option>
                 ))}
               </select>
+              <div className={styles.formGroup}>
+            <label className={styles.formLabel}>สถานะ</label>
+            <button
+            type="button"
+            onClick={togglePublish}
+            className={
+              input.publish ?  styles.buttonPublish : styles.buttonUnpublish 
+            }
+          >
+            {input.publish ? "เผยแพร่" : "ยกเลิกการเผยแพร่"}
+          </button>
+          </div>
             </div>
           )}
 
