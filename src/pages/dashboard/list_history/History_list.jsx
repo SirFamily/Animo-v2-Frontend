@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./Css/history_list.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 function History_list() {
+  const {user} = useAuth();
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const fetchHistory = async () => {
+    const getHistory = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/history/list/history`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          `${import.meta.env.VITE_API_URL}/history/list/history/${user.id}`
         );
         const combinedHistory = [
           ...response.data.datarent?.map(item => ({ ...item, type: "เช่า" })) || [],
@@ -22,11 +20,11 @@ function History_list() {
         ];
         setHistory(combinedHistory);
       } catch (error) {
-        console.error("Error fetching booking history:", error);
+        console.error("Error booking history:", error);
       }
     };
 
-    fetchHistory();
+    getHistory();
   }, []);
 
   return (

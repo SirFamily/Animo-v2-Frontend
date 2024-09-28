@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import housing_types from "../../component/data/hostingtype.json";
 import api_province from "../../component/data/api_province.json";
 import pet_data from "../../component/data/petdata.json";
+import useAuth from "../../hooks/useAuth";
 
 function ListHost() {
+  const { user } = useAuth();
   const [hosts, setHosts] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [typedSearchName, setTypedSearchName] = useState("");
@@ -17,25 +19,17 @@ function ListHost() {
   const [petQuantity, setPetQuantity] = useState(1);
 
   useEffect(() => {
-    const fetchHosts = async () => {
+    const getHosts = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/pre/host/list`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/pre/host/list/${user.id}`);
         setHosts(response.data.data);
-        console.log(response);
+        console.log(hosts);
       } catch (error) {
         console.error("Error fetching host data:", error);
       }
     };
 
-    fetchHosts();
+    getHosts();
   }, []);
 
   const filteredHosts = hosts.filter((host) => {

@@ -89,7 +89,7 @@ const userRouter = createBrowserRouter([
       { path: "dashboard/pets", element: <Pets /> },
       { path: "dashboard/host", element: <Host /> },
       { path: "dashboard/host/create-host", element: <Host_add /> },
-      { path: "dashboard/host/create-host/room", element: <Room_add /> },
+      { path: "dashboard/host/create-room/:hid", element: <Room_add /> },
       { path: "dashboard/request", element: <Request /> },
       { path: "dashboard/history", element: <History /> },
       { path: "dashboard/profile", element: <Profile /> },

@@ -24,6 +24,8 @@ function ProfileUser() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+  const uid = user.id
+
   useEffect(() => {
     if (user) {
       setUpdatedUser({
@@ -76,15 +78,12 @@ function ProfileUser() {
         formData.append("img", selectedImage);
       }
 
-      const token = localStorage.getItem("token");
-
-      await axios.put(`${import.meta.env.VITE_API_URL}/auth/update`, formData, {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/auth/update/${uid}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
         },
       });
-
+      localStorage.setItem("userData", JSON.stringify(response.data.user));
       setIsEditMode(false);
       run();
     } catch (error) {

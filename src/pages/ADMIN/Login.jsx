@@ -7,7 +7,6 @@ import logincss from "./Css/loginadmin.module.css";
 function Login() {
   const [input, setInput] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { setAdmin } = useAuth();
 
   const handleChange = (e) => {
     setInput((prv) => ({ ...prv, [e.target.name]: e.target.value }));
@@ -16,24 +15,16 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/a/login`,
         input
       );
-      const { token } = res.data;
-      sessionStorage.setItem("token_admin", token);
-      const res2 = await axios.get(
-        `${import.meta.env.VITE_API_URL}/auth/a/getad`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setAdmin(res2.data);
-      if (res.status === 200) {
+      localStorage.setItem("adminData", JSON.stringify(response.data.data));
+      
+      if (response.status === 200) {
         alert("Login successful");
         navigate("/");
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);

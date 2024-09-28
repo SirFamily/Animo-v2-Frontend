@@ -6,14 +6,8 @@ import axios from "axios";
 function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdateData}) {
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem("token"); 
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/host/delete/${selectedHost}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/host/delete/${selectedHost}`
       );
 
       if (response.status === 200) {

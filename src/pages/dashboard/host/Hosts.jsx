@@ -7,7 +7,6 @@ import Features_list from "./features/Features_list";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
-import Hamster from "../../../component/loading/Hamster"; // Hamster loading component
 import Modelpopup from "../../../component/Modelpopup";
 
 function Hosts() {
@@ -16,16 +15,10 @@ function Hosts() {
   const { user } = useAuth();
   const uid = user.id;
 
-  const fetchHosts = async () => {
+  const getHosts = async () => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/host/list/${uid}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/host/list/${uid}`
       );
       const hostsData = response.data.data;
       setHosts(hostsData); // Store hosts data
@@ -33,12 +26,12 @@ function Hosts() {
         setSelectedHostId(hostsData[0].id);
       }
     } catch (error) {
-      console.error("Error fetching hosts:", error);
+      console.error("Error hosts:", error);
     }
   };
 
   useEffect(() => {
-    fetchHosts();
+    getHosts();
   }, [uid]);
 
   const handleHostsUpdate = (updatedHosts) => {
@@ -66,7 +59,7 @@ function Hosts() {
           <Host_list
             onUpdate={handleHostsUpdate}
             onHostSelect={setSelectedHostId}
-            handleHostUpdate={fetchHosts}
+            handleHostUpdate={getHosts}
           />
           {hosts.length === 0 && (
             <div className={csslayer.button_container}>
@@ -90,7 +83,6 @@ function Hosts() {
               paddingTop: "20px",
             }}
           >
-            <Hamster />
             {hostVerificationStatus.verifyHosts.some(
               (verify) => verify.verify_status === "Pending"
             ) ? (
@@ -109,7 +101,7 @@ function Hosts() {
                 <div className={csslayer.container_in_l_button_host}>
                   <Room_list hostId={selectedHostId} />
                   <div className={csslayer.button_container}>
-                    <Link to="create-host/room">
+                  <Link to={`create-room/${selectedHostId}`}>
                       <button className={csslayer.bt}>เพิ่มห้องพัก</button>
                     </Link>
                   </div>
@@ -117,7 +109,7 @@ function Hosts() {
               </div>
               <div>
                 <div className={csslayer.container_in_r_button_host}>
-                  <Features_list />
+                  <Features_list hostId={selectedHostId}/>
                 </div>
               </div>
             </div>

@@ -12,22 +12,20 @@ function Pets() {
   const { user } = useAuth();
   const uid = user.id;
 
-  const fetchPetData = async () => {
+  const getPetData = async () => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/pets/list/${uid}`, {
-        headers: { Authorization: `Bearer ${token}` },
       });
       setPetData(response.data.data);
       console.log(response.data);
     } catch (error) {
-      console.error("Error fetching pet data:", error);
+      console.error("Error pet data:", error);
     }
   };
 
   useEffect(() => {
-    fetchPetData();
-  }, [uid]);
+    getPetData();
+  }, []);
 
  
   const togglePopup = () => {
@@ -35,7 +33,7 @@ function Pets() {
   };
 
   const handlePetUpdate = () => {
-    fetchPetData();
+    getPetData();
   };
 
   return (

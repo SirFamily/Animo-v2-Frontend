@@ -195,7 +195,7 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
               input.publish ?  styles.buttonPublish : styles.buttonUnpublish 
             }
           >
-            {input.publish ? "เผยแพร่" : "ยกเลิกการเผยแพร่"}
+            {input.publish ? "เผยแพร่" : "ยังไม่เผยแพร่"}
           </button>
           </div>
             </div>

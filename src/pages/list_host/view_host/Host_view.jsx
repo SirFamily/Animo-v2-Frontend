@@ -38,16 +38,10 @@ function Host_view() {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   useEffect(() => {
-    const fetchHostData = async () => {
+    const getHostData = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/pre/host/list/${hostId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `${import.meta.env.VITE_API_URL}/pre/host/get/${hostId}`
         );
 
         const hostData = response.data.data;
@@ -67,20 +61,14 @@ function Host_view() {
       }
     };
 
-    fetchHostData();
+    getHostData();
   }, [hostId]);
 
   useEffect(() => {
-    const fetchPetsData = async () => {
+    const getPetsData = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/pets/find`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `${import.meta.env.VITE_API_URL}/pets/find/${user.id}`
         );
 
         setPets(response.data.pet);
@@ -89,7 +77,7 @@ function Host_view() {
       }
     };
 
-    fetchPetsData();
+    getPetsData();
   }, [hostId]);
 
   // Handle feature selection
@@ -103,10 +91,8 @@ function Host_view() {
   };
 
   const handleBooking = async () => {
-    const token = localStorage.getItem("token");
     const petsData = input.pets.map((pet) => ({
       petId: pet.value,
-      count: 1, // Adjust the count value as needed
     }));
 
     const bookingData = {
@@ -124,11 +110,6 @@ function Host_view() {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/booking/create`,
         bookingData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
       );
       console.log("Booking successful:", response.data);
       alert("Booking created successfully!");

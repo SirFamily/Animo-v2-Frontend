@@ -66,13 +66,11 @@ function Pets_add({ onClose, setPetData }) {
     if (input.url) formData.append("url", input.url);
 
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/pets/create/${uid}`,
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }

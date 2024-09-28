@@ -5,32 +5,26 @@ import Features_add from "./Features_add";
 import Features_delete from "./Features_delete";
 import Features_edit from "./Features_edit";
 
-function Features_list() {
+function Features_list({hostId}) {
   const [features, setFeatures] = useState([]);
   const [isAddPopupOpen, setAddPopupOpen] = useState(false);
   const [isEditPopupOpen, setEditPopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState(null);
 
-  const fetchFeatures = async () => {
+  const getFeatures = async () => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/features/list`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/features/list/${hostId}`
       );
-      setFeatures(response.data.data); // ใช้ response.data.data
+      setFeatures(response.data.data); 
     } catch (error) {
-      console.error("Error fetching features:", error);
+      console.error("Error features:", error);
     }
   };
 
   useEffect(() => {
-    fetchFeatures();
+    getFeatures();
   }, []);
 
   const toggleAddPopup = () => setAddPopupOpen(!isAddPopupOpen);
@@ -93,22 +87,23 @@ function Features_list() {
       {/* Popups for add, edit, delete */}
       {isAddPopupOpen && (
         <Features_add
+        hostId={hostId}
           onClose={toggleAddPopup}
-          refreshFeatures={fetchFeatures}
+          refreshFeatures={getFeatures}
         />
       )}
       {isEditPopupOpen && (
         <Features_edit
           feature={selectedFeature}
           onClose={toggleEditPopup}
-          refreshFeatures={fetchFeatures}
+          refreshFeatures={getFeatures}
         />
       )}
       {isDeletePopupOpen && (
         <Features_delete
           feature={selectedFeature}
           onClose={toggleDeletePopup}
-          refreshFeatures={fetchFeatures}
+          refreshFeatures={getFeatures}
         />
       )}
     </div>

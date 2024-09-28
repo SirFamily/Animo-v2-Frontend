@@ -26,7 +26,6 @@ function Host_add() {
     lat: "",
     long: "",
     description: "",
-    publish: false,
     images: [],
   });
   const { user } = useAuth();
@@ -74,17 +73,14 @@ function Host_add() {
     formData.append('lat', hostData.lat);
     formData.append('long', hostData.long);
     formData.append('description', hostData.description);
-    formData.append('publish', hostData.publish);
   
     hostData.images.forEach((image, index) => {
       formData.append(`images`, image.file);
     });
   
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/host/create/${uid}`, formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });

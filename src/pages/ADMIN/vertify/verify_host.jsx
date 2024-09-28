@@ -13,18 +13,10 @@ function VerifyHostList() {
   const [showApproved, setShowApproved] = useState(true); // เปิด/ปิดตาราง Approved
   const [showRejected, setShowRejected] = useState(true); // เปิด/ปิดตาราง Rejected
 
-  const { admin, logoutAdmin } = useAuth();
-
   const fetchVerifications = async (status, setState) => {
     try {
-      const token = sessionStorage.getItem("token_admin");
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/verify/list/${status}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/verify/list/${status}`
       );
       setState(response.data.data);
     } catch (error) {
@@ -33,16 +25,10 @@ function VerifyHostList() {
   };
 
   useEffect(() => {
-    // ดึงข้อมูลการตรวจสอบตามสถานะ
     fetchVerifications("pending", setPendingVerifications);
     fetchVerifications("approved", setApprovedVerifications);
     fetchVerifications("rejected", setRejectedVerifications);
   }, []);
-
-  const hdlLogout = () => {
-    logoutAdmin();
-    navigate("/");
-  };
 
   const renderTable = (verifications) => (
     <table className={verifyhost.table} border="1" cellPadding="10" cellSpacing="0">

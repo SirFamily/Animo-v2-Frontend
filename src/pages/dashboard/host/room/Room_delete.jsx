@@ -6,12 +6,7 @@ import styles from './Css/roomdelete.module.css';
 function Room_delete({ selectedRoom, onClose, handleRoomUpdate }) {
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/room/delete/${selectedRoom.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/room/delete/${selectedRoom.id}`);
       
       if (response.status === 200) {
         alert("ลบห้องสำเร็จ");

@@ -8,8 +8,6 @@ function Features_edit({ feature, onClose, refreshFeatures }) {
   const [price, setPrice] = useState(feature.price);
   const [status, setStatus] = useState(feature.status || "");  
 
-  const token = localStorage.getItem("token");  
-
   const handleEdit = async () => {
     if (!name || !price || !status) {
       alert("Please make sure all fields are filled.");
@@ -21,10 +19,6 @@ function Features_edit({ feature, onClose, refreshFeatures }) {
         name,
         price,
         status
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}` 
-        }
       });
       refreshFeatures(); 
       onClose();

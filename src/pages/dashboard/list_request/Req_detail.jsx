@@ -9,14 +9,10 @@ function Req_detail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchRequestDetail = async () => {
+    const getRequestDetail = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/request/list/${reqId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          `${import.meta.env.VITE_API_URL}/request/list/detail/${reqId}`
         );
         setRequest(response.data.data);
       } catch (error) {
@@ -24,7 +20,7 @@ function Req_detail() {
       }
     };
 
-    fetchRequestDetail();
+    getRequestDetail();
   }, [reqId]);
 
   if (!request) {

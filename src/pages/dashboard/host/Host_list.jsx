@@ -12,29 +12,23 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedHost, setSelectedHost] = useState(null);
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const token = localStorage.getItem("token");
 
-    const fetchHosts = async () => {
+    const getHosts = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/host/list/${uid}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `${import.meta.env.VITE_API_URL}/host/list/${uid}`
         );
         const hostsData = response.data.data;
         setHosts(hostsData); 
         onUpdate(hostsData); 
       } catch (error) {
-        console.error("Error fetching hosts:", error);
+        console.error("Error hosts:", error);
       }
     };
 
 
   useEffect(() => {
-    fetchHosts();
+    getHosts();
   }, [uid]);
 
   const toggleDeletePopup = (id) => {
@@ -91,9 +85,9 @@ function Host_list({ onUpdate, onHostSelect,handleHostUpdate }) {
           )}
         </tbody>
       </table>
-      {isPopupOpen && <Host_edit onClose={toggleEditPopup} host={selectedHost[0]} handleHostUpdate={fetchHosts} />}
+      {isPopupOpen && <Host_edit onClose={toggleEditPopup} host={selectedHost[0]} handleHostUpdate={getHosts} />}
       {isDeletePopupOpen && (
-        <Host_delete onClose={toggleDeletePopup} selectedHost={selectedHost} handleHostUpdate={handleHostUpdate} handleHostUpdateData={fetchHosts}/>
+        <Host_delete onClose={toggleDeletePopup} selectedHost={selectedHost} handleHostUpdate={handleHostUpdate} handleHostUpdateData={getHosts}/>
       )}
     </div>
   );

@@ -1,5 +1,4 @@
-
-.container {
+.verifyDetailContainer {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
@@ -9,8 +8,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-
-.container h2 {
+.title {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
@@ -18,8 +16,7 @@
   margin-bottom: 30px;
 }
 
-
-.card {
+.detailCard, .hostCard {
   background-color: #ffffff;
   padding: 20px;
   margin-bottom: 20px;
@@ -27,20 +24,24 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-
-.card p {
+.detailCard p, .hostCard p {
   font-size: 16px;
   color: #555;
   margin: 10px 0;
 }
 
-.card p strong {
+.detailCard p strong, .hostCard p strong {
   color: #333;
 }
 
-
 .hostInfo {
   margin-top: 30px;
+}
+
+.hostTitle {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .coordinates {
@@ -50,13 +51,6 @@
   font-size: 16px;
   color: #555;
 }
-
-
-.coordinates i {
-  color: #2196F3;
-  font-size: 20px;
-}
-
 
 .photosContainer {
   display: flex;
@@ -75,7 +69,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.photoItem img {
+.photo {
   max-width: 100%;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -100,24 +94,25 @@
   padding: 8px 16px;
   color: white;
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  cursor: pointer;
 }
 
 .approveButton:hover {
   background-color: #45a049;
 }
 
-.rejectButton button {
+.rejectButton {
   background-color: #f44336;
   padding: 8px 16px;
   margin: 5px;
   border: none;
   color: white;
   box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+  cursor: pointer;
 }
 
-.rejectButton button:hover {
+.rejectButton:hover {
   background-color: #e53935;
-  border: none;
 }
 
 .loadingMessage {
@@ -128,11 +123,11 @@
 }
 
 @media (max-width: 768px) {
-  .container {
+  .verifyDetailContainer {
     padding: 15px;
   }
 
-  h2 {
+  .title {
     font-size: 24px;
   }
 

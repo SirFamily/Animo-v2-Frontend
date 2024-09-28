@@ -7,12 +7,9 @@ function VerifyReject({ id, onReject }) {
   const handleReject = async () => {
     try {
       setLoading(true);
-      const token = sessionStorage.getItem("token_admin");
-
       const response = await axios.put(
         `${import.meta.env.VITE_API_URL}/verify/${id}`,
-        { newStatus: "Rejected" }, // เปลี่ยนสถานะเป็น "Rejected"
-        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+        { newStatus: "Rejected" },
       );
 
       // อัปเดตสถานะการตรวจสอบและเรียก callback ที่รับมาจาก props

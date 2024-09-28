@@ -9,26 +9,20 @@ function Room_list({ hostId }) {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
-  const fetchRooms = async () => {
+  const getRooms = async () => {
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/room/list/${hostId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/room/list/${hostId}`
       );
       setRooms(response.data.data || []);
     } catch (error) {
-      console.error("Error fetching rooms:", error);
+      console.error("Error rooms:", error);
     }
   };
 
   useEffect(() => {
     if (!hostId) return;
-    fetchRooms();
+    getRooms();
   }, [hostId]);
 
   const toggleDeletePopup = (room) => {
@@ -103,14 +97,14 @@ console.log(rooms)
       </table>
       {isDeletePopupOpen && (
         <Room_delete
-          handleRoomUpdate={fetchRooms}
+          handleRoomUpdate={getRooms}
           selectedRoom={selectedRoom}
           onClose={toggleDeletePopup}
         />
       )}
       {isPopupOpen && (
         <Room_edit
-          handleRoomUpdate={fetchRooms}
+          handleRoomUpdate={getRooms}
           room={selectedRoom}
           onClose={toggleEditPopup}
         />

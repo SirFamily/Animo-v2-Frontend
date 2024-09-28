@@ -11,14 +11,10 @@ function Req_detail_host() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchRequestDetail = async () => {
+    const getRequestDetail = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/request/list/${reqId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          `${import.meta.env.VITE_API_URL}/request/list/detail/${reqId}`
         );
         setRequest(response.data.data);
         setStatus(response.data.data.bookingStatus);
@@ -27,17 +23,15 @@ function Req_detail_host() {
       }
     };
 
-    fetchRequestDetail();
+    getRequestDetail();
   }, [reqId]);
 
   const handleUpdateStatus = async (newStatus) => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
       await axios.put(
         `${import.meta.env.VITE_API_URL}/request/update-status/${reqId}`,
-        { status: newStatus },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { status: newStatus }
       );
       setLoading(false);
       setStatus(newStatus);
@@ -58,7 +52,7 @@ function Req_detail_host() {
   return (
     <div className={styles.detailContainer}>
       <button className={styles.backButton} onClick={() => navigate(-1)}>
-      กลับ
+        กลับ
       </button>
       <h2 className={styles.title}>รายละเอียดการจอง (Host View)</h2>
       <div className={styles.infoBox}>
@@ -91,12 +85,15 @@ function Req_detail_host() {
               <p className={styles.petSpecies}>
                 ประเภท: {petBooking.pet.species}
               </p>
-              <p className={styles.petBreed}>สายพันธุ์: {petBooking.pet.breed}</p>
+              <p className={styles.petBreed}>
+                สายพันธุ์: {petBooking.pet.breed}
+              </p>
             </div>
           </div>
         ))}
-        <div className={styles.userDetail}>
-          <h3 className={styles.subTitle}>รายละเอียดผู้จอง</h3>
+        <div className={styles.infoRow}></div>
+        <h3 className={styles.subTitle}>รายละเอียดผู้จอง</h3>
+        <div>
           <img
             src={request.user?.url}
             alt={request.user?.firstName}
@@ -126,7 +123,7 @@ function Req_detail_host() {
       {request.bookingFeatures?.map((feature, index) => (
         <div key={index} className={styles.infoRow}>
           <span className={styles.label}>
-          บริการเสริม: <span>{feature.feature.name}</span>
+            บริการเสริม: <span>{feature.feature.name}</span>
           </span>
           <span className={styles.value}>
             {" "}

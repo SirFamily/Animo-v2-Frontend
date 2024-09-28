@@ -21,7 +21,7 @@ function Register() {
     img: null,
   });
 
-  const [step, setStep] = useState(1); // สำหรับการเปลี่ยน Step
+  const [step, setStep] = useState(1); 
   const navigate = useNavigate();
 
   const handleChange = (e) => {

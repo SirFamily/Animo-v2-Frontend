@@ -3,22 +3,15 @@ import axios from 'axios';
 import Modelpopup from '../../../../component/Modelpopup';
 import styles from './Css/featuresedit.module.css';  // Import CSS Module
 
-function Features_add({ onClose, refreshFeatures }) {
+function Features_add({hostId, onClose, refreshFeatures }) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [status, setStatus] = useState('ready');
-  const token = localStorage.getItem("token");
 
   const handleAdd = async () => {
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/features/create`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/features/create/${hostId}`, {
         name,
         price,
-        status,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
       });
       refreshFeatures();
       onClose();
@@ -45,14 +38,6 @@ function Features_add({ onClose, refreshFeatures }) {
           onChange={(e) => setPrice(e.target.value)}
           className={styles.input}
         />
-        {/* <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className={styles.select}
-        >
-          <option value="ready">พร้อม</option>
-          <option value="not ready">ยังไม่พร้อม</option>
-        </select> */}
         <div className={styles.buttonGroup}>
           <button onClick={handleAdd} className={styles.button}>เพิ่ม</button>
           <button onClick={onClose} className={styles.button}>ปิด</button>

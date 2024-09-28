@@ -25,7 +25,7 @@ margin-bottom: 20px;
 }
 
 .button02 button, .button01 button {
-background-color: #4CAF50;
+background-color: #6fafb8;
 border: none;
 color: white;
 padding: 8px 16px;
@@ -37,7 +37,7 @@ border-radius: 5px;
 }
 
 .button02 button:hover, .button01 button:hover {
-background-color: #45a049;
+background-color: #98b2b6;
 }
 
 .table {

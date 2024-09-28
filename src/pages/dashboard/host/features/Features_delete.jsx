@@ -8,11 +8,7 @@ function Features_delete({ feature, onClose, refreshFeatures }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/features/delete/${feature.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      await axios.delete(`${import.meta.env.VITE_API_URL}/features/delete/${feature.id}`);
       refreshFeatures();
       onClose();
     } catch (error) {

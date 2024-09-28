@@ -8,10 +8,8 @@ function Pets_delete({ pet, onClose, setPetData }) {
 
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem('token'); 
       await axios.delete(`${import.meta.env.VITE_API_URL}/pets/delete/${pet.id}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });

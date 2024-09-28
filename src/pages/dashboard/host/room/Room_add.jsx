@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Css/roomadd.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import speciesList from "../../../../component/data/petdata.json"; 
 
 function Room_add() {
   const navigate = useNavigate();
+  const { hid } = useParams();
   const [step, setStep] = useState(1);
   const [roomData, setRoomData] = useState({
     name: "",
@@ -70,13 +71,11 @@ function Room_add() {
     });
 
     try {
-      const token = localStorage.getItem("token");
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/room/create`,
+        `${import.meta.env.VITE_API_URL}/room/create/${hid}`,
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }

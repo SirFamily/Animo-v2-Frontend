@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./Css/requests_list.module.css"; 
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import useAuth from "../../../hooks/useAuth";
 
 function Req_list() {
+  const {user} = useAuth();
   const [requests, setRequests] = useState([]);
   const [ownerRequests, setOwnerRequests] = useState([]);
 
   useEffect(() => {
-    const fetchRequests = async () => {
+    const getRequests = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/${user.id}`);
         setRequests(response.data.data);
       } catch (error) {
         console.error("Error fetching requests:", error);
@@ -21,16 +20,13 @@ function Req_list() {
     };
 
 
-    fetchRequests();
+    getRequests();
   }, []);
 
   useEffect(() => {
-    const fetchOwnerRequests = async () => {
+    const getOwnerRequests = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/owner`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/owner/${user.id}`);
         console.log("Owner Requests Response:", response.data);
         setOwnerRequests(response.data.data);
       } catch (error) {
@@ -38,7 +34,7 @@ function Req_list() {
       }
     };
 
-    fetchOwnerRequests();
+    getOwnerRequests();
 }, []);
 
 
@@ -121,7 +117,7 @@ function Req_list() {
                   <td>{totalAmount > 0 ? `$${totalAmount.toFixed(2)}` : "-"}</td>
                   <td>
                   <Link key={request.id} to={`booking/detail/host/${request.id}`}>
-                    <button className={styles.actionButton}>View</button>
+                    <button className={styles.actionButton}>ดู</button>
                   </Link>
                   </td>
                 </tr>
