@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "./registercss/register.module.css"; // Import the CSS module
+import styles from "./registercss/register.module.css"; 
 
 function Register() {
   const [input, setInput] = useState({
@@ -191,7 +191,12 @@ function Register() {
                 required
               />
             </div>
-            <div className={styles.formGroup}>
+          </>
+        )}
+
+        {step === 4 && (
+          <>
+          <div className={styles.formGroup}>
               <label>ที่อยู่:</label>
               <input
                 type="text"
@@ -201,11 +206,6 @@ function Register() {
                 required
               />
             </div>
-          </>
-        )}
-
-        {step === 4 && (
-          <>
             <div className={styles.formGroup}>
               <label>ตำบล:</label>
               <input

@@ -62,10 +62,10 @@ function Register() {
   return (
     <div className={registercss.container}>
       <div className={registercss.formBox}>
-        <h2>Register</h2>
+        <h2>สมัครสมาชิกแอดมิน</h2>
         <form onSubmit={handleSubmit}>
           <div className={registercss.formGroup}>
-            <label>First Name</label>
+            <label>ชื่อ</label>
             <input
               type="text"
               name="firstName"
@@ -76,7 +76,7 @@ function Register() {
           </div>
 
           <div className={registercss.formGroup}>
-            <label>Last Name</label>
+            <label>นามสกุล</label>
             <input
               type="text"
               name="lastName"
@@ -87,7 +87,7 @@ function Register() {
           </div>
 
           <div className={registercss.formGroup}>
-            <label>Email</label>
+            <label>อีเมล</label>
             <input
               type="email"
               name="email"
@@ -98,7 +98,7 @@ function Register() {
           </div>
 
           <div className={registercss.formGroup}>
-            <label>Password</label>
+            <label>รหัสผ่าน</label>
             <input
               type="password"
               name="password"
@@ -109,7 +109,7 @@ function Register() {
           </div>
 
           <div className={registercss.formGroup}>
-            <label>Confirm Password</label>
+            <label>ยืนยันรหัสผ่าน</label>
             <input
               type="password"
               name="confirmPassword"
@@ -120,7 +120,7 @@ function Register() {
           </div>
 
           <div className={registercss.formGroup}>
-            <label>Phone</label>
+            <label>เบอร์โทร</label>
             <input
               type="text"
               name="phone"
@@ -130,12 +130,12 @@ function Register() {
           </div>
 
           <button type="submit" className={registercss.submitBtn}>
-            Register
+            ยืนยัน
           </button>
         </form>
 
         <p className={registercss.loginPrompt}>
-          Already have an account? <Link to="/login/a" className={registercss.loginLink}>Login here</Link>
+        มีบัญชีอยู่แล้ว? <Link to="/login/a" className={registercss.loginLink}>เข้าสู่ระบบที่นี่</Link>
         </p>
       </div>
     </div>

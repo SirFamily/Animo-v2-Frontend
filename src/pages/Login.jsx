@@ -4,7 +4,10 @@ import axios from "axios";
 import logincss from "./logincss/login.module.css";
 
 function Login() {
-  const [input, setInput] = useState({ email: "", password: "" });
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
   const hdlChange = (e) => {
@@ -40,7 +43,7 @@ function Login() {
       </div>
 
       <div className={logincss.boxlogin}>
-        <Link to="/" className={logincss["close-link"]}>
+        <Link to="/" className={logincss.close_link}>
           X
         </Link>
 

@@ -4,7 +4,6 @@ import Modelpopup from '../../../component/Modelpopup';
 import styles from './Css/petdelete.module.css';
 
 function Pets_delete({ pet, onClose, setPetData }) {
-  const [error, setError] = useState(null);
 
   const handleDelete = async () => {
     try {
@@ -17,7 +16,7 @@ function Pets_delete({ pet, onClose, setPetData }) {
       onClose();
       alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");
     } catch (err) {
-      setError('Failed to delete the pet. Please try again.');
+      alert('Failed to delete the pet. Please try again.');
     }
   };
 
@@ -26,7 +25,6 @@ function Pets_delete({ pet, onClose, setPetData }) {
       <div className={styles.popup}>
         <h2 className={styles.header}>คำเตือน</h2>
         <p className={styles.message}>คุณต้องการลบน้อง <b>{pet.petName}</b> ใช่หรือไม่</p>
-        {error && <p className={styles.error}>{error}</p>}
         <div className={styles.buttonGroup}>
           <button className={`${styles.button} ${styles.deleteButton}`} onClick={handleDelete}>ลบ</button>
           <button className={`${styles.button} ${styles.cancelButton}`} onClick={onClose}>ปิด</button>
