@@ -31,7 +31,6 @@ function Register() {
         return;
       }
 
-      // สร้างออบเจ็กต์ JSON สำหรับส่งข้อมูล
       const data = {
         firstName: input.firstName,
         lastName: input.lastName,
@@ -42,11 +41,7 @@ function Register() {
       };
 
       // ส่งข้อมูลไปยัง API ในรูปแบบ JSON
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, JSON.stringify(data), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, data,);
       
       if (res.status === 201) {
         alert("สมัครสมาชิกแอดมินสำเร็จ");
