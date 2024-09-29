@@ -9,7 +9,7 @@ function Register() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password2: "",
     phone: "",
   });
 
@@ -26,22 +26,14 @@ function Register() {
     e.preventDefault();
     
     try {
-      if (input.password !== input.confirmPassword) {
+      if (input.password !== input.password2) {
         alert("รหัสผ่านไม่ตรงกัน");
         return;
       }
 
-      const data = {
-        firstName: input.firstName,
-        lastName: input.lastName,
-        email: input.email,
-        password: input.password,
-        confirmPassword: input.confirmPassword,
-        phone: input.phone,
-      };
 
       // ส่งข้อมูลไปยัง API ในรูปแบบ JSON
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, data,);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, input,);
       
       if (res.status === 201) {
         alert("สมัครสมาชิกแอดมินสำเร็จ");
@@ -106,8 +98,8 @@ function Register() {
             <label>ยืนยันรหัสผ่าน</label>
             <input
               type="password"
-              name="confirmPassword"
-              value={input.confirmPassword}
+              name="password2"
+              value={input.password2}
               onChange={handleChange}
               required
             />
