@@ -36,7 +36,7 @@ function Register() {
   const hdlSubmit = async (e) => {
     e.preventDefault();
     if (input.password !== input.password2) {
-      alert("Passwords do not match");
+      alert("รหัสผ่านไม่ตรงกัน");
       return;
     }
 

@@ -15,7 +15,6 @@ function Register() {
 
   const navigate = useNavigate();
 
-  // ฟังก์ชันสำหรับเปลี่ยนค่าของ input
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
@@ -23,39 +22,39 @@ function Register() {
     }));
   };
 
-  // ฟังก์ชันสำหรับจัดการการส่งฟอร์ม
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
       if (input.password !== input.confirmPassword) {
-        alert("Passwords do not match");
+        alert("รหัสผ่านไม่ตรงกัน");
         return;
       }
 
-      // Using FormData
-      const formData = new FormData();
-      formData.append("firstName", input.firstName);
-      formData.append("lastName", input.lastName);
-      formData.append("email", input.email);
-      formData.append("password", input.password);
-      formData.append("confirmPassword", input.confirmPassword);
-      formData.append("phone", input.phone);
+      // สร้างออบเจ็กต์ JSON สำหรับส่งข้อมูล
+      const data = {
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email: input.email,
+        password: input.password,
+        confirmPassword: input.confirmPassword,
+        phone: input.phone,
+      };
 
-      // ส่งข้อมูลไปยัง API เพื่อทำการลงทะเบียน
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, formData, {
+      // ส่งข้อมูลไปยัง API ในรูปแบบ JSON
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/a/register`, JSON.stringify(data), {
         headers: {
-          'Content-Type': 'multipart/form-data', // Important when using FormData
+          'Content-Type': 'application/json',
         },
       });
       
       if (res.status === 201) {
-        alert("Registration successful");
+        alert("สมัครสมาชิกแอดมินสำเร็จ");
         navigate("/login/a"); // หลังลงทะเบียนเสร็จ ให้เปลี่ยนเส้นทางไปที่หน้า Login
       }
-    } catch (err) {
-      console.error(err);
-      alert("Registration failed");
+    } catch (error) {
+      console.error(error);
+      alert("Registration failed. Please try again.");
     }
   };
 

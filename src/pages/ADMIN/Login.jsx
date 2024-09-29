@@ -22,13 +22,15 @@ function Login() {
       localStorage.setItem("adminData", JSON.stringify(response.data.data));
       
       if (response.status === 200) {
-        alert("Login successful");
+        alert("ล็อกอินสำเร็จ");
         navigate("/");
         window.location.reload();
       }
-    } catch (err) {
-      console.log(err);
-      alert("Login failed");
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401) {
+        alert("อีเมลหรือรหัสผ่านผิด");
+      }
     }
   };
 
@@ -88,22 +90,6 @@ function Login() {
               คุณยังไม่มีบัญชีใช่ไหม? <Link to="/register/a">ลงทะเบียน</Link>
             </p>
           </div>
-          {/* <div className={logincss.google_facebook}>
-            <button className={logincss.google}>
-              <img
-                src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
-                alt="Google logo"
-              />
-              <p>Google</p>
-            </button>
-            <button className={logincss.facebook}>
-              <img
-                src="https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Facebook-256.png"
-                alt="Facebook logo"
-              />
-              <p>Facebook</p>
-            </button>
-          </div> */}
         </form>
       </div>
       <div className={logincss.cat}>

@@ -24,12 +24,16 @@ function Login() {
       localStorage.setItem("userData", JSON.stringify(response.data.data));
 
       if (response.status === 200) {
-        alert("Login successful");
+        alert("ล็อกอินสำเร็จ");
         navigate("/");
         window.location.reload();
       }
+      
     } catch (error) {
       console.error("Login error:", error);
+      if (error.response.status === 401) {
+        alert("อีเมลหรือรหัสผ่านผิด");
+      }
     }
   };
 

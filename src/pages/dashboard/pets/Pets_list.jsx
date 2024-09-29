@@ -38,7 +38,7 @@ function Pets_list({ petData,setPetData }) {
             <th>วันเกิด</th>
             <th>น้ำหนัก</th>
             <th>ส่วนสูง</th>
-            <th>อื่นๆ</th>
+      
             <th>ตั้งค่า</th>
           </tr>
         </thead>
@@ -63,9 +63,7 @@ function Pets_list({ petData,setPetData }) {
               </td>
               <td>{pet.weight ? `${pet.weight} kg` : '-'}</td>
               <td>{pet.height ? `${pet.height} cm` : '-'}</td>
-              <td className={styles.actionLinks}>
-                <div className={styles.readLink}>อ่าน</div>
-              </td>
+              
               <td className={styles.actionLinks}>
                 <div
                   className={styles.editLink}
