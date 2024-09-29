@@ -15,7 +15,7 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdate
         handleHostUpdateData();
         onClose();
         console.log(selectedHost);
-        alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");
+        alert("ลบข้อมูลสถานที่พักสำเร็จแล้ว");
       }
 
     } catch (error) {
@@ -33,8 +33,9 @@ function Host_delete({ selectedHost, onClose, handleHostUpdate ,handleHostUpdate
       <div className={styles.popup}>
         <h2 className={styles.header}>คำเตือน</h2>
         <p className={styles.message}>
-          คุณต้องการลบสถานที่พัก <b>{selectedHost}</b> ใช่หรือไม่
+          คุณต้องการลบสถานที่พักใช่หรือไม่
         </p>
+        {/* <b>{selectedHost}</b>  */}
         <div className={styles.buttonGroup}>
           <button
             className={`${styles.button} ${styles.deleteButton}`}

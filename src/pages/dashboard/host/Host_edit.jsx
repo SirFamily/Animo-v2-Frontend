@@ -13,7 +13,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import styles from "./Css/hostedit.module.css"; // Import CSS module
+import styles from "./Css/hostedit.module.css";
 
 function Host_edit({ onClose, host, handleHostUpdate }) {
   const [step, setStep] = useState(1);
@@ -100,7 +100,6 @@ function Host_edit({ onClose, host, handleHostUpdate }) {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
