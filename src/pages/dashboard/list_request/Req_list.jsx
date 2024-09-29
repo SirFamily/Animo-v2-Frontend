@@ -15,7 +15,7 @@ function Req_list() {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/request/list/${user.id}`);
         setRequests(response.data.data);
       } catch (error) {
-        console.error("Error fetching requests:", error);
+        console.error("Error requests:", error);
       }
     };
 
@@ -30,7 +30,7 @@ function Req_list() {
         console.log("Owner Requests Response:", response.data);
         setOwnerRequests(response.data.data);
       } catch (error) {
-        console.error("Error fetching owner requests:", error);
+        console.error("Error owner requests:", error);
       }
     };
 

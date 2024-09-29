@@ -11,22 +11,18 @@ function History_detail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchHistoryDetail = async () => {
+    const getHistoryDetail = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/history/detail/history/${reqId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          `${import.meta.env.VITE_API_URL}/history/detail/history/${reqId}`
         );
         setHistory(response.data.data);
       } catch (error) {
-        console.error("Error fetching history detail:", error);
+        console.error("Error history detail:", error);
       }
     };
 
-    fetchHistoryDetail();
+    getHistoryDetail();
   }, [reqId]);
 
   if (!history) {
