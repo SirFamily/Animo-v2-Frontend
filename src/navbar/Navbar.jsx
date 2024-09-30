@@ -141,19 +141,6 @@ function Navbar() {
           </Link>
         </div>
         <div>
-        {!admin?.id && ( // Hide if admin is logged in
-          <div className={navcss.container_nav2}>
-            <Link to="">
-              <p>การจอง</p>
-            </Link>
-            <Link to="">
-              <p>เกี่ยวกับเรา</p>
-            </Link>
-            <Link to="">
-              <p>ติดต่อเรา</p>
-            </Link>
-          </div>
-        )}
 
         <div>
           {admin?.id ? ( 

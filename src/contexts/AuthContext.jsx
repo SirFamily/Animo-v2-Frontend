@@ -6,28 +6,28 @@ function AuthContextProvider(props) {
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const run = async () => {
-    try {
-      setLoading(true);
-      let userData = JSON.parse(localStorage.getItem("userData"));
-      if (!userData) {
-        let adminData = JSON.parse(localStorage.getItem("adminData"));
-        if (!adminData) {
-          return;
-        }
-        setAdmin(adminData);
-      }
-      setUser(userData);
-    } catch (err) {
-      console.log(err.message);
-    } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
-  };
-
   useEffect(() => {
+    const run = async () => {
+      try {
+        setLoading(true);
+        let userData = JSON.parse(localStorage.getItem("userData"));
+        if (!userData) {
+          let adminData = JSON.parse(localStorage.getItem("adminData"));
+          if (!adminData) {
+            return;
+          }
+          setAdmin(adminData);
+        }
+        setUser(userData);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }
+    };
+
     run();
   }, []);
 
@@ -48,7 +48,6 @@ function AuthContextProvider(props) {
         setUser,
         loading,
         logout,
-        run,
         admin,
         setAdmin,
         logoutAdmin,

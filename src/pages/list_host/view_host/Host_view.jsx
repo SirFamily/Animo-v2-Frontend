@@ -15,8 +15,6 @@ function Host_view() {
   const { user } = useAuth();
   const [host, setHost] = useState(null);
   const [pets, setPets] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const uid = user.id;
   const [position, setPosition] = useState(null);
   const [input, setInput] = useState({
@@ -29,7 +27,6 @@ function Host_view() {
   });
 
   const [price, setPrice] = useState({
-    petFoodPerDay: 10,
     extraServiceFee: 0.7,
     additionalPetCharge: 50,
   });
@@ -109,7 +106,7 @@ function Host_view() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/booking/create`,
-        bookingData,
+        bookingData
       );
       console.log("Booking successful:", response.data);
       alert("Booking created successfully!");
@@ -121,7 +118,7 @@ function Host_view() {
 
   const calculateTotalPrice = () => {
     const { checkin, checkout, pets, room } = input;
-    const { petFoodPerDay, extraServiceFee, additionalPetCharge } = price;
+    const { extraServiceFee, additionalPetCharge } = price;
 
     if (!checkin || !checkout || !room) return 0;
 
@@ -137,7 +134,7 @@ function Host_view() {
 
     let totalPrice = roomPrice * diffDays;
 
-    totalPrice += pets.length * petFoodPerDay * diffDays;
+    totalPrice += pets.length * diffDays;
 
     if (pets.length > 1) {
       totalPrice += (pets.length - 1) * additionalPetCharge;
@@ -178,8 +175,6 @@ function Host_view() {
     );
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
   if (!host) return <div>No Host Data Available</div>;
 
   const petOptions = pets.map((pet) => ({
@@ -214,7 +209,7 @@ function Host_view() {
             <div className={styles.hostContainer}>
               <img src={host.user.url} alt="" className={styles.hostImage} />
               <p className={styles.hostType}>
-                Host By {host.user.firstName} {host.user.lastName}
+                เจ้าของโดย {host.user.firstName} {host.user.lastName}
               </p>
             </div>
             <p className={styles.hostType}>🏠 {host.type}</p>
@@ -222,7 +217,7 @@ function Host_view() {
           </div>
 
           <div className={styles.rooms}>
-            <h3>Available Rooms</h3>
+            <h3>ห้องว่าง</h3>
             <div className={styles.roomScrollContainer}>
               <div className={styles.roomGrid}>
                 {host.rooms.map((room) => (
@@ -235,10 +230,10 @@ function Host_view() {
                     />
                     <div className={styles.roomDetails}>
                       <h4>{room.name}</h4>
-                      <p>Type: {room.type}</p>
-                      <p>Price: 💵 {room.price}$</p>
+                      <p>ประเภทห้อง: {room.type}</p>
+                      <p>ราคา: 💵 {room.price}฿</p>
                       <p>
-                        Supports Pets:{" "}
+                        สัตว์เลี้ยงที่รองรับ:{" "}
                         {room.supportPets.map((pet) => pet.name).join(", ") ||
                           "N/A"}
                       </p>
@@ -250,7 +245,7 @@ function Host_view() {
           </div>
 
           <div className={styles.map}>
-            <h3>Location</h3>
+            <h3>สถานที่ตั้ง</h3>
             <MapContainer
               className={styles.mapContainer}
               center={[input.lat || 13, input.long || 100]}
@@ -263,20 +258,6 @@ function Host_view() {
               />
               <LocationMarker />
             </MapContainer>
-          </div>
-
-          <div className={styles.reviews}>
-            <h3>Reviews</h3>
-            <div className={styles.reviewCard}>
-              <div className={styles.review}>
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text...
-                </p>
-                <div className={styles.reviewRating}>⭐ 4.6 / 5</div>
-                <div className={styles.reviewUser}>Posted by joe21312</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -342,14 +323,14 @@ function Host_view() {
                 <div className={styles.checkboxContainer} key={feature.id}>
                   <input
                     type="checkbox"
-                    id={`extra${feature.id}`}
+                    id={feature.id}
                     value={feature.id}
                     onChange={(e) =>
                       handleFeatureChange(feature.id, e.target.checked)
                     }
                   />
-                  <label htmlFor={`extra${feature.id}`}>
-                    {feature.name} - ${feature.price}
+                  <label htmlFor={feature.id}>
+                    {feature.name} - ฿{feature.price}
                   </label>
                 </div>
               ))}
@@ -357,26 +338,25 @@ function Host_view() {
 
             <div className="price">
               <p>
-                Per Night: $
+                ราคาต่อคคืน: ฿
                 {input.room
                   ? host.rooms.find((r) => r.name === input.room)?.price
                   : "0"}
               </p>
-              <p>Food per day per pet: ${price.petFoodPerDay}</p>
-              <p>Service fee: ${price.extraServiceFee}</p>
+              <p>ค่าบริการ: ฿{price.extraServiceFee}</p>
               {input.pets.length > 1 && (
                 <p>
-                  Extra pet charge (starting from 2nd pet): $
-                  {(input.pets.length - 1) * price.additionalPetCharge}
+                  ค่าธรรมเนียมสัตว์เลี้ยงเพิ่มเติม (เริ่มจากสัตว์เลี้ยงตัวที่
+                  2): ฿{(input.pets.length - 1) * price.additionalPetCharge}
                 </p>
               )}
             </div>
 
             <div className="total-price">
-              <p>Total Payment: ${calculateTotalPrice()}</p>
+              <strong>จำนวนเงินที่ต้องชำระ: ${calculateTotalPrice()}</strong>
             </div>
             <div className="reserve-button">
-              <button onClick={handleBooking}>Reserve</button>
+              <button onClick={handleBooking}>จอง</button>
             </div>
           </div>
         </div>
