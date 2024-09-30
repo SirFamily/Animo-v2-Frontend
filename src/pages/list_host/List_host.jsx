@@ -149,9 +149,11 @@ function ListHost() {
                   </div>
                   <div className={styles.cardPrice}>
                     {host.rooms.length > 0
-                      ? `💵 ${host.rooms[0].price}–${Math.max(
+                      ? `💵 ${Math.min(
                           ...host.rooms.map((room) => room.price)
-                        )}$`
+                        )}–${Math.max(
+                          ...host.rooms.map((room) => room.price)
+                        )} ฿`
                       : "N/A"}
                   </div>
                 </div>
