@@ -12,7 +12,6 @@ import VerifyHost from "../pages/ADMIN/vertify/verify_host";
 import VerifyDetail from "../pages/ADMIN/vertify/verify_detail";
 
 import List_host from "../pages/list_host/List_host";
-import Dashboard from "../pages/dashboard/Dashboard";
 import Pets from "../pages/dashboard/pets/Pets";
 import Host from "../pages/dashboard/host/Hosts";
 import Request from "../pages/dashboard/list_request/Requests";
@@ -85,7 +84,6 @@ const userRouter = createBrowserRouter([
     ),
     children: [
       { index: true, element: <List_host /> },
-      { path: "dashboard/", element: <Dashboard /> },
       { path: "dashboard/pets", element: <Pets /> },
       { path: "dashboard/host", element: <Host /> },
       { path: "dashboard/host/create-host", element: <Host_add /> },

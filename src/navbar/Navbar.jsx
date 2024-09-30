@@ -80,7 +80,7 @@ function Navbar() {
             </div>
             {dropdownOpen && (
               <div className={navcss.dropdown_menu}>
-                <Link to="dashboard/">แดชบอร์ด</Link>
+                <Link to="dashboard/pets">แดชบอร์ด</Link>
                 <button onClick={hdlLogout}>ออกจากระบบ</button>
               </div>
             )}
