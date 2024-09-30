@@ -23,7 +23,7 @@ function Features_add({hostId, onClose, refreshFeatures }) {
   return (
     <Modelpopup>
       <div className={styles.container}>
-        <h2 className={styles.title}>เพิมบริการเสริม</h2>
+        <h2 className={styles.title}>เพิ่มบริการเสริม</h2>
         <input
           type="text"
           placeholder="ชื่อบริการเสริม"
