@@ -97,7 +97,7 @@ function Room_add() {
 
   return (
     <div className={styles.container}>
-      <h1>เพื่อห้อง</h1>
+      <h1>เพิ่มห้อง</h1>
       <div className={styles.progress}>
         <div
           className={`${styles.step} ${step >= 1 ? styles.active : ""}`}

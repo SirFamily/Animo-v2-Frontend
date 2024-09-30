@@ -5,19 +5,19 @@ import styles from "./registercss/register.module.css";
 
 function Register() {
   const [input, setInput] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    password2: "",
-    phone: "",
-    birthday: "",
-    address: "",
-    subDistrict: "",
-    district: "",
-    province: "",
-    postalCode: "",
-    bio: "",
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+    password2: null,
+    phone: null,
+    birthday: null,
+    address: null,
+    subDistrict: null,
+    district: null,
+    province: null,
+    postalCode: null,
+    bio: null,
     img: null,
   });
 
@@ -25,12 +25,12 @@ function Register() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInput((prev) => ({ ...prev, [name]: value }));
+    console.log(e)
+    setInput((input) => ({ ...input, [e.target.name]: e.target.value }));
   };
 
   const handleFileChange = (e) => {
-    setInput((prev) => ({ ...prev, img: e.target.files[0] }));
+    setInput((input) => ({ ...input, img: e.target.files[0] }));
   };
 
   const hdlSubmit = async (e) => {

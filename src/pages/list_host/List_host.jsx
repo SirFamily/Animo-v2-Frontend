@@ -21,7 +21,9 @@ function ListHost() {
   useEffect(() => {
     const getHosts = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/pre/host/list/${user.id}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/pre/host/list/${user.id}`
+        );
         setHosts(response.data.data);
         console.log(hosts);
       } catch (error) {

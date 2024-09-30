@@ -5,17 +5,19 @@ import logincss from "./logincss/login.module.css";
 
 function Login() {
   const [input, setInput] = useState({
-    email: "",
-    password: "",
+    email: null,
+    password: null,
   });
+
   const navigate = useNavigate();
 
   const hdlChange = (e) => {
+    console.log(e)
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const hdlSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); //ไม่ให้หน้าเว็บรีเอง
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
