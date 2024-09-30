@@ -31,19 +31,17 @@ function Pets_add({ onClose, setPetData }) {
 
   const handleWeightChange = (e) => {
     const { name, value } = e.target;
-    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
     setInput({
       ...input,
-      [name]: validValue,
+      [name]: value,
     });
   };
 
   const handleHeightChange = (e) => {
     const { name, value } = e.target;
-    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
     setInput({
       ...input,
-      [name]: validValue,
+      [name]: value,
     });
   };
 

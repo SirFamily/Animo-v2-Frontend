@@ -6,30 +6,30 @@ import speciesList from "../../../component/data/petdata.json";
 
 function Pets_edit({ onClose, pet, setPetData }) {
   const [input, setInput] = useState({
-    petName: '',
-    breed: '',
-    species: '',
-    weight: '',
-    height: '',
-    gender: '',
-    birthday: '',
-    petHistory: '',
-    url: '',
+    petName: null,
+    breed: null,
+    species: null,
+    weight: null,
+    height: null,
+    gender: null,
+    birthday: null,
+    petHistory: null,
+    url: null,
   });
 
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     setInput({
-      petName: pet.petName || '',
-      breed: pet.breed || '',
-      species: pet.species || '',
-      weight: pet.weight || '',
-      height: pet.height || '',
-      gender: pet.gender || '',
+      petName: pet.petName || null,
+      breed: pet.breed || null,
+      species: pet.species || null,
+      weight: pet.weight || null,
+      height: pet.height || null,
+      gender: pet.gender || null,
       birthday: pet.birthday ? new Date(pet.birthday).toISOString().substr(0, 10) : '',
-      petHistory: pet.petHistory || '',
-      url: pet.url || '',
+      petHistory: pet.petHistory || null,
+      url: pet.url || null,
     });
   }, [pet]);
 
@@ -52,19 +52,17 @@ function Pets_edit({ onClose, pet, setPetData }) {
 
   const handleWeightChange = (e) => {
     const { name, value } = e.target;
-    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
     setInput({
       ...input,
-      [name]: validValue,
+      [name]: value,
     });
   };
 
   const handleHeightChange = (e) => {
     const { name, value } = e.target;
-    const validValue = value.match(/^\d{0,3}(\.\d{0,2})?$/) ? value : input[name];
     setInput({
       ...input,
-      [name]: validValue,
+      [name]: value,
     });
   };
 

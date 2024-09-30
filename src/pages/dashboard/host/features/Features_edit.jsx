@@ -9,10 +9,6 @@ function Features_edit({ feature, onClose, refreshFeatures }) {
   const [status, setStatus] = useState(feature.status || "");  
 
   const handleEdit = async () => {
-    if (!name || !price || !status) {
-      alert("Please make sure all fields are filled.");
-      return;
-    }
 
     try {
       await axios.put(`${import.meta.env.VITE_API_URL}/features/update/${feature.id}`, {

@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 
 function VerifyDetail() {
   const { id } = useParams(); 
-  const {admin, run} = useAuth();
+  const {admin} = useAuth();
 
   const [detail, setDetail] = useState(null);
   const [loading, setLoading] = useState({ approve: false, reject: false });

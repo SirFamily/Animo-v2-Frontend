@@ -4,7 +4,6 @@ import Modelpopup from '../../../../component/Modelpopup';
 import styles from './Css/featuresdel.module.css';  // Import CSS Module
 
 function Features_delete({ feature, onClose, refreshFeatures }) {
-  const token = localStorage.getItem("token");
 
   const handleDelete = async () => {
     try {
