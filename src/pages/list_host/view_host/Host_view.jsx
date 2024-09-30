@@ -55,7 +55,7 @@ function Host_view() {
           }));
         }
       } catch (err) {
-        console.error("Error fetching host data", err.message);
+        console.error("Error host data", err.message);
       }
     };
 
@@ -71,7 +71,7 @@ function Host_view() {
 
         setPets(response.data.pet);
       } catch (err) {
-        console.error("Error fetching pets data", err.message);
+        console.error("Error pets data", err.message);
       }
     };
 
