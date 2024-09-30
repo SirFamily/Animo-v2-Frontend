@@ -31,7 +31,6 @@ function Host_view() {
     additionalPetCharge: 50,
   });
 
-  // State for tracking selected features
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   useEffect(() => {
@@ -43,9 +42,12 @@ function Host_view() {
 
         const hostData = response.data.data;
         setHost(hostData);
-        setLoading(false);
         if (hostData.lat && hostData.long) {
-          setPosition({ lat: hostData.lat, lng: hostData.long });
+          const position = {
+            lat: parseFloat(hostData.lat),
+            lng: parseFloat(hostData.long),
+          };
+          setPosition(position);
           setInput((prev) => ({
             ...prev,
             lat: hostData.lat,
@@ -53,8 +55,7 @@ function Host_view() {
           }));
         }
       } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        console.error("Error fetching host data", err.message);
       }
     };
 
@@ -70,20 +71,18 @@ function Host_view() {
 
         setPets(response.data.pet);
       } catch (err) {
-        setError(err.message);
+        console.error("Error fetching pets data", err.message);
       }
     };
 
     getPetsData();
   }, [hostId]);
 
-  // Handle feature selection
   const handleFeatureChange = (featureId, isChecked) => {
-    setSelectedFeatures(
-      (prevSelected) =>
-        isChecked
-          ? [...prevSelected, featureId] // Add feature if checked
-          : prevSelected.filter((id) => id !== featureId) // Remove if unchecked
+    setSelectedFeatures((prevSelected) =>
+      isChecked
+        ? [...prevSelected, featureId]
+        : prevSelected.filter((id) => id !== featureId)
     );
   };
 
@@ -99,7 +98,7 @@ function Host_view() {
       startDate: input.checkin,
       endDate: input.checkout,
       pets: petsData,
-      features: selectedFeatures, // Send selectedFeatures array
+      features: selectedFeatures,
       paymentAmount: calculateTotalPrice(),
     };
 
@@ -140,7 +139,6 @@ function Host_view() {
       totalPrice += (pets.length - 1) * additionalPetCharge;
     }
 
-    // Calculate price for selected features
     selectedFeatures.forEach((featureId) => {
       const feature = host.features.find((f) => f.id === featureId);
       if (feature) totalPrice += feature.price;
@@ -148,7 +146,7 @@ function Host_view() {
 
     totalPrice += extraServiceFee;
 
-    return totalPrice;
+    return parseFloat(totalPrice.toFixed(2));
   };
 
   let DefaultIcon = L.icon({
@@ -170,7 +168,7 @@ function Host_view() {
 
     return position === null ? null : (
       <Marker position={position}>
-        <Popup>📍 {host.address}</Popup>
+        <Popup>📍 {host?.address}</Popup>
       </Marker>
     );
   };
@@ -248,7 +246,7 @@ function Host_view() {
             <h3>สถานที่ตั้ง</h3>
             <MapContainer
               className={styles.mapContainer}
-              center={[input.lat || 13, input.long || 100]}
+              center={position || [13, 100]}
               zoom={5}
               scrollWheelZoom={false}
             >
@@ -338,7 +336,7 @@ function Host_view() {
 
             <div className="price">
               <p>
-                ราคาต่อคคืน: ฿
+                ราคาต่อคืน: ฿
                 {input.room
                   ? host.rooms.find((r) => r.name === input.room)?.price
                   : "0"}
@@ -353,7 +351,7 @@ function Host_view() {
             </div>
 
             <div className="total-price">
-              <strong>จำนวนเงินที่ต้องชำระ: ${calculateTotalPrice()}</strong>
+              <strong>จำนวนเงินที่ต้องชำระ: ฿{calculateTotalPrice()}</strong>
             </div>
             <div className="reserve-button">
               <button onClick={handleBooking}>จอง</button>

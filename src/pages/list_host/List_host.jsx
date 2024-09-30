@@ -12,7 +12,6 @@ function ListHost() {
   const [hosts, setHosts] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [typedSearchName, setTypedSearchName] = useState("");
-  const [searchTimeout, setSearchTimeout] = useState(null);
   const [selectedType, setSelectedType] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedPet, setSelectedPet] = useState("");
@@ -27,7 +26,7 @@ function ListHost() {
         setHosts(response.data.data);
         console.log(hosts);
       } catch (error) {
-        console.error("Error fetching host data:", error);
+        console.error("Error host data:", error);
       }
     };
 
@@ -59,16 +58,7 @@ function ListHost() {
   const handleSearchInput = (e) => {
     const value = e.target.value;
     setTypedSearchName(value);
-
-    if (searchTimeout) {
-      clearTimeout(searchTimeout);
-    }
-
-    const timeoutId = setTimeout(() => {
-      setSearchName(value);
-    }, 500);
-
-    setSearchTimeout(timeoutId);
+    setSearchName(value); // อัพเดตค่าการค้นหาแบบทันที
   };
 
   return (
