@@ -7,11 +7,7 @@ function Pets_delete({ pet, onClose, setPetData }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/pets/delete/${pet.id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      await axios.delete(`${import.meta.env.VITE_API_URL}/pets/delete/${pet.id}`,);
       setPetData(); 
       onClose();
       alert("ลบข้อมูลสัตว์เลี้ยงสำเร็จ");
