@@ -45,8 +45,7 @@ function Req_detail_host() {
     return <div>กำลังดาวน์โหลด...</div>;
   }
 
-  const totalAmount =
-    request.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
+console.log(request)
   const petCount = request.pet_count_bookings?.length || 0;
 
   return (
@@ -148,7 +147,7 @@ function Req_detail_host() {
       </div>
       <div className={styles.infoRow}>
         <label className={styles.label}>ยอดเงินรวมที่ต้องชำระ:</label>
-        <strong className={styles.value}>${totalAmount.toFixed(2)}</strong>
+        <strong className={styles.value}>${request.payments[0].amount}</strong>
       </div>
 
       {/* Status Update Buttons */}

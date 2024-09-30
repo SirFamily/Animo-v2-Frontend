@@ -31,8 +31,6 @@ function History_detail() {
 
   console.log(user.id === history.userId);
 
-  const totalAmount =
-    history.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
   const petCount = history.pet_count_bookings?.length || 0;
 
   return (
@@ -116,7 +114,7 @@ function History_detail() {
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>จำนวนเงินรวม:</label>
-          <span className={styles.value}>${totalAmount.toFixed(2)}</span>
+          <span className={styles.value}>${payments.amount}</span>
         </div>
 
         {user.id === history.userId && (
