@@ -34,12 +34,9 @@ function Host_add() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
+    const { name, value, type, files } = e.target;
     if (type === "file") {
-      const newImages = Array.from(files).map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-      }));
+      const newImages = Array.from(files);
       setHostData((prevState) => ({
         ...prevState,
         images: [...prevState.images, ...newImages],
@@ -47,18 +44,11 @@ function Host_add() {
     } else {
       setHostData({
         ...hostData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       });
     }
   };
-
-  const handleRemoveImage = (index) => {
-    const updatedImages = hostData.images.filter(
-      (_, imgIndex) => imgIndex !== index
-    );
-    URL.revokeObjectURL(hostData.images[index].preview);
-    setHostData({ ...hostData, images: updatedImages });
-  };
+  
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
@@ -74,8 +64,8 @@ function Host_add() {
     formData.append('long', hostData.long);
     formData.append('description', hostData.description);
   
-    hostData.images.forEach((image, index) => {
-      formData.append(`images`, image.file);
+    hostData.images.forEach((image) => {
+      formData.append(`images`, image);
     });
   
     try {
@@ -92,12 +82,6 @@ function Host_add() {
       console.error("Error creating accommodation:", error);
     }
   };
-  
-  useEffect(() => {
-    return () => {
-      hostData.images.forEach((image) => URL.revokeObjectURL(image.preview));
-    };
-  }, [hostData.images]);
 
   const handleGetAddress = async (lat, lng) => {
     try {
@@ -115,7 +99,7 @@ function Host_add() {
         long: lng,
       }));
     } catch (error) {
-      console.error("Error fetching address:", error);
+      console.error("Error  address:", error);
     }
   };
 
@@ -251,25 +235,6 @@ function Host_add() {
               multiple
               accept="image/*"
             />
-            <div className={styles.imagePreview}>
-              {hostData.images.length > 0 &&
-                hostData.images.map((image, index) => (
-                  <div key={index} className={styles.previewContainer}>
-                    <img
-                      src={image.preview}
-                      alt={`Preview ${index + 1}`}
-                      className={styles.previewImage}
-                    />
-                    <button
-                      type="button"
-                      className={styles.removeButton}
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))}
-            </div>
           </div>
         )}
 

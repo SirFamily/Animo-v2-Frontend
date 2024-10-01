@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Css/roomadd.module.css";
 import axios from "axios";
-import { useNavigate,useParams } from "react-router-dom";
-import speciesList from "../../../../component/data/petdata.json"; 
+import { useNavigate, useParams } from "react-router-dom";
+import speciesList from "../../../../component/data/petdata.json";
 
 function Room_add() {
   const navigate = useNavigate();
@@ -14,17 +14,13 @@ function Room_add() {
     quantity: 1,
     price: "",
     images: [],
-    supportPetName: "", 
-    supportPetDescription: ""
+    supportPetName: "",
   });
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
-      const newImages = Array.from(files).map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-      }));
+      const newImages = Array.from(files);
       setRoomData((prevState) => ({
         ...prevState,
         images: [...prevState.images, ...newImages],
@@ -44,14 +40,6 @@ function Room_add() {
     });
   };
 
-  const handleRemoveImage = (index) => {
-    const updatedImages = roomData.images.filter(
-      (_, imgIndex) => imgIndex !== index
-    );
-    URL.revokeObjectURL(roomData.images[index].preview);
-    setRoomData({ ...roomData, images: updatedImages });
-  };
-
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
@@ -64,10 +52,9 @@ function Room_add() {
     formData.append("quantity", roomData.quantity);
     formData.append("price", roomData.price);
     formData.append("supportPetName", roomData.supportPetName);
-    formData.append("supportPetDescription", roomData.supportPetDescription);
 
     roomData.images.forEach((image) => {
-      formData.append("images", image.file);
+      formData.append("images", image);
     });
 
     try {
@@ -191,25 +178,6 @@ function Room_add() {
               multiple
               accept="image/*"
             />
-            <div className={styles.imagePreview}>
-              {roomData.images.length > 0 &&
-                roomData.images.map((image, index) => (
-                  <div key={index} className={styles.previewContainer}>
-                    <img
-                      src={image.preview}
-                      alt={`Preview ${index + 1}`}
-                      className={styles.previewImage}
-                    />
-                    <button
-                      type="button"
-                      className={styles.removeButton}
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))}
-            </div>
           </div>
         )}
 
@@ -228,12 +196,6 @@ function Room_add() {
                 </option>
               ))}
             </select>
-            {/* <label>คำอธิบาย การรองรับสัตว์เลี้ยง</label>
-            <textarea
-              name="supportPetDescription"
-              value={roomData.supportPetDescription}
-              onChange={handleChange}
-            ></textarea> */}
           </div>
         )}
 
