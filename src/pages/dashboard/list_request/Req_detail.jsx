@@ -56,7 +56,7 @@ function Req_detail() {
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>ราคาห้องพัก:</label>
-          <span className={styles.value}>${request.room?.price || "-"}</span>
+          <span className={styles.value}>฿{request.room?.price || "-"}</span>
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>สัตว์เลี้ยง:</label>
@@ -100,7 +100,7 @@ function Req_detail() {
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>ราคาห้องพัก:</label>
-          <span className={styles.value}>${request.room?.price || "-"}</span>
+          <span className={styles.value}>฿{request.room?.price || "-"}</span>
         </div>
         {request.bookingFeatures?.map((feature, index) => (
           <div key={index} className={styles.infoRow}>
@@ -109,7 +109,7 @@ function Req_detail() {
             </span>
             <span className={styles.value}>
               {" "}
-              $ {feature.feature.price.toFixed(2)}
+              ฿ {feature.feature.price.toFixed(2)}
             </span>
           </div>
         ))}
@@ -120,7 +120,7 @@ function Req_detail() {
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>จำนวนเงินรวม:</label>
-          <span className={styles.value}>${totalAmount.toFixed(2)}</span>
+          <span className={styles.value}>฿{totalAmount.toFixed(2)}</span>
         </div>
 
         <h3 className={styles.subTitle}>รายละเอียดเจ้าของโฮสต์</h3>

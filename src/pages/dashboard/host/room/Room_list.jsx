@@ -71,7 +71,7 @@ console.log(rooms)
                 <td>{room.name}</td>
                 <td>{room.type}</td>
                 <td>{room.quantity}</td>
-                <td>${room.price}</td>
+                <td>฿{room.price}</td>
                 <td>
                   <div
                     className={styles.editLink}

@@ -117,7 +117,7 @@ console.log(request)
 
       <div className={styles.infoRow}>
         <label className={styles.label}>ราคาห้องพัก:</label>
-        <span className={styles.value}>${request.room?.price || "-"}</span>
+        <span className={styles.value}>฿{request.room?.price || "-"}</span>
       </div>
       {request.bookingFeatures?.map((feature, index) => (
         <div key={index} className={styles.infoRow}>
@@ -126,7 +126,7 @@ console.log(request)
           </span>
           <span className={styles.value}>
             {" "}
-            $ {feature.feature.price.toFixed(2)}
+            ฿ {feature.feature.price.toFixed(2)}
           </span>
         </div>
       ))}
@@ -147,7 +147,7 @@ console.log(request)
       </div>
       <div className={styles.infoRow}>
         <label className={styles.label}>ยอดเงินรวมที่ต้องชำระ:</label>
-        <strong className={styles.value}>${request.payments[0].amount}</strong>
+        <strong className={styles.value}>฿{request.payments[0].amount}</strong>
       </div>
 
       {/* Status Update Buttons */}

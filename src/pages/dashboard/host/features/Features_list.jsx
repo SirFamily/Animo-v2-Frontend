@@ -55,7 +55,7 @@ function Features_list({hostId}) {
               <tr key={feature.id}>
                 <td>{feature.name}</td>
                 <td>{feature.status}</td>
-                <td>${feature.price}</td>
+                <td>฿{feature.price}</td>
                 <td>
                   <div
                     className={styles.editLink}
