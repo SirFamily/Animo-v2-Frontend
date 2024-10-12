@@ -28,7 +28,7 @@ function Req_detail() {
   }
 
   const totalAmount =
-    request.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
+    request.payments[0].reduce((sum, payment) => sum + payment.amount, 0) || 0;
   const petCount = request.pet_count_bookings?.length || 0;
 
   return (
