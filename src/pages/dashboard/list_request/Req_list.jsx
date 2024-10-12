@@ -114,7 +114,7 @@ function Req_list() {
                       : "-"}
                   </td>
                   <td>{request.bookingStatus || "-"}</td>
-                  <td>{totalAmount > 0 ? `$${totalAmount.toFixed(2)}` : "-"}</td>
+                  <td>{totalAmount > 0 ? `฿${totalAmount.toFixed(2)}` : "-"}</td>
                   <td>
                   <Link key={request.id} to={`booking/detail/host/${request.id}`}>
                     <button className={styles.actionButton}>ดู</button>
