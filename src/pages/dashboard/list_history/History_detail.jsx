@@ -83,7 +83,7 @@ function History_detail() {
         <h3 className={styles.subTitle}>ทั้งหมด</h3>
         <div className={styles.infoRow}>
           <label className={styles.label}>ราคาห้องพัก:</label>
-          <span className={styles.value}>${history.room?.price || "-"}</span>
+          <span className={styles.value}>฿{history.room?.price || "-"}</span>
         </div>
         {history.bookingFeatures?.map((feature, index) => (
           <div key={index} className={styles.infoRow}>
@@ -92,7 +92,7 @@ function History_detail() {
             </span>
             <span className={styles.value}>
               {" "}
-              $ {feature.feature.price.toFixed(2)}
+              ฿ {feature.feature.price.toFixed(2)}
             </span>
           </div>
         ))}
@@ -114,7 +114,7 @@ function History_detail() {
         </div>
         <div className={styles.infoRow}>
           <label className={styles.label}>จำนวนเงินรวม:</label>
-          <span className={styles.value}>${payments.amount}</span>
+          <span className={styles.value}>฿{history.payments[0].amount}</span>
         </div>
 
         {user.id === history.userId && (

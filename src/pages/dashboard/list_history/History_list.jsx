@@ -62,7 +62,7 @@ function History_list() {
                       : "-"}
                   </td>
                   <td>{booking.bookingStatus || "-"}</td>
-                  <td>{totalAmount > 0 ? `$${totalAmount.toFixed(2)}` : "-"}</td>
+                  <td>{totalAmount > 0 ? `฿${totalAmount.toFixed(2)}` : "-"}</td>
                   <td>
                     {/* Check if booking.id exists before using it in the Link */}
                     {booking.id ? (
